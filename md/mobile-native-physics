@@ -3,11 +3,11 @@
 > Eliminate sticky touch hover states, viewport URL-bar clipping, gray tap flashes, and accidental text selection on mobile web interfaces.
 
 - Section: Physical Ergonomics
-- URL: http://127.0.0.1:3000/mobile-native-physics
+- URL: https://chama-x.github.io/first-principles-ui-docs/mobile-native-physics
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/mobile-native-physics.mdx
 
-> **Interactive demo: Mobile Native Physics.** Open http://127.0.0.1:3000/mobile-native-physics to try it.
+> **Interactive demo: Mobile Native Physics.** Open https://chama-x.github.io/first-principles-ui-docs/mobile-native-physics to try it.
 
 Unconditional `:hover` styles stay stuck after tapping on mobile screens, while raw `100vh` clips beneath browser chrome. Gate hover effects behind `@media (hover: hover)` and use dynamic viewport units (`100dvh`) with `touch-action: manipulation`.
 

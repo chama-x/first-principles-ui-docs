@@ -3,11 +3,11 @@
 > Enforcing primary anchor cell prominence (>= 35% area) and complete modulo-zero column span closure in responsive bento grid layouts.
 
 - Section: Responsive Layout
-- URL: http://127.0.0.1:3000/bento-grid
+- URL: https://chama-x.github.io/first-principles-ui-docs/bento-grid
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/bento-grid.mdx
 
-> **Interactive demo: Bento Grid Rule.** Open http://127.0.0.1:3000/bento-grid to try it.
+> **Interactive demo: Bento Grid Rule.** Open https://chama-x.github.io/first-principles-ui-docs/bento-grid to try it.
 
 An odd number of cards leaves trailing orphan gaps that break grid rhythm. Span the primary anchor cell across 2 columns so total column spans satisfy modulo-0 closure (`sum(span) mod cols = 0`) across all breakpoints.
 

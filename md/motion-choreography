@@ -3,17 +3,17 @@
 > Enforce physical spring easing curves, strict GPU compositor property isolation (transform and opacity), and a 400ms Doherty response latency ceiling.
 
 - Section: Physical Ergonomics
-- URL: http://127.0.0.1:3000/motion-choreography
+- URL: https://chama-x.github.io/first-principles-ui-docs/motion-choreography
 - Published: 2026-11-09
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/motion-choreography.mdx
 
-> **Interactive demo: Motion Choreography Rule.** Open http://127.0.0.1:3000/motion-choreography to try it.
+> **Interactive demo: Motion Choreography Rule.** Open https://chama-x.github.io/first-principles-ui-docs/motion-choreography to try it.
 
 Animating `width` or `padding` forces synchronous CPU layout reflow, dropping frames to stuttery lag. Restrict animations to GPU-composited `transform` and `opacity` with critically damped springs (`zeta >= 0.85`) settling under 350ms.
 
 ## Spring Easings & Press States
 
-> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/motion-choreography to try it.
+> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/motion-choreography to try it.
     <EasingCurveDemo />
     <StrongEasingDemo />
   </DemoTab>

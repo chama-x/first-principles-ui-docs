@@ -3,17 +3,17 @@
 > Bound distinct horizontal layout axes using Kolmogorov Information Theory and prevent dynamic title-metadata collisions on responsive headers.
 
 - Section: Physical Ergonomics
-- URL: http://127.0.0.1:3000/alignment-axes
+- URL: https://chama-x.github.io/first-principles-ui-docs/alignment-axes
 - Published: 2026-11-09
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/alignment-axes.mdx
 
-> **Interactive demo: Alignment Axes Rule.** Open http://127.0.0.1:3000/alignment-axes to try it.
+> **Interactive demo: Alignment Axes Rule.** Open https://chama-x.github.io/first-principles-ui-docs/alignment-axes to try it.
 
 Jagged horizontal offsets and stray margins inflate cognitive scan paths across the screen. Snap elements to at most `3` shared vertical alignment rails (`<= 2` on mobile) so the reader's eye sweeps straight down.
 
 ## Optical Alignment & Icon Offsets
 
-> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/alignment-axes to try it.
+> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/alignment-axes to try it.
   </DemoTab>
   <DemoTab label="Button Icon Offset">
     <OpticalButtonDemo />

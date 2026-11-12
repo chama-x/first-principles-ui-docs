@@ -3,11 +3,11 @@
 > Bounding contiguous form inputs per fieldset (<= 5 inputs) to prevent cognitive fatigue, visual overwhelm, and form abandonment.
 
 - Section: Information Density
-- URL: http://127.0.0.1:3000/fieldset-overload
+- URL: https://chama-x.github.io/first-principles-ui-docs/fieldset-overload
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/fieldset-overload.mdx
 
-> **Interactive demo: Fieldset Overload Rule.** Open http://127.0.0.1:3000/fieldset-overload to try it.
+> **Interactive demo: Fieldset Overload Rule.** Open https://chama-x.github.io/first-principles-ui-docs/fieldset-overload to try it.
 
 An endless single-page form with 8 raw inputs causes cognitive fatigue and form abandonment. Chunk complex inputs into logical steps of `<= 5` fields each, preserving momentum with progressive forward disclosure.
 

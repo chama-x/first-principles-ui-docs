@@ -3,17 +3,17 @@
 > Eliminate animation fatigue by scaling duration inversely with interaction frequency: instant keyboard shortcuts, warm tooltip handoffs, capped list staggers, and optimistic updates.
 
 - Section: Physical Ergonomics
-- URL: http://127.0.0.1:3000/interaction-frequency
+- URL: https://chama-x.github.io/first-principles-ui-docs/interaction-frequency
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/interaction-frequency.mdx
 
-> **Interactive demo: Novelty Budget.** Open http://127.0.0.1:3000/interaction-frequency to try it.
+> **Interactive demo: Novelty Budget.** Open https://chama-x.github.io/first-principles-ui-docs/interaction-frequency to try it.
 
 Everyday utility actions should never demand attention with flashy decorative animations. Spend novelty budgets exclusively on celebratory milestone events, keeping high-frequency repetitive tasks instant (`< 100ms`).
 
 ## Frequency Delays & Optimistic UI
 
-> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/interaction-frequency to try it.
+> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/interaction-frequency to try it.
     <HoverTooltipDemo />
   </DemoTab>
   <DemoTab label="Stagger Delays">

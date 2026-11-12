@@ -3,17 +3,17 @@
 > Ensure continuous visual flow across container changes, shared element transitions, optical icon morphs, and asymmetric exit reflows without glyph stretching or GPU paint thrashing.
 
 - Section: Physical Ergonomics
-- URL: http://127.0.0.1:3000/fluid-continuity
+- URL: https://chama-x.github.io/first-principles-ui-docs/fluid-continuity
 - Published: 2026-11-10
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/fluid-continuity.mdx
 
-> **Interactive demo: Fluid Continuity Rule.** Open http://127.0.0.1:3000/fluid-continuity to try it.
+> **Interactive demo: Fluid Continuity Rule.** Open https://chama-x.github.io/first-principles-ui-docs/fluid-continuity to try it.
 
 Unconstrained layout morphs warp font glyph aspect ratios during container expansion, while sluggish dismissals trap user attention. Enforce uniform scale projection (`|scaleX - scaleY| <= 0.04`) and make exit animations 2x faster than entrances.
 
 ## Continuous Fluid Interactions & State Morphing
 
-> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/fluid-continuity to try it.
+> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/fluid-continuity to try it.
     <SharedLayoutDetailDemo />
   </DemoTab>
   <DemoTab label="2. Icon Morph" badge="sigma <= 4px">

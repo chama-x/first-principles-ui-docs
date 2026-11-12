@@ -1,5 +1,5 @@
 :HL["/first-principles-ui-docs/_next/static/chunks/04sfy7r_lyfet.css","style"]
-:HL["/first-principles-ui-docs/_next/static/chunks/35h67q-dbbuoz.css","style"]
+:HL["/first-principles-ui-docs/_next/static/chunks/3bpgr9pb1ye3k.css","style"]
 :HL["/first-principles-ui-docs/_next/static/media/70bc3e132a0a741e-s.p.3t6q91iet4nsy.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/first-principles-ui-docs/_next/static/media/InterVariable-s.p.2c0y96ae70xfx.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/first-principles-ui-docs/_next/static/media/InterVariable_Italic-s.p.1x53smi1ekt97.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
@@ -7,4 +7,4 @@
 :HL["/first-principles-ui-docs/_next/static/media/Redaction35_Regular-s.p.2spmjtwxyk2ni.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/first-principles-ui-docs/_next/static/media/Redaction50_Regular-s.p.1qj81vj_dg12e.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/first-principles-ui-docs/_next/static/media/Redaction70_Regular-s.p.3u6nam99n24jj.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"slug","param":{"type":"d","key":"nav-choice","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"yGxhtkaGsW41Dfu-lWosa"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"slug","param":{"type":"d","key":"nav-choice","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"C-oU4XBZdSLfEnUvB9vvU"}

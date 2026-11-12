@@ -3,17 +3,17 @@
 > Enforce optical boundary distinctness and hairline border enclosures on dark status pills, tags, chips, and circular avatars so they remain distinctly visible.
 
 - Section: Color & Contrast
-- URL: http://127.0.0.1:3000/pill-saliency
+- URL: https://chama-x.github.io/first-principles-ui-docs/pill-saliency
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/pill-saliency.mdx
 
-> **Interactive demo: Pill Saliency Rule.** Open http://127.0.0.1:3000/pill-saliency to try it.
+> **Interactive demo: Pill Saliency Rule.** Open https://chama-x.github.io/first-principles-ui-docs/pill-saliency to try it.
 
 Dark badge pills blend invisibly into matching dark cards, destroying their visual boundary. Enforce a 1px `border-border` hairline whenever the surface lightness difference `Delta-L < 0.08` so interactive chips remain salient.
 
 ## Optical Enclosure on Media & Avatars
 
-> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/pill-saliency to try it.
+> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/pill-saliency to try it.
   </DemoTab>
 </DemoTabGroup>
 Status pills, tags, and badge chips convey critical state in application dashboards. On dark surfaces, low-contrast pills frequently dissolve into the surrounding card canvas, rendering tags illegible as distinct interactive units.

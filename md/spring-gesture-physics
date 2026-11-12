@@ -3,17 +3,17 @@
 > Build physically grounded gesture sheets and popovers with 1:1 pointer tracking, velocity-seeded spring releases, critical damping, and interruptible state machines.
 
 - Section: Physical Ergonomics
-- URL: http://127.0.0.1:3000/spring-gesture-physics
+- URL: https://chama-x.github.io/first-principles-ui-docs/spring-gesture-physics
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/spring-gesture-physics.mdx
 
-> **Interactive demo: Interrupt Sheet.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
+> **Interactive demo: Interrupt Sheet.** Open https://chama-x.github.io/first-principles-ui-docs/spring-gesture-physics to try it.
 
 Animations that lock out touch input break direct physical manipulation and make apps feel unresponsive. Keep all gesture interactions interruptible with momentum-preserving velocity handoff (`v_exit = v_gesture`), letting users redirect in flight.
 
 ## Gesture Momentum & Direct Tracking
 
-> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
+> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/spring-gesture-physics to try it.
   </DemoTab>
   <DemoTab label="Input Locking Guard">
     <InterruptLockDemo />

@@ -1,22 +1,28 @@
 # Make Text Readable on Any Surface or Gradient
 
-> Size- and weight-aware perceptual contrast verification using W3C APCA polarity-aware luminance and WCAG 2.2 AA gradient stop compositing.
+> Make every message easy to read, on light or dark backgrounds.
 
 - Section: Color & Contrast
-- URL: http://127.0.0.1:3000/text-contrast
+- URL: https://chama-x.github.io/first-principles-ui-docs/text-contrast
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/text-contrast.mdx
 
-> **Interactive demo: Text Contrast Rule.** Open http://127.0.0.1:3000/text-contrast to try it.
+> **Interactive demo: Text Contrast Rule.** Open https://chama-x.github.io/first-principles-ui-docs/text-contrast to try it.
+
+<details className="lesson-notes">
+<summary>More about text contrast</summary>
 
 Washed-out grey body text vanishes into dark backgrounds, failing perceptual readability. Keep body copy at `|Lc| >= 75` and secondary captions at `|Lc| >= 60` using Radix Step 12 and Step 11 tokens so text stays sharp.
 
 ## Optical Font Smoothing & Contrast
 
-> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/text-contrast to try it.
+> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/text-contrast to try it.
   </DemoTab>
 </DemoTabGroup>
-Human visual perception does not register lightness linearly. A simple mathematical ratio between two hex values (like WCAG 2.x's 4.5:1) treats white text on black identically to black text on white, ignoring spatial frequency, font weight, and the human eye's non-linear rod and cone response.
+Human visual perception does not register lightness linearly. A simple
+mathematical ratio between two hex values (like WCAG 2.x's 4.5:1) treats white
+text on black identically to black text on white, ignoring spatial frequency,
+font weight, and the human eye's non-linear rod and cone response.
 
 1. **Spatial Frequency Dependence:** High spatial frequency features (such as thin 12px font stems) require exponentially higher physical luminance contrast than low spatial frequency blocks (such as a 48px heading).
 2. **Polarity Asymmetry:** Dark text on a light background undergoes positive optical irradiation, whereas light text on dark background bleeds into surrounding dark photoreceptors, requiring weight compensation.
@@ -58,17 +64,21 @@ const Lc = Math.abs(computeAPCA(fgRgba, bgRgba));
 const minLc = getRequiredApcaLc(fontSizePx, fontWeight, config);
 
 if (Lc < minLc) {
-  ctx.report("LAW_07_APCA_CONTRAST", {
-    property: "apca_Lc",
-    computed: Lc,
-    threshold: minLc,
-  });
+ctx.report("LAW_07_APCA_CONTRAST", {
+property: "apca_Lc",
+computed: Lc,
+threshold: minLc,
+});
 }
+
 ```
   </div>
 </details>
   </div>
 </details>
+
+</details>
+```
 
 ## Resources
 

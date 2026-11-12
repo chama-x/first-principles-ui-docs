@@ -3,11 +3,11 @@
 > Golden-ratio vertical positioning for modal dialogs and linear flow wizards within the 35%–56% optical window (target 45% of viewport height).
 
 - Section: Responsive Layout
-- URL: http://127.0.0.1:3000/flow-center
+- URL: https://chama-x.github.io/first-principles-ui-docs/flow-center
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/flow-center.mdx
 
-> **Interactive demo: Flow Center Rule.** Open http://127.0.0.1:3000/flow-center to try it.
+> **Interactive demo: Flow Center Rule.** Open https://chama-x.github.io/first-principles-ui-docs/flow-center to try it.
 
 Modals pinned to the top edge feel mechanically top-heavy and strain upward eye movement. Center vertical flows at the 45% golden-ratio optical baseline (`Y in [35%, 56%]`) where the human fovea rests naturally.
 
