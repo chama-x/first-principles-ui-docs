@@ -1,0 +1,88 @@
+# Stop Stacking Borders on Drop Shadows & Fix Nested Corners
+
+> Continuous boundary energy conservation (Eb <= 1.25), concentric inner corner curvature geometry, and Gestalt proximity padding ratios.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/card-boundaries
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/card-boundaries.mdx
+
+> **Interactive demo: Card Boundaries Rule.** Open http://127.0.0.1:3000/card-boundaries to try it.
+
+Stacking a dark border and a heavy drop shadow on the same card creates muddy double edges. Use a single 1px hairline border in dark mode, and shrink inner corner radii (`r_in = r_out - pad`) so nested curves stay concentric.
+
+## Nested Geometry & Dark Mode Elevation
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/card-boundaries to try it.
+    <NestedRadiusExamplesDemo />
+  </DemoTab>
+  <DemoTab label="Dark-Mode Elevation">
+    <ShadowDarkModeDemo />
+  </DemoTab>
+</DemoTabGroup>
+
+Cards with heavy borders, deep drop shadows, and harsh background elevation stack redundant boundary cues. This "cue stacking" produces visual vibration and clutter. Furthermore, nesting rounded elements with identical corner radii pinches the whitespace at the corners.
+
+1. **Continuous Boundary Energy Cap (`Eb <= 1.25`):** Every boundary cue exerts perceptual energy:
+   - Subtle surface elevation: `0.65`
+   - Hairline border (1px): `0.50`
+   - High-contrast border: `0.80`
+   - Outer drop shadow: `0.95`
+   Pairing subtle elevation (`0.65`) with a 1px border (`0.50`) sums to `1.15 <= 1.25` (clean, crisp, intentional). But combining outer shadows (`0.95`) with thick borders (`0.80`) spikes `Eb` to `1.75 > 1.25`, generating visual noise.
+2. **Concentric Curvature:** When an inner element sits inside a padded outer box, its corner radius must equal outer radius minus padding (`r_in = max(0, r_out - pad)`). Sharing the same radius makes the corner gap look pinched and amateurish.
+3. **Gestalt Proximity:** A container's internal flex or grid gap must be strictly smaller than the container's outer padding (`Padding >= 1.35 * Gap`) so child items visually belong together inside their boundary.
+
+## Remediation
+
+Apply concentric radii and choose a subtle border or soft shadow:
+
+```tsx
+// Right: Concentric radius (r_out = 16px, pad = 8px, r_in = 8px)
+<div className="rounded-2xl border border-border/80 bg-card p-2">
+  <div className="rounded-lg bg-muted/50 p-4">
+    Inner content with concentric optical curvature
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier inspects all card elements and sibling groups:
+
+> **Boundary Energy Cap:** `Eb = E_elevation + E_border + E_shadow <= 1.25`
+> **Concentric Corner Radius:** `r_in = max(0, r_out - padding)`
+> **Gestalt Proximity Ratio:** `Padding / Gap >= 1.35`
+
+<details className="my-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+
+```typescript
+// Evaluated by src/rules/card-boundaries.mjs
+const elevEnergy = dL >= 0.03 ? 0.65 : 0;
+const borderEnergy = hasBorder ? (isHighContrast ? 0.80 : 0.50) : 0;
+const shadowEnergy = hasOuterShadow ? 0.95 : 0;
+const Eb = elevEnergy + borderEnergy + shadowEnergy;
+
+if (Eb > 1.25) {
+  ctx.report("LAW_04_BOUNDARY_EXCLUSIVITY", {
+    property: "boundary_energy",
+    computed: Eb,
+    threshold: 1.25,
+  });
+}
+```
+
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Gestalt Principles of Perceptual Grouping](https://en.wikipedia.org/wiki/Principles_of_grouping): Spatial proximity and common region closure in visual design.
+- [Concentric Border Radius Geometry](https://fvsch.com/articles/border-radius-math/): Mathematical curvature offset formulas for nested rounded boxes.

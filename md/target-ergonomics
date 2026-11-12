@@ -1,0 +1,95 @@
+# Size Touch Targets & Stop iOS Input Auto-Zoom
+
+> Ensuring touch target acquisition thresholds (>= 36x36px standalone / >= 28x28px toolbar) and preventing destructive mobile viewport auto-zoom with a 16px input font-size floor.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/target-ergonomics
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/target-ergonomics.mdx
+
+> **Interactive demo: Target Ergonomics Rule.** Open http://127.0.0.1:3000/target-ergonomics to try it.
+
+Buttons smaller than 36px trigger missed taps, accidental clicks, and motor frustration under Fitts's law. Expand interactive touch targets to at least `44x44px` on mobile and `36x36px` on desktop with invisible pseudo-element padding.
+
+## Target Expansion & Hit Area Ergonomics
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/target-ergonomics to try it.
+  </DemoTab>
+  <DemoTab label="Expand Hit Area">
+    <HitAreasExpandDemo />
+  </DemoTab>
+  <DemoTab label="Gap Padding">
+    <HitAreasGapDemo />
+  </DemoTab>
+</DemoTabGroup>
+Tiny interactive buttons cause mis-taps, frustration, and increased motor effort. On touchscreens, tapping a 20px icon button without sufficient padding often triggers adjacent controls. On mobile browsers, tapping an input styled with a 13px font forces the viewport to violently zoom in, disorienting the user.
+
+1. **Fitts's Law:** Acquisition time `MT = a + b log2(1 + D/W)` is inversely proportional to target width `W`. When `W` drops below fingertip contact pad dimensions (~7mm / 36px), error rates spike exponentially.
+2. **Compact Toolbar Exceptions:** Inside high-density toolbars or compact table action rows, targets may compress to 28x28px provided they have sufficient spacing to avoid accidental activation.
+3. **Mobile Auto-Zoom Floor:** iOS Safari and WebKit automatically zoom into any focused `<input>`, `<select>`, or `<textarea>` whose computed `font-size` is under 16px. This shifts the entire page layout and requires users to manually pinch-to-zoom back out.
+
+## Hit Area Expansion via Invisible Pseudo-Elements
+
+When visual design calls for a compact 20px icon, you do not need to bloat the visible button frame. An invisible `::after` pseudo-element can expand the touch hit area to 36x36px or 44x44px while keeping the icon visually delicate:
+
+## Remediation
+
+Ensure standalone targets hit at least 36x36px and form inputs are 16px on mobile:
+
+```tsx
+// Right: Fitts compliant target and 16px mobile input floor
+<button className="min-h-9 min-w-9 p-2 rounded-full hover:bg-muted inline-flex items-center justify-center">
+  <Icon className="size-4" />
+</button>
+
+<input className="text-base sm:text-sm rounded-lg border border-border p-2.5" />
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier measures bounding boxes of all interactive targets and checks computed font sizes on mobile:
+
+> **Standalone Target Size:** `min(Width, Height) >= 36px` (`>= 28px` in toolbars)
+> **Mobile Input Font Size Floor:** `font_size >= 16px` (prevents iOS Safari auto-zoom)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/target-ergonomics.mjs
+const minTarget = inCompactZone ? 28 : 36;
+const r = btn.getBoundingClientRect();
+
+if (r.width < minTarget || r.height < minTarget) {
+  ctx.report("LAW_07_FITTS_TARGET_SIZE", {
+    property: "min_dimension_px",
+    computed: Math.round(Math.min(r.width, r.height)),
+    threshold: minTarget,
+    operator: ">=",
+  });
+}
+
+if (vpConfig.isMobile && inputFontSize < 16) {
+  ctx.report("LAW_18_IOS_INPUT_ZOOM", {
+    property: "mobile_input_font_size_px",
+    computed: inputFontSize,
+    threshold: 16,
+    operator: ">=",
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Fitts's Law of Motor Movement](https://en.wikipedia.org/wiki/Fitts%27s_law): Mathematical model of human pointing velocity based on target distance and surface area.
+- [WCAG 2.2 SC 2.5.8 Target Size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html): Accessibility criteria for minimum pointer target dimensions.

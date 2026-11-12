@@ -1,0 +1,52 @@
+# Delete Motion on High-Frequency & Keyboard Actions
+
+> Eliminate animation fatigue by scaling duration inversely with interaction frequency: instant keyboard shortcuts, warm tooltip handoffs, capped list staggers, and optimistic updates.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/interaction-frequency
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/interaction-frequency.mdx
+
+> **Interactive demo: Novelty Budget.** Open http://127.0.0.1:3000/interaction-frequency to try it.
+
+Everyday utility actions should never demand attention with flashy decorative animations. Spend novelty budgets exclusively on celebratory milestone events, keeping high-frequency repetitive tasks instant (`< 100ms`).
+
+## Frequency Delays & Optimistic UI
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/interaction-frequency to try it.
+    <HoverTooltipDemo />
+  </DemoTab>
+  <DemoTab label="Stagger Delays">
+    <StaggerDemo />
+    <StaggerCapDemo />
+  </DemoTab>
+  <DemoTab label="Perceived Speed">
+    <LoadingFlashDemo />
+    <OptimisticDemo />
+  </DemoTab>
+</DemoTabGroup>
+Animation has a novelty half-life. A 400ms entrance that delights on day 1 becomes an infuriating tax by day 30 when repeated 200 times a day.
+
+## The Frequency-Duration Inverse Law
+
+`LAW_29_HIGH_FREQ_MOTION_TAX` states that animation duration must scale inversely with interaction frequency:
+
+1. **High-Frequency Actions (`f >= 100 / day`):** Duration must be `0ms` (instantaneous).
+2. **Keyboard-Triggered Actions:** When an action is invoked via a keyboard shortcut (e.g. `Cmd+K`, arrow keys, `Esc`), users operate in cognitive command mode. Motion duration must not exceed `100ms`.
+3. **Staggered Entrances:** Cumulative stagger delay across any list or grid must be capped at `sum(delta_t) <= 300ms`.
+
+## Warm Tooltip Handoffs
+
+When a user hovers over the first icon in a toolbar, a brief delay (e.g. 300ms) prevents unwanted flashes. But once a tooltip is open, subsequent hovers across adjacent icons must open instantly with zero delay:
+
+## Capping Stagger Delays
+
+Staggering 20 list items at 50ms each forces the user to wait a full second before the final item appears. Caps prevent this latency:
+
+## Perceived Performance & Optimistic UI
+
+Loading spinners that flash for less than 150ms increase perceived latency compared to rendering nothing or applying optimistic updates:
+
+## Resources
+
+- [Nielsen Norman Group](https://www.nngroup.com/articles/response-times-3-important-limits/): Response Times: The 3 Important Limits for Human-Computer Interaction.

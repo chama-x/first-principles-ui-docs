@@ -1,0 +1,84 @@
+# Strip Repetitive Badges, Redundant Captions & Scar-Tissue Copy
+
+> Eliminating decorative badge spam, tautological headings, and defensive helper-text slop using Shannon information entropy and Rachel's 4-rung subtractive copy ladder.
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/heading-tautology
+- Published: 2026-11-10
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/heading-tautology.mdx
+
+> **Interactive demo: Heading Tautology Rule.** Open http://127.0.0.1:3000/heading-tautology to try it.
+
+Placing an 'Active' badge next to an 'Active Projects' heading wastes user visual bandwidth with zero new entropy. Purge duplicate words and replace repetitive pills with contextual data so every token delivers unique information.
+
+1. **Zero Information Gain:** If a section header reads "Active Users", placing a status pill that says "Active" right beside it yields mutual information `I(H; B) ≈ H(B)`. The pill delivers zero new information (0 bits).
+2. **Repetitive Garnish:** If 4 out of 4 cards in a summary grid carry the exact same "Status: Live" pill, the pill ceases to function as a status indicator and becomes visual noise.
+3. **The 4-Rung Subtractive Copy Ladder:**
+   - **Rung 1 (Cut Unprompted Worry-Planting):** Delete reassuring copy explaining things users never doubted (e.g. *"The preview is rendered at the exact size used on your profile"*).
+   - **Rung 2 (Cut Label-Restating Captions):** If a field is labeled `"Retry limit"`, delete the caption `"How many times to retry"`.
+   - **Rung 3 (Cut Bug-Fix Scar Tissue & Permission Slips):** Delete captions that rule out past bugs or give polite permission (*"Don't worry if the count seems off for a moment"*, *"Feel free to click below"*).
+   - **Rung 4 (Delete the DOM Element Entirely):** Rather than rewording useless hints, delete the helper container from the DOM. Keep only **irreversible consequences**, **invisible compatibility scopes**, **empty-state next actions**, and **bare units**.
+
+> **Interactive demo: Subtractive Copy Ladder.** Open http://127.0.0.1:3000/heading-tautology to try it.
+
+## Remediation
+
+Remove repetitive badges and delete redundant helper nodes completely from the DOM:
+
+```tsx
+// Wrong: Zero-bit tautology and copy slop
+<div className="flex items-center gap-2">
+  <h2>Active Users</h2>
+  <span className="badge">Active</span>
+</div>
+<label htmlFor="retries">Retry Limit</label>
+<p className="text-xs text-muted-foreground">How many times we retry. Don't worry if this takes time.</p>
+<input id="retries" type="number" />
+
+// Right: High-entropy hierarchy and subtractive copy hygiene
+<div className="flex items-center justify-between">
+  <h2>Active Users</h2>
+  <span className="text-xs text-muted-foreground font-mono">1,420 online</span>
+</div>
+<div className="flex items-baseline gap-2">
+  <label htmlFor="retries" className="text-sm font-medium">Retry Limit</label>
+  <span className="text-xs text-muted-foreground font-mono">(attempts)</span>
+</div>
+<input id="retries" type="number" />
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier tracks badge text across sibling card groups, compares heading text against adjacent pills, and evaluates content stem overlap:
+
+> **Garnish Repetition Threshold:** No identical badge text on `> 25%` of sibling cards ($N \ge 3$).  
+> **Heading Tautology:** Case-insensitive word overlap between heading `<h1..h4>` and adjacent status pill `< 1`.  
+> **Zero-Bit Copy Slop:** Label-to-caption content stem overlap $< 55\%$, zero hedging/scar-tissue tokens.
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/card-density.mjs and heading-tautology.mjs
+if (stemOverlap >= 0.55 || hasDefensiveHedging) {
+  ctx.report("LAW_32_ZERO_BIT_COPY_SLOP", {
+    property: "caption_stem_overlap",
+    computed: stemOverlap,
+    threshold: 0.55,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Shannon Information Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)): Quantifying informational surprise and eliminating tautological redundancy.

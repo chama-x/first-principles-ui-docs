@@ -1,0 +1,84 @@
+# Chunk Long Forms Into Digestible Steps
+
+> Bounding contiguous form inputs per fieldset (<= 5 inputs) to prevent cognitive fatigue, visual overwhelm, and form abandonment.
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/fieldset-overload
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/fieldset-overload.mdx
+
+> **Interactive demo: Fieldset Overload Rule.** Open http://127.0.0.1:3000/fieldset-overload to try it.
+
+An endless single-page form with 8 raw inputs causes cognitive fatigue and form abandonment. Chunk complex inputs into logical steps of `<= 5` fields each, preserving momentum with progressive forward disclosure.
+
+Long, unbroken forms trigger immediate visual fatigue and abandonment. When an interface presents 8 to 12 unstructured input fields without conceptual separation, the user's working memory cannot chunk the requirements into achievable sub-tasks.
+
+The substrate principles stem from **Cognitive Load Theory** and **Working Memory Chunking**:
+
+1. **Subitizing Threshold in Forms:** Humans can comfortably parse up to 4–5 coherent inputs as a single conceptual cluster (e.g., Shipping Address or Payment Credentials).
+2. **Perceived Task Cost:** When an undivided form exceeds 5 inputs, the visual complexity triggers an avoidance reaction, sharply degrading completion velocity.
+3. **Progressive Disclosure:** Forms requiring more than 5 inputs must partition controls into multi-step wizards or clearly delineated sequential fieldsets.
+
+## Remediation
+
+Partition long forms into semantic fieldsets with concise `<legend>` titles or tabbed wizard steps:
+
+```tsx
+// Right: Chunked into distinct fieldsets (<= 4 inputs each)
+<form className="space-y-6">
+  <fieldset className="space-y-3 rounded-xl border border-border/80 p-4">
+    <legend className="text-xs font-semibold px-1">Account Credentials</legend>
+    <input className="input" placeholder="Work Email" />
+    <input className="input" type="password" placeholder="Password" />
+  </fieldset>
+
+  <fieldset className="space-y-3 rounded-xl border border-border/80 p-4">
+    <legend className="text-xs font-semibold px-1">Company Profile</legend>
+    <input className="input" placeholder="Company Name" />
+    <select className="select"><option>Team Size</option></select>
+  </fieldset>
+</form>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier traverses every `<fieldset>` and `[data-form-group]` container, tallying all visible non-hidden form controls:
+
+> **Fieldset Subitizing Cap:** `Inputs_visible <= 5` where `Inputs_visible = sum(input[type != hidden] + select + textarea)`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/fieldset-overload.mjs
+const maxInputs = config.density.maxFieldsetInputs; // 5
+
+for (const fs of fieldsets) {
+  const inputs = Array.from(
+    fs.querySelectorAll('input:not([type="hidden"]), select, textarea')
+  ).filter(helpers.isVisible);
+
+  if (inputs.length > maxInputs) {
+    ctx.report("LAW_02_FLOW_FIELDSET_OVERLOAD", {
+      property: "inputs_per_fieldset",
+      computed: inputs.length,
+      threshold: maxInputs,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Cognitive Chunking](https://en.wikipedia.org/wiki/Chunking_(psychology)): Partitioning large arrays of information into manageable units in working memory.
+- [Nielsen Norman Group on Form Design](https://www.nngroup.com/articles/form-design/): Structural grouping and step-based progression in web forms.

@@ -1,0 +1,81 @@
+# Prevent Neon Glare & Oversaturated Accent Floods
+
+> Cap oversaturated card chroma and enforce high-chroma viewport territorial budgets using OKLCH perceptual color space and Helmholtz-Kohlrausch luminance surge limits.
+
+- Section: Color & Contrast
+- URL: http://127.0.0.1:3000/surface-chroma
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/surface-chroma.mdx
+
+> **Interactive demo: Surface Chroma Rule.** Open http://127.0.0.1:3000/surface-chroma to try it.
+
+Oversaturated neon backgrounds cause intense retinal glare and harsh neon glare. Cap container fills at OKLCH chroma `C <= 0.22` using Radix Step 3 surfaces to keep accent color within a calibrated perceptual budget.
+
+## OKLCH Uniformity Across Hues
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/surface-chroma to try it.
+  </DemoTab>
+  <DemoTab label="Palette Steps">
+    <OklchPaletteDemo />
+  </DemoTab>
+</DemoTabGroup>
+When user interface surfaces use raw, high-chroma colors, they trigger intense visual vibration. Large saturated cards demand excessive cognitive attention, overwhelming surrounding data and inducing rapid retinal fatigue.
+
+The substrate foundation is the **harsh neon glare**:
+
+1. **Perceived Luminance Surge:** Saturated colors appear physically brighter to the human eye than neutral gray surfaces of identical physical photometric luminance.
+2. **Visual Clamor:** When applied to large background areas (> 2400px²), high chroma disrupts ocular fixation, causing foreground text to vibrate against the background boundary.
+3. **Territorial Budget:** High chroma (Radix Step 9) is designed for tiny accents, dots, and active icons. Spreading it across substantial viewport fractions destroys informational hierarchy.
+
+In standard HSL or sRGB, changing hue at constant saturation causes massive perceived lightness fluctuations (pure yellow appears blindingly bright while pure blue appears dark). OKLCH decouples lightness ($L$) and chroma ($C$) so colors transition uniformly:
+
+## Remediation
+
+Use calibrated Radix Step 3–5 surface fills or reduce OKLCH chroma:
+
+```css
+/* Right: Subtle, elegant surface chroma */
+.surface-card {
+  background-color: oklch(0.22 0.03 260); /* Low chroma, non-vibrating */
+  border: 1px solid oklch(0.30 0.04 260);
+}
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier composites element backgrounds into OKLCH space and evaluates two distinct physical constraints:
+
+> **Surface Chroma Cap:** `C_OKLCH <= 0.220` (light canvas) / `C_OKLCH <= 0.195` (dark canvas)
+> **High-Chroma Viewport Budget:** `Area(C > 0.12) / Area(Viewport) <= 8%` (workspace) / `<= 22%` (showcase)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/surface-chroma.mjs
+const oklch = rgbToOklch(compositedBg);
+const maxChroma = isDarkCanvas ? 0.195 : 0.220;
+
+if (area > 2400 && oklch.C > maxChroma) {
+  ctx.report("LAW_11_HK_LUMINANCE_SURGE", {
+    property: "background_oklch_C",
+    computed: oklch.C,
+    threshold: maxChroma,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [harsh neon glare](https://en.wikipedia.org/wiki/Helmholtz%E2%80%93Kohlrausch_effect): Perceived brightness enhancement induced by high color saturation.
+- [OKLCH Color Space](https://bottosson.github.io/posts/oklch/): A perceptual color space for uniform lightness and chroma manipulation.

@@ -1,0 +1,82 @@
+# Eliminate Flat 3-Card Rows & Template Layouts
+
+> Visual hierarchy verification ensuring top-level regions command focal dominance using the Zipf-Lorenz area dominance ratio.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/zipf-hierarchy
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/zipf-hierarchy.mdx
+
+> **Interactive demo: Zipf Hierarchy Rule.** Open http://127.0.0.1:3000/zipf-hierarchy to try it.
+
+Identical-sized cards in a flat grid trigger visual aimlessness because no element commands attention. Anchor layouts with a dominant focal hero obeying Zipf's power law (`D_Zipf >= 0.48`), giving the primary card at least 1.6x the area of siblings.
+
+When an interface presents a uniform grid of identical cards, the user's gaze has no obvious entry point. Visual energy is evenly dispersed, forcing the eye to sweep aimlessly across the canvas.
+
+The substrate foundation is the **Power-Law of Visual Attention**:
+
+1. **Information Ranking:** Human visual processing prioritizes ranked signals. In natural scenes, the primary subject commands disproportionate optical mass.
+2. **Anchor Region:** A layout requires a clear dominant anchor (hero card, primary visualization, or stage header) commanding the largest share of spatial territory.
+3. **Flatness Prevention:** Pages where every card has equal width and height produce visual monotony and decision paralysis.
+
+## Remediation
+
+Introduce a dominant hero anchor region spanning 2 columns or commanding >= 50% of the stage area:
+
+```tsx
+// Right: Zipf-dominant 2:1 bento stage
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+  {/* Dominant Hero Anchor (A1 = 66% area) */}
+  <div className="md:col-span-2 rounded-2xl border border-border/80 bg-card p-6">
+    <h2 className="text-base font-semibold">Primary Telemetry Stream</h2>
+    {/* Large chart */}
+  </div>
+  {/* Secondary Metric Cards (A2, A3 = 17% each) */}
+  <div className="space-y-4">
+    <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+    <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier isolates major top-level stage regions, calculates bounding areas, and computes the top-two area dominance ratio (`D_Zipf`):
+
+> **Zipf Dominance Ratio:** `D_Zipf = (A_1 + A_2) / sum(A_i) >= 0.48`
+> **Hierarchy Contribution Score:** `S = min(3.5, max(1.2, 5.0 * D_Zipf))`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/zipf-hierarchy.mjs
+const totalArea = regionAreas.reduce((sum, a) => sum + a, 0);
+const topTwoArea = (regionAreas[0] || 0) + (regionAreas[1] || 0);
+const D_Zipf = totalArea > 0 ? topTwoArea / totalArea : 1.0;
+
+scoreState.D_Zipf = D_Zipf;
+scoreState.S = Math.min(3.5, Math.max(1.2, 5.0 * D_Zipf));
+
+if (D_Zipf < 0.48) {
+  ctx.report("LAW_01_ZIPF_HIERARCHY_FLATNESS", {
+    property: "D_Zipf",
+    computed: D_Zipf,
+    threshold: 0.48,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law): Power-law distributions in natural systems and human communication.

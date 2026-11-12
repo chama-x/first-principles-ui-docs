@@ -1,0 +1,98 @@
+# Keep Animations on the GPU & Choose the Right Easing
+
+> Enforce physical spring easing curves, strict GPU compositor property isolation (transform and opacity), and a 400ms Doherty response latency ceiling.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/motion-choreography
+- Published: 2026-11-09
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/motion-choreography.mdx
+
+> **Interactive demo: Motion Choreography Rule.** Open http://127.0.0.1:3000/motion-choreography to try it.
+
+Animating `width` or `padding` forces synchronous CPU layout reflow, dropping frames to stuttery lag. Restrict animations to GPU-composited `transform` and `opacity` with critically damped springs (`zeta >= 0.85`) settling under 350ms.
+
+## Spring Easings & Press States
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/motion-choreography to try it.
+    <EasingCurveDemo />
+    <StrongEasingDemo />
+  </DemoTab>
+  <DemoTab label="Tactile Press">
+    <ButtonPressDemo />
+    <PressAmountDemo />
+  </DemoTab>
+</DemoTabGroup>
+
+Sluggish transitions and mechanical linear animations make digital interfaces feel cheap and unresponsive. Worse, using `transition: all` forces the browser engine to recalculate geometric layout on every animation frame, causing dropped frames and sluggish mobile scrolling.
+
+1. **Spring Deceleration Curves:** Mechanical `linear` transitions move at constant speed and stop abruptly, violating physical inertia. Physical objects decelerate smoothly into place. Easing curves like `cubic-bezier(0.22, 1, 0.36, 1)` mimic critically damped springs, providing instant feedback with a natural settle.
+2. **Compositor Property Isolation:** The browser rendering pipeline splits work into Layout, Paint, and Composite. Animating `width`, `height`, or `margin` forces continuous re-layout across the DOM tree. Modern interfaces must animate only GPU-accelerated compositor properties: `transform`, `opacity`, and color tokens.
+3. **Doherty Response Budget:** The Doherty threshold establishes that human interaction feels instantaneous when system feedback completes within 400ms. Choreographed animations where total duration plus delay exceeds 400ms introduce perceived drag.
+
+## Remediation
+
+Isolate transitions to specific compositor tokens and specify high-performance spring easing:
+
+```css
+/* Good: GPU-accelerated spring transition */
+.btn-action {
+  transition-property: transform, opacity, background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-action:hover {
+  transform: translateY(-1px);
+}
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine inspects computed transition properties across all visible interactive elements:
+
+> **Transition Easing:** `timing-function != linear` (spring / cubic-bezier curve)  
+> **Compositor Isolation:** `property != all` (isolated to transform, opacity, color tokens)  
+> **Choreography Budget:** `duration + delay <= 400ms` (Doherty threshold)
+
+<details className="my-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground">
+    View Deterministic Playwright Verifier Source (check-ui-math.mjs)
+  </summary>
+
+```typescript
+// Evaluated by src/rules/motion-choreography.mjs
+for (const el of allVisible) {
+  const cs = getComputedStyle(el);
+
+  // 1. Flag linear easing
+  if (cs.transitionTimingFunction === "linear" && cs.transitionDuration !== "0s") {
+    ctx.report("LAW_15_LINEAR_EASING", {
+      property: "transition-timing-function",
+      computed: "linear",
+      threshold: "cubic-bezier(0.22, 1, 0.36, 1)",
+    });
+  }
+
+  // 2. Layout thrash guard
+  if (cs.transitionDuration !== "0s" && cs.transitionProperty === "all") {
+    ctx.report("LAW_15_LAYOUT_THRASH_ANIMATION", {
+      property: "transition-property",
+      computed: "all",
+      threshold: "transform, opacity, color, background-color, border-color",
+    });
+  }
+}
+```
+
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Doherty Threshold](https://en.wikipedia.org/wiki/Doherty_threshold): Human-computer interaction latency ceiling for maintaining user engagement.
+- [Web Animations & Compositor Pipeline](https://web.dev/articles/animations-guide): Hardware-accelerated transitions via GPU transform and opacity layers.

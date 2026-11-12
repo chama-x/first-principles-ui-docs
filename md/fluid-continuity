@@ -1,0 +1,124 @@
+# Morph States & Shared Layouts Without Distortion
+
+> Ensure continuous visual flow across container changes, shared element transitions, optical icon morphs, and asymmetric exit reflows without glyph stretching or GPU paint thrashing.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/fluid-continuity
+- Published: 2026-11-10
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/fluid-continuity.mdx
+
+> **Interactive demo: Fluid Continuity Rule.** Open http://127.0.0.1:3000/fluid-continuity to try it.
+
+Unconstrained layout morphs warp font glyph aspect ratios during container expansion, while sluggish dismissals trap user attention. Enforce uniform scale projection (`|scaleX - scaleY| <= 0.04`) and make exit animations 2x faster than entrances.
+
+## Continuous Fluid Interactions & State Morphing
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/fluid-continuity to try it.
+    <SharedLayoutDetailDemo />
+  </DemoTab>
+  <DemoTab label="2. Icon Morph" badge="sigma <= 4px">
+    <IconMorphDemo />
+    <IconMorphTuningDemo />
+    <RotationMorphDemo />
+    <HamburgerMorphDemo />
+  </DemoTab>
+  <DemoTab label="3. Asymmetric Exit" badge="0.5x Enter">
+    <ExitAnimationsDemo />
+    <ExitListDemo />
+  </DemoTab>
+  <DemoTab label="4. Clip-Path Reveal" badge="GPU">
+    <ClipPathRevealDemo />
+    <ClipPathTabsDemo />
+    <ClipPathHoldDemo />
+    <ClipPathCompareDemo />
+  </DemoTab>
+</DemoTabGroup>
+
+1. **Aspect-Ratio Scale Invariance:** When expanding a small card (`W1/H1`) into a large details view (`W2/H2`), container scale factors diverge (`scaleX != scaleY`). Applying this matrix transform directly to text causes visible distortion. Text children must decouple via `layout="position"` to maintain an isotropic 1:1 scale (`|scaleX - scaleY| <= 0.04`).
+2. **Optical Blur Bridging vs. Geometric Rotation:** When two icons share topological symmetry (such as `+` and `×`, or chevrons), state changes should execute via pure geometric rotation (`transform: rotate(45deg)`) with zero GPU rasterization cost. For topologically distinct icons (such as Copy and Check), an optical blur bridge (`blur(4px)` + critically damped spring `zeta = 1.0`) provides perceptual continuity without raster stalls.
+3. **Asymmetric Exit Velocity:** When users dismiss a surface (modal, sheet, toast, or list row), their cognitive task is complete. Lingering exits waste attention. Systems must enforce an asymmetric exit ratio:
+   `T_exit = round(0.5 * T_enter) <= 200ms`
+4. **Compositor Clip-Path Continuity:** Sliding segmented indicators and progress indicators must utilize compositor-accelerated `clip-path: inset()` rather than DOM restructuring to achieve seamless inverted-color reveals.
+
+## Remediation
+
+Protect child typography inside morphing containers and enforce asymmetric exit timings:
+
+```tsx
+/* Good: Text protected with layout="position", asymmetric exit duration */
+<motion.div layout layoutId="card-container" className="card">
+  <motion.h3 layout="position" className="text-lg font-bold">
+    Live Cluster Metrics
+  </motion.h3>
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.24 } }}
+        exit={{ opacity: 0, transition: { duration: 0.12 } }}
+      >
+        <p>Expanded telemetric details</p>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</motion.div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine inspects computed transforms, active filters, and exit transition properties:
+
+> **Text Glyph Aspect Invariance:** `|scaleX - scaleY| <= 0.04` on text children  
+> **Filter Paint Budget:** `blur(r) <= 12px` on containers `<= 6400px²` (max 3 sibling rows)  
+> **Asymmetric Exit Ceiling:** `T_exit <= 200ms` on closing / exiting states
+
+<details className="my-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground">
+    View Deterministic Playwright Verifier Source (check-ui-math.mjs)
+  </summary>
+
+```typescript
+// Evaluated by src/rules/flip-continuity.mjs
+const cs = getComputedStyle(el);
+
+// 1. Non-uniform text scale guard
+if (scaleDiff > 0.04) {
+  ctx.report("LAW_31_FLIP_CONTINUITY_HYGIENE", {
+    property: "transform",
+    computed: `scaleX=${scaleX.toFixed(2)}, scaleY=${scaleY.toFixed(2)}`,
+    threshold: "|scaleX - scaleY| <= 0.04",
+    ast_instruction: 'Apply layout="position" to child text elements.',
+  });
+}
+
+// 2. Filter paint budget
+if (blurRadius > 12 && boxArea > 6400) {
+  ctx.report("LAW_31_FLIP_CONTINUITY_HYGIENE", {
+    property: "filter",
+    computed: `blur(${blurRadius}px) on ${boxArea}px²`,
+    threshold: "blur(r <= 12px) on area <= 6400px²",
+  });
+}
+
+// 3. Asymmetric exit duration
+if (isExiting && durSeconds > 0.2) {
+  ctx.report("LAW_31_FLIP_CONTINUITY_HYGIENE", {
+    property: "transition-duration",
+    computed: `${Math.round(durSeconds * 1000)}ms`,
+    threshold: "<= 200ms",
+  });
+}
+```
+
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [View Transitions API & Seamless State Morphing](https://web.dev/articles/view-transitions): W3C standard for continuous visual state transitions across DOM modifications.
+- [Fluid Interactions & Spatial Morphing Architecture](https://blog.rndrealm.com/): Techniques for continuous shared elements, metaball gooey thresholding, and optical state bridging.

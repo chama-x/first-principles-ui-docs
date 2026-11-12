@@ -1,0 +1,69 @@
+# Position Modals & Wizards at the Optical Center
+
+> Golden-ratio vertical positioning for modal dialogs and linear flow wizards within the 35%–56% optical window (target 45% of viewport height).
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/flow-center
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/flow-center.mdx
+
+> **Interactive demo: Flow Center Rule.** Open http://127.0.0.1:3000/flow-center to try it.
+
+Modals pinned to the top edge feel mechanically top-heavy and strain upward eye movement. Center vertical flows at the 45% golden-ratio optical baseline (`Y in [35%, 56%]`) where the human fovea rests naturally.
+
+In authentication flows, onboarding wizards, and modal dialogs (`data-mode="flow"`), vertical placement determines cognitive focus. Dialogs pinned awkwardly against the top of the browser window or glued to mathematical 50% feel optically low and unbalanced.
+
+The substrate foundation is the **Optical Center of Gravity**:
+
+1. **Optical Centering:** The visual center of a rectangular canvas sits slightly above mathematical 50% (roughly 42%–48% of viewport height).
+2. **Reading Line Ergonomics:** On desktop displays, eye level naturally rests near 40%–45% of screen height. Modal prompts placed here require minimal neck or eye movement.
+
+## Remediation
+
+Center dialogs and wizards with flex or grid alignments biased slightly upward:
+
+```tsx
+// Right: Optical 45% golden-ratio centering
+<div className="flex min-h-[100dvh] items-center justify-center pb-[8vh] p-4">
+  <div className="w-full max-w-md rounded-2xl border border-border/80 bg-card p-6 shadow-xl">
+    <h2 className="text-lg font-semibold">Sign in to your account</h2>
+    {/* Form contents */}
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier calculates the vertical center of mass (`Y_center`) for flow containers:
+
+> **Optical Window:** `0.35 <= (Y_center / Height_viewport) <= 0.56` (nominally 45%)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/flow-center.mjs
+const yCenter = (r.top + r.height / 2) / VP_H;
+
+if (yCenter < 0.35 || yCenter > 0.56) {
+  ctx.report("LAW_08_FLOW_CENTER", {
+    property: "container_center_ratio",
+    computed: yCenter,
+    threshold: 0.45,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN Dialog Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog): Standard HTML dialog and modal positioning guidelines.

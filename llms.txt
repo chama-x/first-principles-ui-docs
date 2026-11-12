@@ -1,0 +1,59 @@
+# First Principles UI
+
+> Deterministic UI layout, perceptual contrast, typography, and mathematical verification. Each concept is a short explainer with an interactive demo by First Principles UI.
+
+Every concept is available as Markdown by appending `.md` to its URL (links below already do). The full text of every concept in one file is at http://127.0.0.1:3000/llms-full.txt.
+
+## Engine
+
+- [Verify & Solve Any UI Before It Ships](http://127.0.0.1:3000/ui-math.md): Bi-directional neuro-symbolic engine combining <15ms forward mathematical oracles (calc) with 6-pass Playwright DOM/SVG verification across 53 deterministic laws.
+
+## Color & Contrast
+
+- [Make Text Readable on Any Surface or Gradient](http://127.0.0.1:3000/text-contrast.md): Size- and weight-aware perceptual contrast verification using W3C APCA polarity-aware luminance and WCAG 2.2 AA gradient stop compositing.
+- [Prevent Neon Glare & Oversaturated Accent Floods](http://127.0.0.1:3000/surface-chroma.md): Cap oversaturated card chroma and enforce high-chroma viewport territorial budgets using OKLCH perceptual color space and Helmholtz-Kohlrausch luminance surge limits.
+- [Keep Dark-Mode Badges & Chips From Disappearing](http://127.0.0.1:3000/pill-saliency.md): Enforce optical boundary distinctness and hairline border enclosures on dark status pills, tags, chips, and circular avatars so they remain distinctly visible.
+
+## Responsive Layout
+
+- [Eliminate Flat 3-Card Rows & Template Layouts](http://127.0.0.1:3000/zipf-hierarchy.md): Visual hierarchy verification ensuring top-level regions command focal dominance using the Zipf-Lorenz area dominance ratio.
+- [Build Balanced Bento Grids Without Orphan Gaps](http://127.0.0.1:3000/bento-grid.md): Enforcing primary anchor cell prominence (>= 35% area) and complete modulo-zero column span closure in responsive bento grid layouts.
+- [Stop Cards From Crushing on Split-Pane & Mobile](http://127.0.0.1:3000/responsive-layout.md): Preserve minimum component territorial card width (>= 145px) and eliminate horizontal viewport scrolling across desktop (1280px), split-pane (680px), and mobile (390px).
+- [Prevent Overlapping Text & Broken Ellipsis Truncation](http://127.0.0.1:3000/ink-disjointness.md): Preventing direct text ink collisions, glyph overlap, uncontained text bleeding, and broken inline ellipsis truncation across responsive containers.
+- [Stress-Test Layouts Against Worst-Case Data](http://127.0.0.1:3000/stress-testing.md): Inject adversarial 255-character strings, unbroken CJK text, and large numbers to expose flex squishing, avatar distortion, and ink clipping before shipping.
+- [Position Modals & Wizards at the Optical Center](http://127.0.0.1:3000/flow-center.md): Golden-ratio vertical positioning for modal dialogs and linear flow wizards within the 35%–56% optical window (target 45% of viewport height).
+- [Build Honest Charts That Never Distort Data](http://127.0.0.1:3000/data-viz.md): Ensure charts and data visualizations convey truthful proportions with zero-anchored baselines, Stevens-law bubble radiuses, monotonic spline interpolation, and collision-free SVG labels.
+
+## Information Density
+
+- [Stop Cramming Too Many Metrics Into One Card](http://127.0.0.1:3000/card-density.md): Cognitive density limits for dashboard summary cards based on pre-attentive the 4-item glance limit (K_max in [3, 9]) and area-weighted atom budgeting.
+- [Strip Repetitive Badges, Redundant Captions & Scar-Tissue Copy](http://127.0.0.1:3000/heading-tautology.md): Eliminating decorative badge spam, tautological headings, and defensive helper-text slop using Shannon information entropy and Rachel's 4-rung subtractive copy ladder.
+- [Cap Top-Level Navigation Before Users Freeze](http://127.0.0.1:3000/nav-choice.md): Bounding primary navigation links to prevent cognitive choice paralysis using the Hick-Hyman logarithmic decision latency model (n <= 6 items).
+- [Chunk Long Forms Into Digestible Steps](http://127.0.0.1:3000/fieldset-overload.md): Bounding contiguous form inputs per fieldset (<= 5 inputs) to prevent cognitive fatigue, visual overwhelm, and form abandonment.
+
+## Typography
+
+- [Separate Font Sizes So Hierarchy Looks Intentional](http://127.0.0.1:3000/font-scale.md): Enforcing perceptual font size step ratios (>= 1.12x) and strict 3-family font stack discipline using the clear 12% visual step of Just-Noticeable Difference.
+- [Align Table Numbers & Prevent Mobile Table Crush](http://127.0.0.1:3000/tabular-ergonomics.md): Decimal numeric right-alignment with tabular-nums, zero interior vertical borders, Bouma column clearance, and mobile horizontal containment.
+- [Tighten Large Headings & Cap Paragraph Line Width](http://127.0.0.1:3000/display-tracking.md): Tightening letter spacing on large display headings (<= -0.025em) and bounding prose paragraph measure (<= 36em / ~65ch) for comfortable reading flow.
+
+## Physical Ergonomics
+
+- [Stop Stacking Borders on Drop Shadows & Fix Nested Corners](http://127.0.0.1:3000/card-boundaries.md): Continuous boundary energy conservation (Eb <= 1.25), concentric inner corner curvature geometry, and Gestalt proximity padding ratios.
+- [Size Touch Targets & Stop iOS Input Auto-Zoom](http://127.0.0.1:3000/target-ergonomics.md): Ensuring touch target acquisition thresholds (>= 36x36px standalone / >= 28x28px toolbar) and preventing destructive mobile viewport auto-zoom with a 16px input font-size floor.
+- [Snap Layouts to Clean Vertical Alignment Rails](http://127.0.0.1:3000/alignment-axes.md): Bound distinct horizontal layout axes using Kolmogorov Information Theory and prevent dynamic title-metadata collisions on responsive headers.
+- [Make Mobile Web Apps Feel Installed, Not Embedded](http://127.0.0.1:3000/mobile-native-physics.md): Eliminate sticky touch hover states, viewport URL-bar clipping, gray tap flashes, and accidental text selection on mobile web interfaces.
+- [Keep Animations on the GPU & Choose the Right Easing](http://127.0.0.1:3000/motion-choreography.md): Enforce physical spring easing curves, strict GPU compositor property isolation (transform and opacity), and a 400ms Doherty response latency ceiling.
+- [Morph States & Shared Layouts Without Distortion](http://127.0.0.1:3000/fluid-continuity.md): Ensure continuous visual flow across container changes, shared element transitions, optical icon morphs, and asymmetric exit reflows without glyph stretching or GPU paint thrashing.
+- [Delete Motion on High-Frequency & Keyboard Actions](http://127.0.0.1:3000/interaction-frequency.md): Eliminate animation fatigue by scaling duration inversely with interaction frequency: instant keyboard shortcuts, warm tooltip handoffs, capped list staggers, and optimistic updates.
+- [Make Gestures, Sheets & Popovers Interruptible](http://127.0.0.1:3000/spring-gesture-physics.md): Build physically grounded gesture sheets and popovers with 1:1 pointer tracking, velocity-seeded spring releases, critical damping, and interruptible state machines.
+
+## Pages
+
+- [GOATs](http://127.0.0.1:3000/goats): The design engineers whose writing and work shaped this site.
+- [Resources](http://127.0.0.1:3000/resources): Tools, references, and reading for design engineering.
+
+## Agents
+
+- [llms-full.txt](http://127.0.0.1:3000/llms-full.txt): Every concept in full, in one Markdown file.
+- [Craft skill](https://github.com/first-principles-ui/first-principles-ui/tree/main/skills/craft-design-engineering): Install with `npx skills add first-principles-ui/first-principles-ui` to give your coding agent these concepts as a checklist.

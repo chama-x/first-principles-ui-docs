@@ -1,0 +1,81 @@
+# Build Balanced Bento Grids Without Orphan Gaps
+
+> Enforcing primary anchor cell prominence (>= 35% area) and complete modulo-zero column span closure in responsive bento grid layouts.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/bento-grid
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/bento-grid.mdx
+
+> **Interactive demo: Bento Grid Rule.** Open http://127.0.0.1:3000/bento-grid to try it.
+
+An odd number of cards leaves trailing orphan gaps that break grid rhythm. Span the primary anchor cell across 2 columns so total column spans satisfy modulo-0 closure (`sum(span) mod cols = 0`) across all breakpoints.
+
+Bento grids have become a staple of modern product marketing and dashboard design. However, without structural discipline, bento layouts chronically fall into two errors: lack of an anchor cell commanding visual attention, and orphan trailing cards that leave unclosed gaps in the grid structure.
+
+1. **Gestalt Continuation:** Human vision naturally extends geometric grid rails. A grid that ends with a single hanging cell breaks continuation and looks like broken or missing data.
+2. **Anchor Proportion:** For a bento box to function as an integrated composition, the flagship cell must occupy at least 35% of the total grid area.
+3. **Open Catalogs vs Summary Bento:** Summary card groups (`<= 6` cards) require clean closure; open-ended product catalogs should be explicitly marked with `data-catalog` or `role="grid"`.
+
+## Remediation
+
+Balance cell spans so the total column count in every row sums to the grid column count:
+
+```tsx
+// Right: Modulo-0 closed 3-column bento grid (total 6 spans = 2 full rows)
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+  {/* Anchor Hero: span 2 cols */}
+  <div className="md:col-span-2 rounded-2xl border border-border/80 bg-card p-6">...</div>
+  {/* Side Cell: span 1 col */}
+  <div className="md:col-span-1 rounded-2xl border border-border/80 bg-card p-6">...</div>
+  {/* Row 2: 3 cells x 1 col each = span 3 cols (sum = 6 mod 3 == 0) */}
+  <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+  <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+  <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier inspects grid containers and calculates two geometric properties:
+
+> **Bento Anchor Fraction:** `Area(Anchor_Cell) / Area(Grid) >= 0.35` (in grids >= 4 cells)
+> **Modulo Column Closure:** `(sum(col_spans)) mod (grid_cols) == 0`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/bento-grid.mjs
+const anchorRatio = maxCellArea / gridArea;
+if (cellCount >= 4 && anchorRatio < 0.35) {
+  ctx.report("LAW_12_BENTO_ANCHOR", {
+    property: "anchor_area_ratio",
+    computed: anchorRatio,
+    threshold: 0.35,
+  });
+}
+
+const remainder = totalColSpans % cols;
+if (remainder !== 0) {
+  ctx.report("LAW_06_MODULO_ZERO_GRID", {
+    property: "grid_span_modulo",
+    computed: remainder,
+    threshold: 0,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout): Specification and column closure behavior in CSS Grid.

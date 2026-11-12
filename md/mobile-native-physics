@@ -1,0 +1,56 @@
+# Make Mobile Web Apps Feel Installed, Not Embedded
+
+> Eliminate sticky touch hover states, viewport URL-bar clipping, gray tap flashes, and accidental text selection on mobile web interfaces.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/mobile-native-physics
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/mobile-native-physics.mdx
+
+> **Interactive demo: Mobile Native Physics.** Open http://127.0.0.1:3000/mobile-native-physics to try it.
+
+Unconditional `:hover` styles stay stuck after tapping on mobile screens, while raw `100vh` clips beneath browser chrome. Gate hover effects behind `@media (hover: hover)` and use dynamic viewport units (`100dvh`) with `touch-action: manipulation`.
+
+Mobile web applications often feel clunky and amateurish not because of JavaScript execution speed, but because of neglected mobile physics: sticky `:hover` styles, viewport clipping behind dynamic browser address bars, and default tap flash artifacts.
+
+## Capability-Gated Hover States
+
+Touchscreens do not have a persistent hover cursor. When an author writes an unconditional `:hover` rule, mobile browsers simulate hover on tap—and leave the element permanently stuck in its hover style until the user taps somewhere else.
+
+`LAW_28_MOBILE_CAPABILITY_GATE` requires isolating hover treatments to devices that genuinely possess precision pointers and hover hardware:
+
+```css
+/* Right: Only devices with genuine hover hardware */
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    background-color: var(--color-muted);
+    border-color: var(--color-border-active);
+  }
+}
+```
+
+## Dynamic Viewport Units (`100dvh` vs. `100vh`)
+
+On mobile browsers like Safari and Chrome for iOS/Android, the browser address bar dynamically expands and retracts during scrolling. Classic `100vh` calculates viewport height assuming the address bar is retracted—causing bottom action buttons and floating drawers to be clipped underneath the visible browser chrome.
+
+Modern web standards introduce dynamic viewport units:
+- `100dvh`: Dynamically adjusts as the address bar retracts or appears.
+- `100svh`: The smallest possible viewport height (when address bar is fully expanded).
+- `100lvh`: The largest possible viewport height (when address bar is fully retracted).
+
+## Touch Action & Selection Discipline
+
+Interactive controls (buttons, chips, segmented tabs, icons) must never trigger browser text selection or double-tap zoom delays:
+
+```css
+.touch-control {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+```
+
+## Resources
+
+- [MDN: CSS @media (hover)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover): Testing whether the user's primary input mechanism can hover over elements.

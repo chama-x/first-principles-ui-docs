@@ -1,0 +1,71 @@
+# Stop Cards From Crushing on Split-Pane & Mobile
+
+> Preserve minimum component territorial card width (>= 145px) and eliminate horizontal viewport scrolling across desktop (1280px), split-pane (680px), and mobile (390px).
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/responsive-layout
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/responsive-layout.mdx
+
+> **Interactive demo: Responsive Layout Rule.** Open http://127.0.0.1:3000/responsive-layout to try it.
+
+Fixed grid columns crush cards below 145px on narrow screens, truncating content into illegible slivers. Use container queries (`@container`) with `auto-fit` and `minmax(180px, 1fr)` to preserve minimum territorial width without horizontal overflow.
+
+When desktop multi-column grids collapse onto split-pane (680px) or mobile (390px) viewports without container queries, cards are frequently crushed below minimum territorial thresholds, causing text overlap and horizontal viewport scrolling.
+
+The substrate foundation is **Territorial Spatial Integrity**:
+
+1. **Card Territorial Minimum:** An atomic card requires at least 145px width to house an icon, headline, and metric without text truncation or button collapse.
+2. **Container-Relative Adaptation:** A component placed in a 3-column split-pane has very different available width than when placed in a full-width stage. Layout decisions must respond to container size, not global viewport width alone.
+3. **Zero Horizontal Overflow:** Mobile web pages must never scroll horizontally (`overflow-x == 0`).
+
+## Remediation
+
+Use auto-fit grid definitions or container queries:
+
+```css
+/* Good: Territorial width preservation */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 145px), 1fr));
+  gap: 1rem;
+}
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier evaluates card bounding rects across desktop (1280px), split-pane (680px), and mobile (390px):
+
+> **Card Territorial Width Floor:** `Width(card) >= 145px`
+> **Mobile Viewport Overflow:** `document.documentElement.scrollWidth <= window.innerWidth` (at 390px)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/responsive-layout.mjs
+for (const card of cards) {
+  const r = card.getBoundingClientRect();
+  if (r.width < 145) {
+    ctx.report("LAW_18_MOBILE_CARD_CRUSH", {
+      property: "card_width_px",
+      computed: Math.round(r.width),
+      threshold: 145,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries): Guide to container-type and container query units.

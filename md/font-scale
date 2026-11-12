@@ -1,0 +1,86 @@
+# Separate Font Sizes So Hierarchy Looks Intentional
+
+> Enforcing perceptual font size step ratios (>= 1.12x) and strict 3-family font stack discipline using the clear 12% visual step of Just-Noticeable Difference.
+
+- Section: Typography
+- URL: http://127.0.0.1:3000/font-scale
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/font-scale.mdx
+
+> **Interactive demo: Font Scale Rule.** Open http://127.0.0.1:3000/font-scale to try it.
+
+Arbitrary font sizes like 13px next to 14px create accidental near-miss tension without visual hierarchy. Step typography along a modular scale (`ratio >= 1.12x`) so human Weber-Fechner perception instantly registers distinct heading tiers.
+
+When typography mixes arbitrary font sizes like 13px, 14px, and 15px, the human eye cannot discern intentional hierarchical difference. The slight variation registers as a sloppy layout defect rather than a deliberate organizational tier.
+
+The substrate basis combines **Psychophysics** and **Modular Typographic Systems**:
+
+1. **Weber-Fechner Just-Noticeable Difference:** The subjective perception of a change in size is logarithmic: `ΔS ∝ ΔI / I`. To establish a distinct tier, adjacent type sizes must step by at least 12% (`r >= 1.12`).
+2. **Elimination of Near-Miss Tiers:** An interface containing both 13px and 14px text creates cognitive ambiguity. Snapping both to a clean 14px tier sharpens visual cohesion.
+3. **Orthogonal Three-Role Stack:** A modern web interface requires at most three distinct typographic families: `--font-display` (headings), `--font-sans` (body copy & UI), and `--font-mono` (tabular & code). Adding fourth or fifth families degrades load performance and visual discipline.
+
+## Remediation
+
+Standardize font sizes on a consistent modular geometric progression:
+
+```tsx
+// Right: Strict Weber-Fechner scale with 3-role family stack
+const typography = {
+  caption: "text-xs font-sans",      // 12px
+  body: "text-sm font-sans",         // 14px (1.17x step)
+  subheading: "text-base font-sans", // 16px (1.14x step)
+  title: "text-xl font-display",     // 20px (1.25x step)
+  display: "text-2xl font-display",  // 24px (1.20x step)
+  mono: "font-mono tabular-nums",    // Code & numeric data
+};
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine collects all rendered text elements across the page, computes their effective computed font sizes, and verifies the geometric step ratio:
+
+> **Adjacent Step Ratio:** `r = f_(i+1) / f_i >= 1.12` for distinct size steps `|f_(i+1) - f_i| >= 1.0px`
+> **Max Distinct Font Families:** `N_families <= 3` (Display, Sans, Mono)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/font-scale.mjs
+const { fontFamilies, uniqueSizes } = ctx.getFontInventory();
+
+if (fontFamilies.size > 3) {
+  ctx.report("LAW_05_FONT_FAMILY_BLOAT", {
+    computed: fontFamilies.size,
+    threshold: 3,
+  });
+}
+
+for (let i = 0; i < uniqueSizes.length - 1; i++) {
+  const curr = uniqueSizes[i];
+  const next = uniqueSizes[i + 1];
+  const ratio = next.fs / curr.fs;
+  if (ratio < 1.12) {
+    ctx.report("LAW_06_WEBER_FECHNER_SCALE", {
+      property: "adjacent_font_size_ratio",
+      computed: Number(ratio.toFixed(3)),
+      threshold: 1.12,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [clear 12% visual step](https://en.wikipedia.org/wiki/Weber%E2%80%93Fechner_law): Psychophysical law relating subjective sensation intensity to stimulus magnitude.
+- [Modular Typographic Scales](https://spencermortensen.com/articles/typographic-scale/): Geometric progression systems for proportional hierarchy in digital typography.

@@ -1,0 +1,48 @@
+# Make Gestures, Sheets & Popovers Interruptible
+
+> Build physically grounded gesture sheets and popovers with 1:1 pointer tracking, velocity-seeded spring releases, critical damping, and interruptible state machines.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/spring-gesture-physics
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/spring-gesture-physics.mdx
+
+> **Interactive demo: Interrupt Sheet.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
+
+Animations that lock out touch input break direct physical manipulation and make apps feel unresponsive. Keep all gesture interactions interruptible with momentum-preserving velocity handoff (`v_exit = v_gesture`), letting users redirect in flight.
+
+## Gesture Momentum & Direct Tracking
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
+  </DemoTab>
+  <DemoTab label="Input Locking Guard">
+    <InterruptLockDemo />
+  </DemoTab>
+  <DemoTab label="Scale & Origin">
+    <ScaleEntrancesDemo />
+    <TransformOriginDemo />
+  </DemoTab>
+</DemoTabGroup>
+When users touch a digital surface, they expect Newtonian physics: objects track fingers with zero latency, retain velocity upon release, and can be caught mid-flight without locking input.
+
+## Two-Phase Direct Manipulation
+
+`LAW_30_SPRING_INTERRUPTIBILITY` models interactive sheets and cards as two distinct physical phases:
+
+1. **Phase 1: Direct Tracking (1:1 Drag):** The element tracks pointer translation directly with zero spring lag. Damping and stiffness do not apply during active drag.
+2. **Phase 2: Velocity-Seeded Spring Release:** When released, the solver projects pointer velocity ($v_0$) into a second-order harmonic oscillator:
+   `m * x'' + c * x' + k * x = 0`
+
+Solving this differential equation with critical damping (`zeta = c / (2 * sqrt(m * k)) = 1.0`) ensures the element settles at its target boundary in minimum time without underdamped bouncing or sluggish overdamping.
+
+## Never Lock User Input
+
+Many web libraries disable click and pointer events (`pointer-events: none`) while an entrance or exit animation runs. This violates Apple HIG and First-Principles UI ergonomics:
+
+## Scale Entrances & Transform Origins
+
+Scale entrances should start close to their resting size (`s0 >= 0.95`) and expand directly from their trigger button:
+
+## Resources
+
+- [Apple Human Interface Guidelines: Motion](https://developer.apple.com/design/human-interface-guidelines/motion): Designing realistic, fluid, and responsive spring animations.

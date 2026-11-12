@@ -1,0 +1,47 @@
+# Stress-Test Layouts Against Worst-Case Data
+
+> Inject adversarial 255-character strings, unbroken CJK text, and large numbers to expose flex squishing, avatar distortion, and ink clipping before shipping.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/stress-testing
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/stress-testing.mdx
+
+> **Interactive demo: Stress Testing Rule.** Open http://127.0.0.1:3000/stress-testing to try it.
+
+Unbounded flex containers collapse avatars into slivers and blow out layouts when fed real adversarial data. Add `shrink-0` to circular media and `min-w-0 truncate` to text labels so geometry never deflates under 255-character inputs.
+
+Interfaces designed exclusively against kind mock data ("Alex Morgan", "Pro Plan", "$19/mo") inevitably fail in production. Real-world databases contain 255-character names, localized compound words, unbroken email addresses, and 8-figure account balances.
+
+## The Mathematical Invariant
+
+In CSS flexbox and CSS grid layouts, elements default to `min-width: auto` rather than `min-width: 0`. When a text container contains long, unbroken strings, the browser expands the text element beyond its territorial container boundaries, squishing neighboring avatars and icons down to zero width or elliptic aspect ratios.
+
+`LAW_27_STRESS_DATA_CONTAINMENT` enforces that under automated boundary data injection:
+
+1. **Avatar Aspect Ratio Invariant:** Any circular or square media container (`img`, `svg`, `[data-avatar]`) must satisfy:
+   `0.90 <= w / h <= 1.10`
+2. **Ink Containment Invariant:** The container element must satisfy:
+   `scrollWidth - clientWidth <= 3px`
+
+## Implementation Pattern
+
+Always pair flex siblings with defensive CSS tokens:
+
+```tsx
+// Right: Defensive containment
+<div className="flex items-center gap-3">
+  {/* Circular avatar protected against deflation */}
+  <img className="size-10 shrink-0 rounded-full object-cover" src={avatarUrl} alt="" />
+  
+  {/* Text parent container with explicit min-w-0 */}
+  <div className="min-w-0 flex-1">
+    <p className="truncate text-sm font-semibold">{user.name}</p>
+    <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+  </div>
+</div>
+```
+
+## Resources
+
+- [Defensive CSS](https://defensivecss.dev): Practical CSS tips for building robust user interfaces.

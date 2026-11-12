@@ -1,0 +1,71 @@
+# Verify & Solve Any UI Before It Ships
+
+> Bi-directional neuro-symbolic engine combining <15ms forward mathematical oracles (calc) with 6-pass Playwright DOM/SVG verification across 53 deterministic laws.
+
+- Section: Engine
+- URL: http://127.0.0.1:3000/ui-math
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/layout/ui-math.mdx
+
+> **Interactive demo: Ui Math Inspector.** Open http://127.0.0.1:3000/ui-math to try it.
+
+Subjective design reviews waste hours arguing over subjective gut feelings. First-Principles UI verifies 55 mathematical laws in 80ms, scoring interfaces from `0.00` to `3.00` with automated CLI and agent loops.
+
+## Live Verification Scoring & Inspection
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/ui-math to try it.
+  </DemoTab>
+  <DemoTab label="Verifier Runner">
+    <UiMathRunnerDemo />
+  </DemoTab>
+</DemoTabGroup>
+Language models generate sequential tokens, not spatial physics. Without physical constraints, AI frontend code chronically defaults to predictable visual failure modes: flat visual hierarchy where every card has the same width, heavy drop-shadows stacked on dark borders, uncontained tables that crush on mobile screens, and sticky mobile hover states.
+
+Every layout decision can be proven or disproven by measurement. When an interface violates spatial mechanics, the verifier emits a deterministic diagnostic with the exact element selector, measured number, and allowable threshold.
+
+## The 5 Physical Axioms
+
+Instead of subjective aesthetic opinions, First-Principles UI is built on five core axioms:
+
+1. **Hierarchy (Zipf–Lorenz Law):** A page of equal-sized cards looks flat and unfocused. The top two primary regions must command at least 48% of the stage area (`D_Zipf >= 0.48`).
+2. **Boundary Exclusivity:** Never combine an outer drop-shadow with a visible border. Boundary friction (`Eb`) must remain `<= 1.25`. Choose a subtle 1px hairline border or a soft surface elevation, never both.
+3. **Perceptual Contrast (W3C APCA):** Human eyes do not perceive color luminance linearly. Body text requires `|Lc| >= 75`, and large display titles require `|Lc| >= 45`.
+4. **Typographic Stepping (Weber–Fechner Law):** Adjacent font sizes must differ by at least 1.12x (12%) so every size tier represents a true Just-Noticeable Difference (JND). Avoid near-miss clutter like 13px captions next to 14px body copy.
+5. **Physical Ergonomics (Fitts, Touch Gating & Springs):** Standalone interactive controls must measure at least 36x36px (or 28x28px in compact toolbars), mobile form inputs must have at least 16px font-size to prevent forced iOS Safari zoom, and gestures must use critically damped springs ($\zeta = 1.0$).
+
+## The Objective Layout Score
+
+The verifier summarizes layout hierarchy, alignment discipline, and atom capacity into an aggregate psychophysical objective score:
+
+> **Q*_UI = (min(3.5, S) * O_MDL) / (C_atoms * C_clutter) >= 2.0**
+
+- **S (Hierarchy Balance):** Floored at 1.2 and capped at 3.5, rewarding dominant hero anchor cards.
+- **O_MDL (Alignment Regularizer):** Penalizes stray horizontal alignment rails beyond Kolmogorov limits (`U_axes <= 5` at 1280px, `<= 2` on mobile).
+- **C_atoms (Cognitive Density):** Penalizes overloading summary cards beyond Miller/Subitizing visual capacity (cap of 3–4 items on compact cards).
+- **C_clutter (Shannon Garnish Penalty):** Penalizes repetitive decorative badges and tautological status pills.
+
+## Two Verification Methods
+
+First-Principles UI provides two distinct execution methods: the standalone CLI script (`check-ui-math.mjs`) and the programmatic Node method (`runVerification`).
+
+### Method 1: The CLI Tool (check-ui-math.mjs)
+
+Run full verification against any local or production URL:
+
+```bash
+# Standalone CLI verification
+node check-ui-math.mjs http://127.0.0.1:3000 --json
+
+# Forward mathematical oracles (<15ms)
+node check-ui-math.mjs calc contrast --fg "#f4f4f5" --bg "#18181b"
+node check-ui-math.mjs calc layout --regions 4 --width 1280
+node check-ui-math.mjs calc density --atoms 4 --width 320
+node check-ui-math.mjs calc stress-data --component Card
+node check-ui-math.mjs calc spring --stiffness 280 --damping 32 --mass 1 --velocity 1200
+```
+
+## Resources
+
+- [First Principles UI Engine](https://github.com/first-principles-ui/first-principles-ui): Deterministic layout, APCA contrast, and mathematical UI verification engine.
+- [W3C APCA Contrast](https://www.w3.org/WAI/GL/task-forces/silver/wiki/Visual_Contrast_Algorithm_Comparison): Advanced Perceptual Contrast Algorithm lookup tables for readable interface typography.
+- [Fitts's Law](https://en.wikipedia.org/wiki/Fitts%27s_law): A predictive model of human psychomotor movement speed and target size in user interfaces.

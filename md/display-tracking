@@ -1,0 +1,107 @@
+# Tighten Large Headings & Cap Paragraph Line Width
+
+> Tightening letter spacing on large display headings (<= -0.025em) and bounding prose paragraph measure (<= 36em / ~65ch) for comfortable reading flow.
+
+- Section: Typography
+- URL: http://127.0.0.1:3000/display-tracking
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/display-tracking.mdx
+
+> **Interactive demo: Display Tracking Rule.** Open http://127.0.0.1:3000/display-tracking to try it.
+
+Display headings above 24px look gapped and detached when left at default body tracking. Apply optical tightening (`letter-spacing: -0.025em`) to large headings, and loosen small uppercase text to `+0.05em` for legibility.
+
+## Optical Tracking Scale & Uppercase Spacing
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/display-tracking to try it.
+  </DemoTab>
+  <DemoTab label="Uppercase Tracking">
+    <UppercaseTrackingDemo />
+  </DemoTab>
+</DemoTabGroup>
+When digital type scales up to display sizes (34px and beyond), the default proportional font metrics create excessive inter-glyph whitespace. Words appear dispersed and optically weak. Conversely, body copy that spans too wide forces readers to make disorienting eye movements.
+
+1. **Optical Tracking Inversion:** In metal typesetting, smaller text sizes required wider spacing to remain legible, while large display type was kerned tighter. Modern digital fonts use linear scaling by default; headings >= 34px must tighten letter-spacing by -0.025em to -0.04em to maintain cohesive word shapes.
+2. **Saccadic Return-Sweep Ergonomics:** When reading, human eyes move in rapid jumps (saccades) followed by a return-sweep to the start of the next line. If a paragraph exceeds 36em (~65–70 characters), readers consistently land on the wrong line, causing cognitive re-reading fatigue.
+3. **Uppercase Widening vs. Display Tightening:** While large mixed-case headings require negative tracking, small uppercase labels (e.g. badges or table headers) require positive tracking (`letter-spacing: 0.05em` to `0.1em`) to offset optical clumping:
+
+## Remediation & Micro-Orthography Auto-Fix
+
+Use `tracking-tight` for large headings, `max-w-prose` for paragraphs, Sentence case on UI controls, and run the 1-command auto-fixer:
+
+```tsx
+// Right: Optical tracking, sentence case, and constrained measure
+<h1 className="text-3xl font-bold tracking-tight text-foreground">
+  Display headline with cohesive word shapes
+</h1>
+<button
+  type="button"
+  className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground [text-box:trim-both_cap_alphabetic]"
+>
+  Launch workspace — fast…
+</button>
+<p className="mt-3 text-base text-muted-foreground max-w-[65ch] leading-relaxed">
+  Body copy constrained to 65 characters per line so the reader's eye return-sweeps accurately.
+</p>
+```
+
+```bash
+# Clean up visible UI copy, straight quotes, and emoji clutter in <40ms
+./check-ui-math.mjs fix ./src
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier checks display headings, prose paragraphs, and typographic orthography:
+
+> **Continuous Optical Tracking Curve:** `tau(s) = clamp(-0.045em, -0.022 * ln(s / 16)em, +0.025em)`  
+> **Continuous Hyperbolic Leading Curve:** `lambda(s, M) = clamp(1.02, 1.02 + 8.5 / s + 0.003 * max(0, M - 55), 1.75)`  
+> **Display Tracking (>= 34px):** `letter-spacing <= -0.025em` (tightened optical cohesion)  
+> **Prose Line Measure:** `Width / font_size <= 36em` (~65–68 characters per line)  
+> **Sentence-Case UI & Hygiene (LAW_33):** Sentence case on UI controls >= 14px, uppercase strictly on 10–13px eyebrows with `+0.06em` tracking, zero decorative AI emojis.
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/display-tracking.mjs
+for (const item of textElements) {
+  const { el, cs, fs } = item;
+
+  // 1. Display Optical Tracking (>= 34px)
+  if (fs >= 34) {
+    const trackingEm = (parseFloat(cs.letterSpacing) || 0) / fs;
+    if (trackingEm > -0.025) {
+      ctx.report("LAW_13_DISPLAY_TRACKING", {
+        property: "letter-spacing",
+        computed: `${trackingEm.toFixed(3)}em`,
+        threshold: "-0.025em",
+        css_patch: { "letter-spacing": "-0.03em" },
+      });
+    }
+  }
+
+  // 2. Prose Measure (<= 36em)
+  if (el.tagName === "P" && el.getBoundingClientRect().width / fs > 36) {
+    ctx.report("LAW_13_PROSE_MEASURE", {
+      property: "paragraph_measure_em",
+      threshold: 36,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Typographic Tracking & Spacing](https://en.wikipedia.org/wiki/Letter-spacing): Optical adjustment of whitespace between characters across varying scale sizes.
+- [Robert Bringhurst's Typographic Measure](https://en.wikipedia.org/wiki/The_Elements_of_Typographic_Style): Ergonomic constraints on line length and saccadic return-sweeps.

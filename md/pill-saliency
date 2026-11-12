@@ -1,0 +1,74 @@
+# Keep Dark-Mode Badges & Chips From Disappearing
+
+> Enforce optical boundary distinctness and hairline border enclosures on dark status pills, tags, chips, and circular avatars so they remain distinctly visible.
+
+- Section: Color & Contrast
+- URL: http://127.0.0.1:3000/pill-saliency
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/pill-saliency.mdx
+
+> **Interactive demo: Pill Saliency Rule.** Open http://127.0.0.1:3000/pill-saliency to try it.
+
+Dark badge pills blend invisibly into matching dark cards, destroying their visual boundary. Enforce a 1px `border-border` hairline whenever the surface lightness difference `Delta-L < 0.08` so interactive chips remain salient.
+
+## Optical Enclosure on Media & Avatars
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/pill-saliency to try it.
+  </DemoTab>
+</DemoTabGroup>
+Status pills, tags, and badge chips convey critical state in application dashboards. On dark surfaces, low-contrast pills frequently dissolve into the surrounding card canvas, rendering tags illegible as distinct interactive units.
+
+The substrate foundation is **Figure–Ground Segregation**:
+
+1. **Boundary Enclosure:** Human vision requires a clear closed contour to distinguish an entity as a distinct object ("figure") rather than a continuous texture of the underlying surface ("ground").
+2. **Dark Mode Lightness Compression:** In dark mode, luminance perception is compressed in lower tiers. A step 3 background on step 1 canvas often has less than 4% lightness difference (`ΔL < 0.04`), causing boundaries to vanish under ambient room glare.
+
+The same boundary saliency rule applies to circular avatars and media thumbnails on dark cards. An avatar with dark edge pixels blurs into the dark canvas unless bound by a 1px inner hairline stroke:
+
+## Remediation
+
+Pair Step 3 fills with a 1px solid Step 6 hairline border on dark surfaces:
+
+```tsx
+// Right: High-saliency dark status pill
+<span className="inline-flex items-center rounded-full border border-border/80 bg-muted/50 px-2.5 py-0.5 text-xs font-medium text-foreground">
+  Active Status
+</span>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier isolates status pills and computes the perceptual boundary contrast:
+
+> **Luminance Separation Floor:** `|L_pill - L_surface| >= 0.06` OR `border-width >= 1px` with `alpha >= 0.15`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/pill-saliency.mjs
+const deltaL = Math.abs(pillOklch.L - surfaceOklch.L);
+const hasBorder = borderRgba.a >= 0.15 && borderWidth >= 1;
+
+if (deltaL < 0.06 && !hasBorder) {
+  ctx.report("LAW_07_PILL_BOUNDARY_SALIENCY", {
+    property: "pill_border_contrast",
+    computed: deltaL,
+    threshold: 0.06,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Radix Colors Step System](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale): Official step roles for app canvases, surface fills, and borders.

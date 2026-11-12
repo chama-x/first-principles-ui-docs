@@ -1,0 +1,76 @@
+# Make Text Readable on Any Surface or Gradient
+
+> Size- and weight-aware perceptual contrast verification using W3C APCA polarity-aware luminance and WCAG 2.2 AA gradient stop compositing.
+
+- Section: Color & Contrast
+- URL: http://127.0.0.1:3000/text-contrast
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/text-contrast.mdx
+
+> **Interactive demo: Text Contrast Rule.** Open http://127.0.0.1:3000/text-contrast to try it.
+
+Washed-out grey body text vanishes into dark backgrounds, failing perceptual readability. Keep body copy at `|Lc| >= 75` and secondary captions at `|Lc| >= 60` using Radix Step 12 and Step 11 tokens so text stays sharp.
+
+## Optical Font Smoothing & Contrast
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/text-contrast to try it.
+  </DemoTab>
+</DemoTabGroup>
+Human visual perception does not register lightness linearly. A simple mathematical ratio between two hex values (like WCAG 2.x's 4.5:1) treats white text on black identically to black text on white, ignoring spatial frequency, font weight, and the human eye's non-linear rod and cone response.
+
+1. **Spatial Frequency Dependence:** High spatial frequency features (such as thin 12px font stems) require exponentially higher physical luminance contrast than low spatial frequency blocks (such as a 48px heading).
+2. **Polarity Asymmetry:** Dark text on a light background undergoes positive optical irradiation, whereas light text on dark background bleeds into surrounding dark photoreceptors, requiring weight compensation.
+3. **Weight Calibration:** A bold 700-weight glyph presents thicker ink strokes, lowering its effective spatial frequency and requiring less raw lightness difference than a 400-weight regular stem.
+
+## Remediation
+
+Use Radix Colors Step 12 for primary body text (`|Lc| >= 90`) and Step 11 for secondary captions (`|Lc| >= 75` on Step 2):
+
+```tsx
+<p className="text-foreground text-sm font-normal">
+  Primary text calibrated to Radix Step 12.
+</p>
+<p className="text-muted-foreground text-xs">
+  Secondary caption text calibrated to Radix Step 11.
+</p>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The APCA model converts sRGB coordinates into linear luminance ($Y$), passes them through non-linear perceptual compression exponents, and derives the perceptual lightness contrast ($L_c$):
+
+> **Body Text (`< 18px` regular):** `|Lc| >= 75.0` and `WCAG >= 4.5:1`
+> **Fluent UI Text (14px bold / 18px regular):** `|Lc| >= 60.0`
+> **Large Display Titles (>= 24px or >= 18.5px bold):** `|Lc| >= 45.0` and `WCAG >= 3.0:1`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/text-contrast.mjs
+const Lc = Math.abs(computeAPCA(fgRgba, bgRgba));
+const minLc = getRequiredApcaLc(fontSizePx, fontWeight, config);
+
+if (Lc < minLc) {
+  ctx.report("LAW_07_APCA_CONTRAST", {
+    property: "apca_Lc",
+    computed: Lc,
+    threshold: minLc,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [W3C APCA Contrast](https://www.w3.org/WAI/GL/task-forces/silver/wiki/Visual_Contrast_Algorithm_Comparison): Advanced Perceptual Contrast Algorithm lookup tables for readable interface typography.
+- [WCAG 2.2 Contrast](https://www.w3.org/TR/WCAG22/#contrast-minimum): W3C relative luminance ratio specification.

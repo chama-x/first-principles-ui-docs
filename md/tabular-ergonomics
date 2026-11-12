@@ -1,0 +1,102 @@
+# Align Table Numbers & Prevent Mobile Table Crush
+
+> Decimal numeric right-alignment with tabular-nums, zero interior vertical borders, Bouma column clearance, and mobile horizontal containment.
+
+- Section: Typography
+- URL: http://127.0.0.1:3000/tabular-ergonomics
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/tabular-ergonomics.mdx
+
+> **Interactive demo: Tabular Ergonomics Rule.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
+
+Proportional numbers shift horizontally whenever digits change, causing distracting layout jitter in financial dashboards. Enable `font-variant-numeric: tabular-nums` and right-align numeric columns so digit columns stay locked in vertical alignment.
+
+## Tabular Lining Dynamics & Mobile Fades
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
+  </DemoTab>
+  <DemoTab label="Data Tables">
+    <TabularTableDemo />
+  </DemoTab>
+  <DemoTab label="Mobile Scroll Fades">
+    <ScrollFadesHorizontalDemo />
+  </DemoTab>
+</DemoTabGroup>
+Data tables frequently suffer from heavy vertical gridlines, misaligned numbers, shifting column widths during live streaming, and crushed cells on mobile screens. These defects destroy readability and make comparing numbers across rows mentally exhausting.
+
+1. **Zero Vertical Borders:** Vertical borders in data tables compete with column whitespace for visual attention. Clean column margins separate data more effectively with zero ink overhead.
+2. **Tabular Numeric Right-Alignment:** Proportional numbers cause decimal points and place values (units, tens, thousands) to jitter horizontally. Using `tabular-nums` and `text-align: right` creates crisp vertical columns where magnitudes can be compared at a glance.
+3. **Standalone KPI Numeric Left-Alignment:** While numbers inside 4-column tables must align right, standalone metric numbers inside dashboard cards must align left with their labels to preserve reading flow.
+
+Proportional figures vary in width (the number `1` is much narrower than `8`). When streaming timers or balances update, proportional text jitters and shakes horizontally:
+
+When tables must retain multiple columns on mobile screens, wrapping them in a dedicated `.table-scroll` container with horizontal gradient fade affordances informs users that the table can be swiped horizontally:
+
+## Remediation
+
+Use right-aligned tabular figures and borderless columns:
+
+```tsx
+// Right: Tufte-clean table with tabular-nums
+<div className="overflow-x-auto table-scroll">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b border-border/80 text-muted-foreground text-left">
+        <th className="py-2.5 pr-4 font-medium">Asset</th>
+        <th className="py-2.5 px-4 font-medium text-right font-mono">Price</th>
+        <th className="py-2.5 pl-4 font-medium text-right font-mono">24h Change</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border/40">
+      <tr>
+        <td className="py-2.5 pr-4 font-medium">Ethereum</td>
+        <td className="py-2.5 px-4 text-right font-mono tabular-nums">$3,420.50</td>
+        <td className="py-2.5 pl-4 text-right font-mono tabular-nums text-emerald-600">+4.12%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine analyzes all `<table>` elements and numeric cells:
+
+> **Vertical Border Ink:** `I_vert = 0` (no interior vertical gridlines)
+> **Numeric Cell Alignment:** `text-align: right` and `font-variant-numeric: tabular-nums`
+> **Mobile Column Constraints:** `W_col >= 56px` or explicit horizontal scroll container (`.table-scroll`)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/tabular-ergonomics.mjs
+for (const cell of numericCells) {
+  const cs = getComputedStyle(cell);
+  const isRightAligned = cs.textAlign === "right" || cs.textAlign === "end";
+  const hasTabularNums = cs.fontVariantNumeric.includes("tabular-nums");
+
+  if (!isRightAligned || !hasTabularNums) {
+    ctx.report("LAW_16_TABULAR_NUM_ALIGN", {
+      property: "text-align",
+      computed: `${cs.textAlign} (${cs.fontVariantNumeric})`,
+      threshold: "right tabular-nums",
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Edward Tufte on Tables](https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0001OR): Data-ink maximization and elimination of visual grid clutter in tabular data.
+- [MDN font-variant-numeric](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric): Monospace lining digits for aligned numerical data tables.

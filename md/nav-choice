@@ -1,0 +1,69 @@
+# Cap Top-Level Navigation Before Users Freeze
+
+> Bounding primary navigation links to prevent cognitive choice paralysis using the Hick-Hyman logarithmic decision latency model (n <= 6 items).
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/nav-choice
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/nav-choice.mdx
+
+> **Interactive demo: Nav Choice Rule.** Open http://127.0.0.1:3000/nav-choice to try it.
+
+Cramming 11 links into a header bar spikes Hick-Hyman decision latency and triggers visual paralysis. Restrict primary navigation to `<= 6` high-frequency destinations, nesting secondary pages into grouped categories.
+
+When a primary navigation bar lists 12 different tabs and menu triggers, decision latency skyrockets. Users hesitate before clicking, scanning back and forth across competing links.
+
+The substrate foundation is the **Hick–Hyman Law**:
+
+1. **Logarithmic Decision Time:** Cognitive reaction time scales logarithmically with the number of alternatives: $T = b \log_2(n + 1)$.
+2. **Chunking Navigation Hierarchy:** A primary navigation bar should hold only top-level architectural pillars ($\le 6$). Secondary utilities belong in dropdown menus, command palettes, or footer sitemaps.
+
+## Remediation
+
+Condense primary navigation into 4–5 core categories, moving auxiliary tools into a command palette (`Cmd+K`) or dropdown:
+
+```tsx
+// Right: 4 primary navigation pillars
+<nav className="flex items-center gap-6">
+  <Link href="/overview" className="text-sm font-medium hover:text-foreground">Overview</Link>
+  <Link href="/docs" className="text-sm font-medium hover:text-foreground">Docs</Link>
+  <Link href="/changelog" className="text-sm font-medium hover:text-foreground">Changelog</Link>
+  <Link href="/pricing" className="text-sm font-medium hover:text-foreground">Pricing</Link>
+</nav>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier counts interactive elements inside `<nav>` landmarks:
+
+> **Navigation Choice Budget:** `Count(nav_items) <= 6`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/nav-choice.mjs
+const navItems = nav.querySelectorAll('a, button, [role="link"], [role="button"]');
+
+if (navItems.length > 6) {
+  ctx.report("LAW_17_HICK_HYMAN_NAV", {
+    property: "interactive_item_count",
+    computed: navItems.length,
+    threshold: 6,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Hick's Law](https://en.wikipedia.org/wiki/Hick%27s_law): Time required to make a decision as a logarithmic function of choice count.

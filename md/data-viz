@@ -1,0 +1,55 @@
+# Build Honest Charts That Never Distort Data
+
+> Ensure charts and data visualizations convey truthful proportions with zero-anchored baselines, Stevens-law bubble radiuses, monotonic spline interpolation, and collision-free SVG labels.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/data-viz
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/data-viz.mdx
+
+> **Interactive demo: Data Viz Rule.** Open http://127.0.0.1:3000/data-viz to try it.
+
+Truncated baselines starting at non-zero values turn a minor 8% latency difference into an exaggerated 4x visual chasm. Anchor bar chart baselines at true zero with Cleveland Lie Factor `<= 1.05` so ink truthfully represents data.
+
+## Perceptual Chart Geometry & Dynamics
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/data-viz to try it.
+  </DemoTab>
+  <DemoTab label="Curve Overshoot">
+    <CurveOvershootDemo />
+  </DemoTab>
+  <DemoTab label="Living Charts">
+    <LivingChartsDemo />
+  </DemoTab>
+</DemoTabGroup>
+Data visualization is an exercise in perceptual truth. When software distorts scales, crops baselines, or maps values incorrectly to geometric primitives, it deceives the reader.
+
+## The Cleveland & McGill Baseline Law
+
+The human visual system evaluates bar charts by comparing the length of bars relative to a shared baseline. If a linear bar chart's baseline starts at 80 instead of 0, a 5% difference between 82 and 92 is magnified into a 400% visual height difference.
+
+`LAW_20_ZERO_BASELINE` mandates that:
+
+> Any linear bar chart representing absolute physical quantities must anchor its value scale at zero ($y = 0$). Logarithmic scales on bar charts are strictly prohibited.
+
+## Stevens's Power Law for Bubble Areas
+
+When visualizing quantities with circles or bubbles, humans perceive physical area ($A = \pi r^2$), not linear radius ($r$). Scaling radius linearly ($r = k \cdot v$) squares the perceptual ratio: a 2x metric difference produces a 4x visual area difference.
+
+`LAW_21_BUBBLE_AREA` mandates square-root radius mapping:
+
+`r = k * sqrt(v)`
+
+## Fritsch–Carlson Monotone Splines vs. Catmull-Rom Overshoot
+
+Naive spline interpolation (such as standard Catmull-Rom splines) frequently overshoots local extrema, dipping below zero or fabricating peaks that never existed in the underlying sampled data.
+
+Fritsch–Carlson monotone cubic Hermite interpolation guarantees that the interpolated curve never overshoots local data bounds:
+
+## Dynamic & Living Charts
+
+When live streaming data arrives, updates should preserve cognitive continuity without disorienting the user:
+
+## Resources
+
+- [Cleveland & McGill (1984)](https://www.jstor.org/stable/2288400): Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods.

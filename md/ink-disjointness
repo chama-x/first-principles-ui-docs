@@ -1,0 +1,85 @@
+# Prevent Overlapping Text & Broken Ellipsis Truncation
+
+> Preventing direct text ink collisions, glyph overlap, uncontained text bleeding, and broken inline ellipsis truncation across responsive containers.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/ink-disjointness
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/ink-disjointness.mdx
+
+> **Interactive demo: Ink Disjointness Rule.** Open http://127.0.0.1:3000/ink-disjointness to try it.
+
+Absolute positioning causes badges and filenames to collide, bleeding letterforms together. Wrap flex siblings with `min-w-0` and `gap-3` so element bounding boxes remain strictly disjoint (`Delta_overlap <= 0px`) with zero ink collision.
+
+## Balanced Text Wrapping & Preventing Orphans
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/ink-disjointness to try it.
+  </DemoTab>
+  <DemoTab label="Text Pretty">
+    <TextPrettyDemo />
+  </DemoTab>
+  <DemoTab label="Toast Wrapping">
+    <TextWrapToastDemo />
+  </DemoTab>
+</DemoTabGroup>
+Few visual errors degrade interface quality faster than overlapping text nodes. When titles collide with badges, or when `text-overflow: ellipsis` is placed on an uncontained `inline` span, glyphs render directly over adjacent controls.
+
+The substrate foundation is **Geometric Spatial Disjointness**:
+
+1. **Topological Disjointness:** Distinct typographic and interactive elements must represent disjoint spatial subsets: `Area(A ∩ B) = 0`.
+2. **Ellipsis Containment:** In CSS, `text-overflow: ellipsis` has no effect on `display: inline` elements unless paired with a block or inline-block container with `overflow: hidden` and `min-w-0`.
+
+For multi-line headings and toasts, modern CSS provides `text-wrap: balance` and `text-wrap: pretty`. These eliminate awkward single-word typographic orphans and balance line lengths harmoniously:
+
+## Remediation
+
+Wrap flexible text in flex containers with `min-w-0` and `truncate`:
+
+```tsx
+// Right: Safe flex containment
+<div className="flex items-center justify-between gap-3 min-w-0">
+  <span className="truncate min-w-0 font-medium">
+    Long Dynamic Filename That Truncates Safely.pdf
+  </span>
+  <span className="shrink-0 rounded-full px-2 py-0.5 text-xs bg-muted">
+    Badge
+  </span>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier extracts bounding ink boxes for all text lines, badges, and controls, detecting pairwise overlap:
+
+> **Ink Overlap Threshold:** `Overlap_px <= 1.5px` (zero allowable ink intersection)
+> **Inline Truncate Noop:** `text-overflow: ellipsis` prohibited on `display: inline` without block formatting context.
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/ink-disjointness.mjs
+const overlap = Math.max(0, Math.min(boxA.right, boxB.right) - Math.max(boxA.left, boxB.left));
+
+if (isSameLine && overlap > 1.5) {
+  ctx.report("LAW_19_TEXT_INK_COLLISION", {
+    property: "horizontal_ink_overlap_px",
+    computed: Math.round(overlap),
+    threshold: 1.5,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN text-overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow): Correct containment and block-formatting requirements for ellipsis.

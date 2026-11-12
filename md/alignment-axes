@@ -1,0 +1,96 @@
+# Snap Layouts to Clean Vertical Alignment Rails
+
+> Bound distinct horizontal layout axes using Kolmogorov Information Theory and prevent dynamic title-metadata collisions on responsive headers.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/alignment-axes
+- Published: 2026-11-09
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/alignment-axes.mdx
+
+> **Interactive demo: Alignment Axes Rule.** Open http://127.0.0.1:3000/alignment-axes to try it.
+
+Jagged horizontal offsets and stray margins inflate cognitive scan paths across the screen. Snap elements to at most `3` shared vertical alignment rails (`<= 2` on mobile) so the reader's eye sweeps straight down.
+
+## Optical Alignment & Icon Offsets
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/alignment-axes to try it.
+  </DemoTab>
+  <DemoTab label="Button Icon Offset">
+    <OpticalButtonDemo />
+  </DemoTab>
+</DemoTabGroup>
+When every card, sidebar, and section in a layout starts at a slightly different horizontal coordinate, the page looks disorganized and noisy. The eye must constantly adjust to new alignment origins. Furthermore, placing dynamic page titles next to action buttons in horizontal flex rows causes text collisions whenever user-generated titles expand.
+
+1. **shared alignment edges of Layout:** The visual complexity of a layout is proportional to the number of distinct alignment rails needed to reconstruct it. A page with 12 distinct left-edge offsets requires high cognitive energy to process. Clustered alignment reduces entropy:
+   - Desktop (1280px): `<= 5` distinct alignment rails
+   - Split-pane (680px): `<= 3` distinct alignment rails
+   - Mobile (390px): `<= 2` distinct alignment rails
+2. **Dynamic Header Collision Guard:** Placing an `<h1>` and sibling buttons inside `flex items-baseline` or `flex items-center` works only for short mockup strings. When real content expands, the heading collides with controls (`< 14px` gap) or wraps awkwardly. Flexible headers must decouple into stacked column structures on narrow containers.
+
+Aligning icons exactly by their geometric bounding boxes often looks off-center because different shapes distribute ink unevenly. A triangle pointing right (such as a play icon) has the majority of its area on the left.
+
+The same principle applies to buttons with icons: the extra whitespace inside the icon container increases the perceived padding next to it, making the button appear unbalanced unless offset.
+
+## Remediation
+
+Align cards and containers along a unified grid rail, and wrap dynamic headers with responsive flex decoupling:
+
+```tsx
+/* Good: Cohesive alignment rail, responsive header wrap */
+<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  <div className="min-w-0 flex-1">
+    <h1 className="text-2xl font-bold truncate">Production Cluster Metrics</h1>
+    <p className="text-sm text-muted-foreground">Live telemetry stream</p>
+  </div>
+  <div className="flex items-center gap-2 shrink-0">
+    <button className="btn">Deploy</button>
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier groups left coordinates of all top-level blocks into 5px clusters and checks clearance between headings and sibling controls:
+
+> **Alignment Rails Cap:** `K_axes <= 5` (Desktop 1280px), `<= 3` (Split-Pane 680px), `<= 2` (Mobile 390px)  
+> **Header Sibling Clearance:** `Gap >= 14px` or `flex-direction: column`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/alignment-axes.mjs
+const rails = clusterCoordinates(topLevelBlocks.map((b) => b.rect.left), 5);
+const maxRails = vpConfig.isMobile ? 2 : vpConfig.isTablet ? 3 : 5;
+
+if (rails.length > maxRails) {
+  ctx.report("LAW_05_KOLMOGOROV_AXES", {
+    property: "alignment_rails",
+    computed: rails.length,
+    threshold: maxRails,
+  });
+}
+
+if (isRowFlex && horizGap < 14) {
+  ctx.report("LAW_05_HEADER_BASELINE_COLLISION", {
+    property: "horizontal_collision_gap_px",
+    computed: Math.round(horizGap),
+    threshold: 14,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [shared alignment edges](https://en.wikipedia.org/wiki/Kolmogorov_complexity): Algorithmic information theory measuring descriptive complexity in visual arrays.
+- [Grid Systems in Graphic Design](https://en.wikipedia.org/wiki/Grid_(graphic_design)): Structural alignment rails and visual discipline in multi-column layouts.

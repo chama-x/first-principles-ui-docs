@@ -1,0 +1,2142 @@
+# First Principles UI
+
+> Deterministic UI layout, perceptual contrast, typography, and mathematical verification. Each concept is a short explainer with an interactive demo by First Principles UI.
+
+This file contains every published concept in full. The index is at http://127.0.0.1:3000/llms.txt, and each concept is also available on its own by appending `.md` to its URL.
+
+---
+
+# Verify & Solve Any UI Before It Ships
+
+> Bi-directional neuro-symbolic engine combining <15ms forward mathematical oracles (calc) with 6-pass Playwright DOM/SVG verification across 53 deterministic laws.
+
+- Section: Engine
+- URL: http://127.0.0.1:3000/ui-math
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/layout/ui-math.mdx
+
+> **Interactive demo: Ui Math Inspector.** Open http://127.0.0.1:3000/ui-math to try it.
+
+Subjective design reviews waste hours arguing over subjective gut feelings. First-Principles UI verifies 55 mathematical laws in 80ms, scoring interfaces from `0.00` to `3.00` with automated CLI and agent loops.
+
+## Live Verification Scoring & Inspection
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/ui-math to try it.
+  </DemoTab>
+  <DemoTab label="Verifier Runner">
+    <UiMathRunnerDemo />
+  </DemoTab>
+</DemoTabGroup>
+Language models generate sequential tokens, not spatial physics. Without physical constraints, AI frontend code chronically defaults to predictable visual failure modes: flat visual hierarchy where every card has the same width, heavy drop-shadows stacked on dark borders, uncontained tables that crush on mobile screens, and sticky mobile hover states.
+
+Every layout decision can be proven or disproven by measurement. When an interface violates spatial mechanics, the verifier emits a deterministic diagnostic with the exact element selector, measured number, and allowable threshold.
+
+## The 5 Physical Axioms
+
+Instead of subjective aesthetic opinions, First-Principles UI is built on five core axioms:
+
+1. **Hierarchy (Zipf–Lorenz Law):** A page of equal-sized cards looks flat and unfocused. The top two primary regions must command at least 48% of the stage area (`D_Zipf >= 0.48`).
+2. **Boundary Exclusivity:** Never combine an outer drop-shadow with a visible border. Boundary friction (`Eb`) must remain `<= 1.25`. Choose a subtle 1px hairline border or a soft surface elevation, never both.
+3. **Perceptual Contrast (W3C APCA):** Human eyes do not perceive color luminance linearly. Body text requires `|Lc| >= 75`, and large display titles require `|Lc| >= 45`.
+4. **Typographic Stepping (Weber–Fechner Law):** Adjacent font sizes must differ by at least 1.12x (12%) so every size tier represents a true Just-Noticeable Difference (JND). Avoid near-miss clutter like 13px captions next to 14px body copy.
+5. **Physical Ergonomics (Fitts, Touch Gating & Springs):** Standalone interactive controls must measure at least 36x36px (or 28x28px in compact toolbars), mobile form inputs must have at least 16px font-size to prevent forced iOS Safari zoom, and gestures must use critically damped springs ($\zeta = 1.0$).
+
+## The Objective Layout Score
+
+The verifier summarizes layout hierarchy, alignment discipline, and atom capacity into an aggregate psychophysical objective score:
+
+> **Q*_UI = (min(3.5, S) * O_MDL) / (C_atoms * C_clutter) >= 2.0**
+
+- **S (Hierarchy Balance):** Floored at 1.2 and capped at 3.5, rewarding dominant hero anchor cards.
+- **O_MDL (Alignment Regularizer):** Penalizes stray horizontal alignment rails beyond Kolmogorov limits (`U_axes <= 5` at 1280px, `<= 2` on mobile).
+- **C_atoms (Cognitive Density):** Penalizes overloading summary cards beyond Miller/Subitizing visual capacity (cap of 3–4 items on compact cards).
+- **C_clutter (Shannon Garnish Penalty):** Penalizes repetitive decorative badges and tautological status pills.
+
+## Two Verification Methods
+
+First-Principles UI provides two distinct execution methods: the standalone CLI script (`check-ui-math.mjs`) and the programmatic Node method (`runVerification`).
+
+### Method 1: The CLI Tool (check-ui-math.mjs)
+
+Run full verification against any local or production URL:
+
+```bash
+# Standalone CLI verification
+node check-ui-math.mjs http://127.0.0.1:3000 --json
+
+# Forward mathematical oracles (<15ms)
+node check-ui-math.mjs calc contrast --fg "#f4f4f5" --bg "#18181b"
+node check-ui-math.mjs calc layout --regions 4 --width 1280
+node check-ui-math.mjs calc density --atoms 4 --width 320
+node check-ui-math.mjs calc stress-data --component Card
+node check-ui-math.mjs calc spring --stiffness 280 --damping 32 --mass 1 --velocity 1200
+```
+
+## Resources
+
+- [First Principles UI Engine](https://github.com/first-principles-ui/first-principles-ui): Deterministic layout, APCA contrast, and mathematical UI verification engine.
+- [W3C APCA Contrast](https://www.w3.org/WAI/GL/task-forces/silver/wiki/Visual_Contrast_Algorithm_Comparison): Advanced Perceptual Contrast Algorithm lookup tables for readable interface typography.
+- [Fitts's Law](https://en.wikipedia.org/wiki/Fitts%27s_law): A predictive model of human psychomotor movement speed and target size in user interfaces.
+
+---
+
+# Make Text Readable on Any Surface or Gradient
+
+> Size- and weight-aware perceptual contrast verification using W3C APCA polarity-aware luminance and WCAG 2.2 AA gradient stop compositing.
+
+- Section: Color & Contrast
+- URL: http://127.0.0.1:3000/text-contrast
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/text-contrast.mdx
+
+> **Interactive demo: Text Contrast Rule.** Open http://127.0.0.1:3000/text-contrast to try it.
+
+Washed-out grey body text vanishes into dark backgrounds, failing perceptual readability. Keep body copy at `|Lc| >= 75` and secondary captions at `|Lc| >= 60` using Radix Step 12 and Step 11 tokens so text stays sharp.
+
+## Optical Font Smoothing & Contrast
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/text-contrast to try it.
+  </DemoTab>
+</DemoTabGroup>
+Human visual perception does not register lightness linearly. A simple mathematical ratio between two hex values (like WCAG 2.x's 4.5:1) treats white text on black identically to black text on white, ignoring spatial frequency, font weight, and the human eye's non-linear rod and cone response.
+
+1. **Spatial Frequency Dependence:** High spatial frequency features (such as thin 12px font stems) require exponentially higher physical luminance contrast than low spatial frequency blocks (such as a 48px heading).
+2. **Polarity Asymmetry:** Dark text on a light background undergoes positive optical irradiation, whereas light text on dark background bleeds into surrounding dark photoreceptors, requiring weight compensation.
+3. **Weight Calibration:** A bold 700-weight glyph presents thicker ink strokes, lowering its effective spatial frequency and requiring less raw lightness difference than a 400-weight regular stem.
+
+## Remediation
+
+Use Radix Colors Step 12 for primary body text (`|Lc| >= 90`) and Step 11 for secondary captions (`|Lc| >= 75` on Step 2):
+
+```tsx
+<p className="text-foreground text-sm font-normal">
+  Primary text calibrated to Radix Step 12.
+</p>
+<p className="text-muted-foreground text-xs">
+  Secondary caption text calibrated to Radix Step 11.
+</p>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The APCA model converts sRGB coordinates into linear luminance ($Y$), passes them through non-linear perceptual compression exponents, and derives the perceptual lightness contrast ($L_c$):
+
+> **Body Text (`< 18px` regular):** `|Lc| >= 75.0` and `WCAG >= 4.5:1`
+> **Fluent UI Text (14px bold / 18px regular):** `|Lc| >= 60.0`
+> **Large Display Titles (>= 24px or >= 18.5px bold):** `|Lc| >= 45.0` and `WCAG >= 3.0:1`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/text-contrast.mjs
+const Lc = Math.abs(computeAPCA(fgRgba, bgRgba));
+const minLc = getRequiredApcaLc(fontSizePx, fontWeight, config);
+
+if (Lc < minLc) {
+  ctx.report("LAW_07_APCA_CONTRAST", {
+    property: "apca_Lc",
+    computed: Lc,
+    threshold: minLc,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [W3C APCA Contrast](https://www.w3.org/WAI/GL/task-forces/silver/wiki/Visual_Contrast_Algorithm_Comparison): Advanced Perceptual Contrast Algorithm lookup tables for readable interface typography.
+- [WCAG 2.2 Contrast](https://www.w3.org/TR/WCAG22/#contrast-minimum): W3C relative luminance ratio specification.
+
+---
+
+# Prevent Neon Glare & Oversaturated Accent Floods
+
+> Cap oversaturated card chroma and enforce high-chroma viewport territorial budgets using OKLCH perceptual color space and Helmholtz-Kohlrausch luminance surge limits.
+
+- Section: Color & Contrast
+- URL: http://127.0.0.1:3000/surface-chroma
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/surface-chroma.mdx
+
+> **Interactive demo: Surface Chroma Rule.** Open http://127.0.0.1:3000/surface-chroma to try it.
+
+Oversaturated neon backgrounds cause intense retinal glare and harsh neon glare. Cap container fills at OKLCH chroma `C <= 0.22` using Radix Step 3 surfaces to keep accent color within a calibrated perceptual budget.
+
+## OKLCH Uniformity Across Hues
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/surface-chroma to try it.
+  </DemoTab>
+  <DemoTab label="Palette Steps">
+    <OklchPaletteDemo />
+  </DemoTab>
+</DemoTabGroup>
+When user interface surfaces use raw, high-chroma colors, they trigger intense visual vibration. Large saturated cards demand excessive cognitive attention, overwhelming surrounding data and inducing rapid retinal fatigue.
+
+The substrate foundation is the **harsh neon glare**:
+
+1. **Perceived Luminance Surge:** Saturated colors appear physically brighter to the human eye than neutral gray surfaces of identical physical photometric luminance.
+2. **Visual Clamor:** When applied to large background areas (> 2400px²), high chroma disrupts ocular fixation, causing foreground text to vibrate against the background boundary.
+3. **Territorial Budget:** High chroma (Radix Step 9) is designed for tiny accents, dots, and active icons. Spreading it across substantial viewport fractions destroys informational hierarchy.
+
+In standard HSL or sRGB, changing hue at constant saturation causes massive perceived lightness fluctuations (pure yellow appears blindingly bright while pure blue appears dark). OKLCH decouples lightness ($L$) and chroma ($C$) so colors transition uniformly:
+
+## Remediation
+
+Use calibrated Radix Step 3–5 surface fills or reduce OKLCH chroma:
+
+```css
+/* Right: Subtle, elegant surface chroma */
+.surface-card {
+  background-color: oklch(0.22 0.03 260); /* Low chroma, non-vibrating */
+  border: 1px solid oklch(0.30 0.04 260);
+}
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier composites element backgrounds into OKLCH space and evaluates two distinct physical constraints:
+
+> **Surface Chroma Cap:** `C_OKLCH <= 0.220` (light canvas) / `C_OKLCH <= 0.195` (dark canvas)
+> **High-Chroma Viewport Budget:** `Area(C > 0.12) / Area(Viewport) <= 8%` (workspace) / `<= 22%` (showcase)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/surface-chroma.mjs
+const oklch = rgbToOklch(compositedBg);
+const maxChroma = isDarkCanvas ? 0.195 : 0.220;
+
+if (area > 2400 && oklch.C > maxChroma) {
+  ctx.report("LAW_11_HK_LUMINANCE_SURGE", {
+    property: "background_oklch_C",
+    computed: oklch.C,
+    threshold: maxChroma,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [harsh neon glare](https://en.wikipedia.org/wiki/Helmholtz%E2%80%93Kohlrausch_effect): Perceived brightness enhancement induced by high color saturation.
+- [OKLCH Color Space](https://bottosson.github.io/posts/oklch/): A perceptual color space for uniform lightness and chroma manipulation.
+
+---
+
+# Keep Dark-Mode Badges & Chips From Disappearing
+
+> Enforce optical boundary distinctness and hairline border enclosures on dark status pills, tags, chips, and circular avatars so they remain distinctly visible.
+
+- Section: Color & Contrast
+- URL: http://127.0.0.1:3000/pill-saliency
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/pill-saliency.mdx
+
+> **Interactive demo: Pill Saliency Rule.** Open http://127.0.0.1:3000/pill-saliency to try it.
+
+Dark badge pills blend invisibly into matching dark cards, destroying their visual boundary. Enforce a 1px `border-border` hairline whenever the surface lightness difference `Delta-L < 0.08` so interactive chips remain salient.
+
+## Optical Enclosure on Media & Avatars
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/pill-saliency to try it.
+  </DemoTab>
+</DemoTabGroup>
+Status pills, tags, and badge chips convey critical state in application dashboards. On dark surfaces, low-contrast pills frequently dissolve into the surrounding card canvas, rendering tags illegible as distinct interactive units.
+
+The substrate foundation is **Figure–Ground Segregation**:
+
+1. **Boundary Enclosure:** Human vision requires a clear closed contour to distinguish an entity as a distinct object ("figure") rather than a continuous texture of the underlying surface ("ground").
+2. **Dark Mode Lightness Compression:** In dark mode, luminance perception is compressed in lower tiers. A step 3 background on step 1 canvas often has less than 4% lightness difference (`ΔL < 0.04`), causing boundaries to vanish under ambient room glare.
+
+The same boundary saliency rule applies to circular avatars and media thumbnails on dark cards. An avatar with dark edge pixels blurs into the dark canvas unless bound by a 1px inner hairline stroke:
+
+## Remediation
+
+Pair Step 3 fills with a 1px solid Step 6 hairline border on dark surfaces:
+
+```tsx
+// Right: High-saliency dark status pill
+<span className="inline-flex items-center rounded-full border border-border/80 bg-muted/50 px-2.5 py-0.5 text-xs font-medium text-foreground">
+  Active Status
+</span>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier isolates status pills and computes the perceptual boundary contrast:
+
+> **Luminance Separation Floor:** `|L_pill - L_surface| >= 0.06` OR `border-width >= 1px` with `alpha >= 0.15`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/pill-saliency.mjs
+const deltaL = Math.abs(pillOklch.L - surfaceOklch.L);
+const hasBorder = borderRgba.a >= 0.15 && borderWidth >= 1;
+
+if (deltaL < 0.06 && !hasBorder) {
+  ctx.report("LAW_07_PILL_BOUNDARY_SALIENCY", {
+    property: "pill_border_contrast",
+    computed: deltaL,
+    threshold: 0.06,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Radix Colors Step System](https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale): Official step roles for app canvases, surface fills, and borders.
+
+---
+
+# Eliminate Flat 3-Card Rows & Template Layouts
+
+> Visual hierarchy verification ensuring top-level regions command focal dominance using the Zipf-Lorenz area dominance ratio.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/zipf-hierarchy
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/zipf-hierarchy.mdx
+
+> **Interactive demo: Zipf Hierarchy Rule.** Open http://127.0.0.1:3000/zipf-hierarchy to try it.
+
+Identical-sized cards in a flat grid trigger visual aimlessness because no element commands attention. Anchor layouts with a dominant focal hero obeying Zipf's power law (`D_Zipf >= 0.48`), giving the primary card at least 1.6x the area of siblings.
+
+When an interface presents a uniform grid of identical cards, the user's gaze has no obvious entry point. Visual energy is evenly dispersed, forcing the eye to sweep aimlessly across the canvas.
+
+The substrate foundation is the **Power-Law of Visual Attention**:
+
+1. **Information Ranking:** Human visual processing prioritizes ranked signals. In natural scenes, the primary subject commands disproportionate optical mass.
+2. **Anchor Region:** A layout requires a clear dominant anchor (hero card, primary visualization, or stage header) commanding the largest share of spatial territory.
+3. **Flatness Prevention:** Pages where every card has equal width and height produce visual monotony and decision paralysis.
+
+## Remediation
+
+Introduce a dominant hero anchor region spanning 2 columns or commanding >= 50% of the stage area:
+
+```tsx
+// Right: Zipf-dominant 2:1 bento stage
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+  {/* Dominant Hero Anchor (A1 = 66% area) */}
+  <div className="md:col-span-2 rounded-2xl border border-border/80 bg-card p-6">
+    <h2 className="text-base font-semibold">Primary Telemetry Stream</h2>
+    {/* Large chart */}
+  </div>
+  {/* Secondary Metric Cards (A2, A3 = 17% each) */}
+  <div className="space-y-4">
+    <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+    <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier isolates major top-level stage regions, calculates bounding areas, and computes the top-two area dominance ratio (`D_Zipf`):
+
+> **Zipf Dominance Ratio:** `D_Zipf = (A_1 + A_2) / sum(A_i) >= 0.48`
+> **Hierarchy Contribution Score:** `S = min(3.5, max(1.2, 5.0 * D_Zipf))`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/zipf-hierarchy.mjs
+const totalArea = regionAreas.reduce((sum, a) => sum + a, 0);
+const topTwoArea = (regionAreas[0] || 0) + (regionAreas[1] || 0);
+const D_Zipf = totalArea > 0 ? topTwoArea / totalArea : 1.0;
+
+scoreState.D_Zipf = D_Zipf;
+scoreState.S = Math.min(3.5, Math.max(1.2, 5.0 * D_Zipf));
+
+if (D_Zipf < 0.48) {
+  ctx.report("LAW_01_ZIPF_HIERARCHY_FLATNESS", {
+    property: "D_Zipf",
+    computed: D_Zipf,
+    threshold: 0.48,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law): Power-law distributions in natural systems and human communication.
+
+---
+
+# Build Balanced Bento Grids Without Orphan Gaps
+
+> Enforcing primary anchor cell prominence (>= 35% area) and complete modulo-zero column span closure in responsive bento grid layouts.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/bento-grid
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/bento-grid.mdx
+
+> **Interactive demo: Bento Grid Rule.** Open http://127.0.0.1:3000/bento-grid to try it.
+
+An odd number of cards leaves trailing orphan gaps that break grid rhythm. Span the primary anchor cell across 2 columns so total column spans satisfy modulo-0 closure (`sum(span) mod cols = 0`) across all breakpoints.
+
+Bento grids have become a staple of modern product marketing and dashboard design. However, without structural discipline, bento layouts chronically fall into two errors: lack of an anchor cell commanding visual attention, and orphan trailing cards that leave unclosed gaps in the grid structure.
+
+1. **Gestalt Continuation:** Human vision naturally extends geometric grid rails. A grid that ends with a single hanging cell breaks continuation and looks like broken or missing data.
+2. **Anchor Proportion:** For a bento box to function as an integrated composition, the flagship cell must occupy at least 35% of the total grid area.
+3. **Open Catalogs vs Summary Bento:** Summary card groups (`<= 6` cards) require clean closure; open-ended product catalogs should be explicitly marked with `data-catalog` or `role="grid"`.
+
+## Remediation
+
+Balance cell spans so the total column count in every row sums to the grid column count:
+
+```tsx
+// Right: Modulo-0 closed 3-column bento grid (total 6 spans = 2 full rows)
+<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+  {/* Anchor Hero: span 2 cols */}
+  <div className="md:col-span-2 rounded-2xl border border-border/80 bg-card p-6">...</div>
+  {/* Side Cell: span 1 col */}
+  <div className="md:col-span-1 rounded-2xl border border-border/80 bg-card p-6">...</div>
+  {/* Row 2: 3 cells x 1 col each = span 3 cols (sum = 6 mod 3 == 0) */}
+  <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+  <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+  <div className="rounded-2xl border border-border/80 bg-card p-4">...</div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier inspects grid containers and calculates two geometric properties:
+
+> **Bento Anchor Fraction:** `Area(Anchor_Cell) / Area(Grid) >= 0.35` (in grids >= 4 cells)
+> **Modulo Column Closure:** `(sum(col_spans)) mod (grid_cols) == 0`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/bento-grid.mjs
+const anchorRatio = maxCellArea / gridArea;
+if (cellCount >= 4 && anchorRatio < 0.35) {
+  ctx.report("LAW_12_BENTO_ANCHOR", {
+    property: "anchor_area_ratio",
+    computed: anchorRatio,
+    threshold: 0.35,
+  });
+}
+
+const remainder = totalColSpans % cols;
+if (remainder !== 0) {
+  ctx.report("LAW_06_MODULO_ZERO_GRID", {
+    property: "grid_span_modulo",
+    computed: remainder,
+    threshold: 0,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN CSS Grid Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout): Specification and column closure behavior in CSS Grid.
+
+---
+
+# Stop Cards From Crushing on Split-Pane & Mobile
+
+> Preserve minimum component territorial card width (>= 145px) and eliminate horizontal viewport scrolling across desktop (1280px), split-pane (680px), and mobile (390px).
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/responsive-layout
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/responsive-layout.mdx
+
+> **Interactive demo: Responsive Layout Rule.** Open http://127.0.0.1:3000/responsive-layout to try it.
+
+Fixed grid columns crush cards below 145px on narrow screens, truncating content into illegible slivers. Use container queries (`@container`) with `auto-fit` and `minmax(180px, 1fr)` to preserve minimum territorial width without horizontal overflow.
+
+When desktop multi-column grids collapse onto split-pane (680px) or mobile (390px) viewports without container queries, cards are frequently crushed below minimum territorial thresholds, causing text overlap and horizontal viewport scrolling.
+
+The substrate foundation is **Territorial Spatial Integrity**:
+
+1. **Card Territorial Minimum:** An atomic card requires at least 145px width to house an icon, headline, and metric without text truncation or button collapse.
+2. **Container-Relative Adaptation:** A component placed in a 3-column split-pane has very different available width than when placed in a full-width stage. Layout decisions must respond to container size, not global viewport width alone.
+3. **Zero Horizontal Overflow:** Mobile web pages must never scroll horizontally (`overflow-x == 0`).
+
+## Remediation
+
+Use auto-fit grid definitions or container queries:
+
+```css
+/* Good: Territorial width preservation */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 145px), 1fr));
+  gap: 1rem;
+}
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier evaluates card bounding rects across desktop (1280px), split-pane (680px), and mobile (390px):
+
+> **Card Territorial Width Floor:** `Width(card) >= 145px`
+> **Mobile Viewport Overflow:** `document.documentElement.scrollWidth <= window.innerWidth` (at 390px)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/responsive-layout.mjs
+for (const card of cards) {
+  const r = card.getBoundingClientRect();
+  if (r.width < 145) {
+    ctx.report("LAW_18_MOBILE_CARD_CRUSH", {
+      property: "card_width_px",
+      computed: Math.round(r.width),
+      threshold: 145,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN Container Queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries): Guide to container-type and container query units.
+
+---
+
+# Prevent Overlapping Text & Broken Ellipsis Truncation
+
+> Preventing direct text ink collisions, glyph overlap, uncontained text bleeding, and broken inline ellipsis truncation across responsive containers.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/ink-disjointness
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/ink-disjointness.mdx
+
+> **Interactive demo: Ink Disjointness Rule.** Open http://127.0.0.1:3000/ink-disjointness to try it.
+
+Absolute positioning causes badges and filenames to collide, bleeding letterforms together. Wrap flex siblings with `min-w-0` and `gap-3` so element bounding boxes remain strictly disjoint (`Delta_overlap <= 0px`) with zero ink collision.
+
+## Balanced Text Wrapping & Preventing Orphans
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/ink-disjointness to try it.
+  </DemoTab>
+  <DemoTab label="Text Pretty">
+    <TextPrettyDemo />
+  </DemoTab>
+  <DemoTab label="Toast Wrapping">
+    <TextWrapToastDemo />
+  </DemoTab>
+</DemoTabGroup>
+Few visual errors degrade interface quality faster than overlapping text nodes. When titles collide with badges, or when `text-overflow: ellipsis` is placed on an uncontained `inline` span, glyphs render directly over adjacent controls.
+
+The substrate foundation is **Geometric Spatial Disjointness**:
+
+1. **Topological Disjointness:** Distinct typographic and interactive elements must represent disjoint spatial subsets: `Area(A ∩ B) = 0`.
+2. **Ellipsis Containment:** In CSS, `text-overflow: ellipsis` has no effect on `display: inline` elements unless paired with a block or inline-block container with `overflow: hidden` and `min-w-0`.
+
+For multi-line headings and toasts, modern CSS provides `text-wrap: balance` and `text-wrap: pretty`. These eliminate awkward single-word typographic orphans and balance line lengths harmoniously:
+
+## Remediation
+
+Wrap flexible text in flex containers with `min-w-0` and `truncate`:
+
+```tsx
+// Right: Safe flex containment
+<div className="flex items-center justify-between gap-3 min-w-0">
+  <span className="truncate min-w-0 font-medium">
+    Long Dynamic Filename That Truncates Safely.pdf
+  </span>
+  <span className="shrink-0 rounded-full px-2 py-0.5 text-xs bg-muted">
+    Badge
+  </span>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier extracts bounding ink boxes for all text lines, badges, and controls, detecting pairwise overlap:
+
+> **Ink Overlap Threshold:** `Overlap_px <= 1.5px` (zero allowable ink intersection)
+> **Inline Truncate Noop:** `text-overflow: ellipsis` prohibited on `display: inline` without block formatting context.
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/ink-disjointness.mjs
+const overlap = Math.max(0, Math.min(boxA.right, boxB.right) - Math.max(boxA.left, boxB.left));
+
+if (isSameLine && overlap > 1.5) {
+  ctx.report("LAW_19_TEXT_INK_COLLISION", {
+    property: "horizontal_ink_overlap_px",
+    computed: Math.round(overlap),
+    threshold: 1.5,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN text-overflow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow): Correct containment and block-formatting requirements for ellipsis.
+
+---
+
+# Stress-Test Layouts Against Worst-Case Data
+
+> Inject adversarial 255-character strings, unbroken CJK text, and large numbers to expose flex squishing, avatar distortion, and ink clipping before shipping.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/stress-testing
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/stress-testing.mdx
+
+> **Interactive demo: Stress Testing Rule.** Open http://127.0.0.1:3000/stress-testing to try it.
+
+Unbounded flex containers collapse avatars into slivers and blow out layouts when fed real adversarial data. Add `shrink-0` to circular media and `min-w-0 truncate` to text labels so geometry never deflates under 255-character inputs.
+
+Interfaces designed exclusively against kind mock data ("Alex Morgan", "Pro Plan", "$19/mo") inevitably fail in production. Real-world databases contain 255-character names, localized compound words, unbroken email addresses, and 8-figure account balances.
+
+## The Mathematical Invariant
+
+In CSS flexbox and CSS grid layouts, elements default to `min-width: auto` rather than `min-width: 0`. When a text container contains long, unbroken strings, the browser expands the text element beyond its territorial container boundaries, squishing neighboring avatars and icons down to zero width or elliptic aspect ratios.
+
+`LAW_27_STRESS_DATA_CONTAINMENT` enforces that under automated boundary data injection:
+
+1. **Avatar Aspect Ratio Invariant:** Any circular or square media container (`img`, `svg`, `[data-avatar]`) must satisfy:
+   `0.90 <= w / h <= 1.10`
+2. **Ink Containment Invariant:** The container element must satisfy:
+   `scrollWidth - clientWidth <= 3px`
+
+## Implementation Pattern
+
+Always pair flex siblings with defensive CSS tokens:
+
+```tsx
+// Right: Defensive containment
+<div className="flex items-center gap-3">
+  {/* Circular avatar protected against deflation */}
+  <img className="size-10 shrink-0 rounded-full object-cover" src={avatarUrl} alt="" />
+  
+  {/* Text parent container with explicit min-w-0 */}
+  <div className="min-w-0 flex-1">
+    <p className="truncate text-sm font-semibold">{user.name}</p>
+    <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+  </div>
+</div>
+```
+
+## Resources
+
+- [Defensive CSS](https://defensivecss.dev): Practical CSS tips for building robust user interfaces.
+
+---
+
+# Position Modals & Wizards at the Optical Center
+
+> Golden-ratio vertical positioning for modal dialogs and linear flow wizards within the 35%–56% optical window (target 45% of viewport height).
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/flow-center
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/flow-center.mdx
+
+> **Interactive demo: Flow Center Rule.** Open http://127.0.0.1:3000/flow-center to try it.
+
+Modals pinned to the top edge feel mechanically top-heavy and strain upward eye movement. Center vertical flows at the 45% golden-ratio optical baseline (`Y in [35%, 56%]`) where the human fovea rests naturally.
+
+In authentication flows, onboarding wizards, and modal dialogs (`data-mode="flow"`), vertical placement determines cognitive focus. Dialogs pinned awkwardly against the top of the browser window or glued to mathematical 50% feel optically low and unbalanced.
+
+The substrate foundation is the **Optical Center of Gravity**:
+
+1. **Optical Centering:** The visual center of a rectangular canvas sits slightly above mathematical 50% (roughly 42%–48% of viewport height).
+2. **Reading Line Ergonomics:** On desktop displays, eye level naturally rests near 40%–45% of screen height. Modal prompts placed here require minimal neck or eye movement.
+
+## Remediation
+
+Center dialogs and wizards with flex or grid alignments biased slightly upward:
+
+```tsx
+// Right: Optical 45% golden-ratio centering
+<div className="flex min-h-[100dvh] items-center justify-center pb-[8vh] p-4">
+  <div className="w-full max-w-md rounded-2xl border border-border/80 bg-card p-6 shadow-xl">
+    <h2 className="text-lg font-semibold">Sign in to your account</h2>
+    {/* Form contents */}
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier calculates the vertical center of mass (`Y_center`) for flow containers:
+
+> **Optical Window:** `0.35 <= (Y_center / Height_viewport) <= 0.56` (nominally 45%)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/flow-center.mjs
+const yCenter = (r.top + r.height / 2) / VP_H;
+
+if (yCenter < 0.35 || yCenter > 0.56) {
+  ctx.report("LAW_08_FLOW_CENTER", {
+    property: "container_center_ratio",
+    computed: yCenter,
+    threshold: 0.45,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [MDN Dialog Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog): Standard HTML dialog and modal positioning guidelines.
+
+---
+
+# Build Honest Charts That Never Distort Data
+
+> Ensure charts and data visualizations convey truthful proportions with zero-anchored baselines, Stevens-law bubble radiuses, monotonic spline interpolation, and collision-free SVG labels.
+
+- Section: Responsive Layout
+- URL: http://127.0.0.1:3000/data-viz
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/data-viz.mdx
+
+> **Interactive demo: Data Viz Rule.** Open http://127.0.0.1:3000/data-viz to try it.
+
+Truncated baselines starting at non-zero values turn a minor 8% latency difference into an exaggerated 4x visual chasm. Anchor bar chart baselines at true zero with Cleveland Lie Factor `<= 1.05` so ink truthfully represents data.
+
+## Perceptual Chart Geometry & Dynamics
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/data-viz to try it.
+  </DemoTab>
+  <DemoTab label="Curve Overshoot">
+    <CurveOvershootDemo />
+  </DemoTab>
+  <DemoTab label="Living Charts">
+    <LivingChartsDemo />
+  </DemoTab>
+</DemoTabGroup>
+Data visualization is an exercise in perceptual truth. When software distorts scales, crops baselines, or maps values incorrectly to geometric primitives, it deceives the reader.
+
+## The Cleveland & McGill Baseline Law
+
+The human visual system evaluates bar charts by comparing the length of bars relative to a shared baseline. If a linear bar chart's baseline starts at 80 instead of 0, a 5% difference between 82 and 92 is magnified into a 400% visual height difference.
+
+`LAW_20_ZERO_BASELINE` mandates that:
+
+> Any linear bar chart representing absolute physical quantities must anchor its value scale at zero ($y = 0$). Logarithmic scales on bar charts are strictly prohibited.
+
+## Stevens's Power Law for Bubble Areas
+
+When visualizing quantities with circles or bubbles, humans perceive physical area ($A = \pi r^2$), not linear radius ($r$). Scaling radius linearly ($r = k \cdot v$) squares the perceptual ratio: a 2x metric difference produces a 4x visual area difference.
+
+`LAW_21_BUBBLE_AREA` mandates square-root radius mapping:
+
+`r = k * sqrt(v)`
+
+## Fritsch–Carlson Monotone Splines vs. Catmull-Rom Overshoot
+
+Naive spline interpolation (such as standard Catmull-Rom splines) frequently overshoots local extrema, dipping below zero or fabricating peaks that never existed in the underlying sampled data.
+
+Fritsch–Carlson monotone cubic Hermite interpolation guarantees that the interpolated curve never overshoots local data bounds:
+
+## Dynamic & Living Charts
+
+When live streaming data arrives, updates should preserve cognitive continuity without disorienting the user:
+
+## Resources
+
+- [Cleveland & McGill (1984)](https://www.jstor.org/stable/2288400): Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods.
+
+---
+
+# Stop Cramming Too Many Metrics Into One Card
+
+> Cognitive density limits for dashboard summary cards based on pre-attentive the 4-item glance limit (K_max in [3, 9]) and area-weighted atom budgeting.
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/card-density
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/card-density.mdx
+
+> **Interactive demo: Card Density Rule.** Open http://127.0.0.1:3000/card-density to try it.
+
+Dumping 9 competing metrics onto a compact card overloads short-term working memory. Cap visual items at `<= 4` discrete chunks to obey human subitizing limits, grouping secondary stats behind progressive disclosure.
+
+Dashboard summary cards are meant to communicate state instantly. When a single card is packed with 10 different lines of metrics, dates, and decorative icons, pre-attentive comprehension collapses and users must consciously scan each item.
+
+The substrate foundation is the psychophysics of **Pre-Attentive Subitizing**:
+
+1. **Subitizing Range:** Human vision can ascertain the number of items in a visual field instantaneously without sequential counting, but only up to 4 items (Cowan's working memory capacity $4 \pm 1$).
+2. **Beyond 4 Items:** When a summary card presents 5 or more distinct data atoms, processing switches to slow sequential counting (+250ms per item).
+3. **Anchor vs Summary Roles:** Large flagship cards can house up to 9 atoms, but compact 4-column cards must strictly observe the 3–4 atom limit.
+
+## Remediation
+
+Distill compact cards down to 3 high-impact signals: metric label, primary figure, and delta indicator:
+
+```tsx
+// Right: Clean 3-atom summary card
+<div className="rounded-2xl border border-border/80 bg-card p-5">
+  <span className="text-xs uppercase tracking-wider text-muted-foreground">
+    Monthly Recurring Revenue
+  </span>
+  <div className="mt-2 text-2xl font-semibold tracking-tight font-mono">
+    $124,500
+  </div>
+  <div className="mt-1 flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400">
+    <span>+12.4% vs last month</span>
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier counts all leaf text nodes, decorative SVGs, and visualizations within each atomic card:
+
+> **Compact Summary Card Atom Cap:** `Total_Atoms <= 4`
+> **Large Anchor Card Atom Cap:** `Total_Atoms <= 9`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/card-density.mjs
+const atoms = inspectCardAtoms(card);
+const maxAtoms = isLargeAnchorCard ? 9 : 4;
+
+if (atoms.totalAtoms > maxAtoms) {
+  ctx.report("LAW_02_SUBITIZING_OVERLOAD", {
+    property: "leaf_atom_count",
+    computed: atoms.totalAtoms,
+    threshold: maxAtoms,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Subitizing in Visual Cognition](https://en.wikipedia.org/wiki/Subitizing): Pre-attentive judgment of item count without conscious counting.
+- [the 4-item glance limit](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two): Working memory capacity limits in human information processing.
+
+---
+
+# Strip Repetitive Badges, Redundant Captions & Scar-Tissue Copy
+
+> Eliminating decorative badge spam, tautological headings, and defensive helper-text slop using Shannon information entropy and Rachel's 4-rung subtractive copy ladder.
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/heading-tautology
+- Published: 2026-11-10
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/heading-tautology.mdx
+
+> **Interactive demo: Heading Tautology Rule.** Open http://127.0.0.1:3000/heading-tautology to try it.
+
+Placing an 'Active' badge next to an 'Active Projects' heading wastes user visual bandwidth with zero new entropy. Purge duplicate words and replace repetitive pills with contextual data so every token delivers unique information.
+
+1. **Zero Information Gain:** If a section header reads "Active Users", placing a status pill that says "Active" right beside it yields mutual information `I(H; B) ≈ H(B)`. The pill delivers zero new information (0 bits).
+2. **Repetitive Garnish:** If 4 out of 4 cards in a summary grid carry the exact same "Status: Live" pill, the pill ceases to function as a status indicator and becomes visual noise.
+3. **The 4-Rung Subtractive Copy Ladder:**
+   - **Rung 1 (Cut Unprompted Worry-Planting):** Delete reassuring copy explaining things users never doubted (e.g. *"The preview is rendered at the exact size used on your profile"*).
+   - **Rung 2 (Cut Label-Restating Captions):** If a field is labeled `"Retry limit"`, delete the caption `"How many times to retry"`.
+   - **Rung 3 (Cut Bug-Fix Scar Tissue & Permission Slips):** Delete captions that rule out past bugs or give polite permission (*"Don't worry if the count seems off for a moment"*, *"Feel free to click below"*).
+   - **Rung 4 (Delete the DOM Element Entirely):** Rather than rewording useless hints, delete the helper container from the DOM. Keep only **irreversible consequences**, **invisible compatibility scopes**, **empty-state next actions**, and **bare units**.
+
+> **Interactive demo: Subtractive Copy Ladder.** Open http://127.0.0.1:3000/heading-tautology to try it.
+
+## Remediation
+
+Remove repetitive badges and delete redundant helper nodes completely from the DOM:
+
+```tsx
+// Wrong: Zero-bit tautology and copy slop
+<div className="flex items-center gap-2">
+  <h2>Active Users</h2>
+  <span className="badge">Active</span>
+</div>
+<label htmlFor="retries">Retry Limit</label>
+<p className="text-xs text-muted-foreground">How many times we retry. Don't worry if this takes time.</p>
+<input id="retries" type="number" />
+
+// Right: High-entropy hierarchy and subtractive copy hygiene
+<div className="flex items-center justify-between">
+  <h2>Active Users</h2>
+  <span className="text-xs text-muted-foreground font-mono">1,420 online</span>
+</div>
+<div className="flex items-baseline gap-2">
+  <label htmlFor="retries" className="text-sm font-medium">Retry Limit</label>
+  <span className="text-xs text-muted-foreground font-mono">(attempts)</span>
+</div>
+<input id="retries" type="number" />
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier tracks badge text across sibling card groups, compares heading text against adjacent pills, and evaluates content stem overlap:
+
+> **Garnish Repetition Threshold:** No identical badge text on `> 25%` of sibling cards ($N \ge 3$).  
+> **Heading Tautology:** Case-insensitive word overlap between heading `<h1..h4>` and adjacent status pill `< 1`.  
+> **Zero-Bit Copy Slop:** Label-to-caption content stem overlap $< 55\%$, zero hedging/scar-tissue tokens.
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/card-density.mjs and heading-tautology.mjs
+if (stemOverlap >= 0.55 || hasDefensiveHedging) {
+  ctx.report("LAW_32_ZERO_BIT_COPY_SLOP", {
+    property: "caption_stem_overlap",
+    computed: stemOverlap,
+    threshold: 0.55,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Shannon Information Entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory)): Quantifying informational surprise and eliminating tautological redundancy.
+
+---
+
+# Cap Top-Level Navigation Before Users Freeze
+
+> Bounding primary navigation links to prevent cognitive choice paralysis using the Hick-Hyman logarithmic decision latency model (n <= 6 items).
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/nav-choice
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/nav-choice.mdx
+
+> **Interactive demo: Nav Choice Rule.** Open http://127.0.0.1:3000/nav-choice to try it.
+
+Cramming 11 links into a header bar spikes Hick-Hyman decision latency and triggers visual paralysis. Restrict primary navigation to `<= 6` high-frequency destinations, nesting secondary pages into grouped categories.
+
+When a primary navigation bar lists 12 different tabs and menu triggers, decision latency skyrockets. Users hesitate before clicking, scanning back and forth across competing links.
+
+The substrate foundation is the **Hick–Hyman Law**:
+
+1. **Logarithmic Decision Time:** Cognitive reaction time scales logarithmically with the number of alternatives: $T = b \log_2(n + 1)$.
+2. **Chunking Navigation Hierarchy:** A primary navigation bar should hold only top-level architectural pillars ($\le 6$). Secondary utilities belong in dropdown menus, command palettes, or footer sitemaps.
+
+## Remediation
+
+Condense primary navigation into 4–5 core categories, moving auxiliary tools into a command palette (`Cmd+K`) or dropdown:
+
+```tsx
+// Right: 4 primary navigation pillars
+<nav className="flex items-center gap-6">
+  <Link href="/overview" className="text-sm font-medium hover:text-foreground">Overview</Link>
+  <Link href="/docs" className="text-sm font-medium hover:text-foreground">Docs</Link>
+  <Link href="/changelog" className="text-sm font-medium hover:text-foreground">Changelog</Link>
+  <Link href="/pricing" className="text-sm font-medium hover:text-foreground">Pricing</Link>
+</nav>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier counts interactive elements inside `<nav>` landmarks:
+
+> **Navigation Choice Budget:** `Count(nav_items) <= 6`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/nav-choice.mjs
+const navItems = nav.querySelectorAll('a, button, [role="link"], [role="button"]');
+
+if (navItems.length > 6) {
+  ctx.report("LAW_17_HICK_HYMAN_NAV", {
+    property: "interactive_item_count",
+    computed: navItems.length,
+    threshold: 6,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Hick's Law](https://en.wikipedia.org/wiki/Hick%27s_law): Time required to make a decision as a logarithmic function of choice count.
+
+---
+
+# Chunk Long Forms Into Digestible Steps
+
+> Bounding contiguous form inputs per fieldset (<= 5 inputs) to prevent cognitive fatigue, visual overwhelm, and form abandonment.
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/fieldset-overload
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/fieldset-overload.mdx
+
+> **Interactive demo: Fieldset Overload Rule.** Open http://127.0.0.1:3000/fieldset-overload to try it.
+
+An endless single-page form with 8 raw inputs causes cognitive fatigue and form abandonment. Chunk complex inputs into logical steps of `<= 5` fields each, preserving momentum with progressive forward disclosure.
+
+Long, unbroken forms trigger immediate visual fatigue and abandonment. When an interface presents 8 to 12 unstructured input fields without conceptual separation, the user's working memory cannot chunk the requirements into achievable sub-tasks.
+
+The substrate principles stem from **Cognitive Load Theory** and **Working Memory Chunking**:
+
+1. **Subitizing Threshold in Forms:** Humans can comfortably parse up to 4–5 coherent inputs as a single conceptual cluster (e.g., Shipping Address or Payment Credentials).
+2. **Perceived Task Cost:** When an undivided form exceeds 5 inputs, the visual complexity triggers an avoidance reaction, sharply degrading completion velocity.
+3. **Progressive Disclosure:** Forms requiring more than 5 inputs must partition controls into multi-step wizards or clearly delineated sequential fieldsets.
+
+## Remediation
+
+Partition long forms into semantic fieldsets with concise `<legend>` titles or tabbed wizard steps:
+
+```tsx
+// Right: Chunked into distinct fieldsets (<= 4 inputs each)
+<form className="space-y-6">
+  <fieldset className="space-y-3 rounded-xl border border-border/80 p-4">
+    <legend className="text-xs font-semibold px-1">Account Credentials</legend>
+    <input className="input" placeholder="Work Email" />
+    <input className="input" type="password" placeholder="Password" />
+  </fieldset>
+
+  <fieldset className="space-y-3 rounded-xl border border-border/80 p-4">
+    <legend className="text-xs font-semibold px-1">Company Profile</legend>
+    <input className="input" placeholder="Company Name" />
+    <select className="select"><option>Team Size</option></select>
+  </fieldset>
+</form>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier traverses every `<fieldset>` and `[data-form-group]` container, tallying all visible non-hidden form controls:
+
+> **Fieldset Subitizing Cap:** `Inputs_visible <= 5` where `Inputs_visible = sum(input[type != hidden] + select + textarea)`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/fieldset-overload.mjs
+const maxInputs = config.density.maxFieldsetInputs; // 5
+
+for (const fs of fieldsets) {
+  const inputs = Array.from(
+    fs.querySelectorAll('input:not([type="hidden"]), select, textarea')
+  ).filter(helpers.isVisible);
+
+  if (inputs.length > maxInputs) {
+    ctx.report("LAW_02_FLOW_FIELDSET_OVERLOAD", {
+      property: "inputs_per_fieldset",
+      computed: inputs.length,
+      threshold: maxInputs,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Cognitive Chunking](https://en.wikipedia.org/wiki/Chunking_(psychology)): Partitioning large arrays of information into manageable units in working memory.
+- [Nielsen Norman Group on Form Design](https://www.nngroup.com/articles/form-design/): Structural grouping and step-based progression in web forms.
+
+---
+
+# Separate Font Sizes So Hierarchy Looks Intentional
+
+> Enforcing perceptual font size step ratios (>= 1.12x) and strict 3-family font stack discipline using the clear 12% visual step of Just-Noticeable Difference.
+
+- Section: Typography
+- URL: http://127.0.0.1:3000/font-scale
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/font-scale.mdx
+
+> **Interactive demo: Font Scale Rule.** Open http://127.0.0.1:3000/font-scale to try it.
+
+Arbitrary font sizes like 13px next to 14px create accidental near-miss tension without visual hierarchy. Step typography along a modular scale (`ratio >= 1.12x`) so human Weber-Fechner perception instantly registers distinct heading tiers.
+
+When typography mixes arbitrary font sizes like 13px, 14px, and 15px, the human eye cannot discern intentional hierarchical difference. The slight variation registers as a sloppy layout defect rather than a deliberate organizational tier.
+
+The substrate basis combines **Psychophysics** and **Modular Typographic Systems**:
+
+1. **Weber-Fechner Just-Noticeable Difference:** The subjective perception of a change in size is logarithmic: `ΔS ∝ ΔI / I`. To establish a distinct tier, adjacent type sizes must step by at least 12% (`r >= 1.12`).
+2. **Elimination of Near-Miss Tiers:** An interface containing both 13px and 14px text creates cognitive ambiguity. Snapping both to a clean 14px tier sharpens visual cohesion.
+3. **Orthogonal Three-Role Stack:** A modern web interface requires at most three distinct typographic families: `--font-display` (headings), `--font-sans` (body copy & UI), and `--font-mono` (tabular & code). Adding fourth or fifth families degrades load performance and visual discipline.
+
+## Remediation
+
+Standardize font sizes on a consistent modular geometric progression:
+
+```tsx
+// Right: Strict Weber-Fechner scale with 3-role family stack
+const typography = {
+  caption: "text-xs font-sans",      // 12px
+  body: "text-sm font-sans",         // 14px (1.17x step)
+  subheading: "text-base font-sans", // 16px (1.14x step)
+  title: "text-xl font-display",     // 20px (1.25x step)
+  display: "text-2xl font-display",  // 24px (1.20x step)
+  mono: "font-mono tabular-nums",    // Code & numeric data
+};
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine collects all rendered text elements across the page, computes their effective computed font sizes, and verifies the geometric step ratio:
+
+> **Adjacent Step Ratio:** `r = f_(i+1) / f_i >= 1.12` for distinct size steps `|f_(i+1) - f_i| >= 1.0px`
+> **Max Distinct Font Families:** `N_families <= 3` (Display, Sans, Mono)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/font-scale.mjs
+const { fontFamilies, uniqueSizes } = ctx.getFontInventory();
+
+if (fontFamilies.size > 3) {
+  ctx.report("LAW_05_FONT_FAMILY_BLOAT", {
+    computed: fontFamilies.size,
+    threshold: 3,
+  });
+}
+
+for (let i = 0; i < uniqueSizes.length - 1; i++) {
+  const curr = uniqueSizes[i];
+  const next = uniqueSizes[i + 1];
+  const ratio = next.fs / curr.fs;
+  if (ratio < 1.12) {
+    ctx.report("LAW_06_WEBER_FECHNER_SCALE", {
+      property: "adjacent_font_size_ratio",
+      computed: Number(ratio.toFixed(3)),
+      threshold: 1.12,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [clear 12% visual step](https://en.wikipedia.org/wiki/Weber%E2%80%93Fechner_law): Psychophysical law relating subjective sensation intensity to stimulus magnitude.
+- [Modular Typographic Scales](https://spencermortensen.com/articles/typographic-scale/): Geometric progression systems for proportional hierarchy in digital typography.
+
+---
+
+# Align Table Numbers & Prevent Mobile Table Crush
+
+> Decimal numeric right-alignment with tabular-nums, zero interior vertical borders, Bouma column clearance, and mobile horizontal containment.
+
+- Section: Typography
+- URL: http://127.0.0.1:3000/tabular-ergonomics
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/tabular-ergonomics.mdx
+
+> **Interactive demo: Tabular Ergonomics Rule.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
+
+Proportional numbers shift horizontally whenever digits change, causing distracting layout jitter in financial dashboards. Enable `font-variant-numeric: tabular-nums` and right-align numeric columns so digit columns stay locked in vertical alignment.
+
+## Tabular Lining Dynamics & Mobile Fades
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
+  </DemoTab>
+  <DemoTab label="Data Tables">
+    <TabularTableDemo />
+  </DemoTab>
+  <DemoTab label="Mobile Scroll Fades">
+    <ScrollFadesHorizontalDemo />
+  </DemoTab>
+</DemoTabGroup>
+Data tables frequently suffer from heavy vertical gridlines, misaligned numbers, shifting column widths during live streaming, and crushed cells on mobile screens. These defects destroy readability and make comparing numbers across rows mentally exhausting.
+
+1. **Zero Vertical Borders:** Vertical borders in data tables compete with column whitespace for visual attention. Clean column margins separate data more effectively with zero ink overhead.
+2. **Tabular Numeric Right-Alignment:** Proportional numbers cause decimal points and place values (units, tens, thousands) to jitter horizontally. Using `tabular-nums` and `text-align: right` creates crisp vertical columns where magnitudes can be compared at a glance.
+3. **Standalone KPI Numeric Left-Alignment:** While numbers inside 4-column tables must align right, standalone metric numbers inside dashboard cards must align left with their labels to preserve reading flow.
+
+Proportional figures vary in width (the number `1` is much narrower than `8`). When streaming timers or balances update, proportional text jitters and shakes horizontally:
+
+When tables must retain multiple columns on mobile screens, wrapping them in a dedicated `.table-scroll` container with horizontal gradient fade affordances informs users that the table can be swiped horizontally:
+
+## Remediation
+
+Use right-aligned tabular figures and borderless columns:
+
+```tsx
+// Right: Tufte-clean table with tabular-nums
+<div className="overflow-x-auto table-scroll">
+  <table className="w-full border-collapse text-sm">
+    <thead>
+      <tr className="border-b border-border/80 text-muted-foreground text-left">
+        <th className="py-2.5 pr-4 font-medium">Asset</th>
+        <th className="py-2.5 px-4 font-medium text-right font-mono">Price</th>
+        <th className="py-2.5 pl-4 font-medium text-right font-mono">24h Change</th>
+      </tr>
+    </thead>
+    <tbody className="divide-y divide-border/40">
+      <tr>
+        <td className="py-2.5 pr-4 font-medium">Ethereum</td>
+        <td className="py-2.5 px-4 text-right font-mono tabular-nums">$3,420.50</td>
+        <td className="py-2.5 pl-4 text-right font-mono tabular-nums text-emerald-600">+4.12%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine analyzes all `<table>` elements and numeric cells:
+
+> **Vertical Border Ink:** `I_vert = 0` (no interior vertical gridlines)
+> **Numeric Cell Alignment:** `text-align: right` and `font-variant-numeric: tabular-nums`
+> **Mobile Column Constraints:** `W_col >= 56px` or explicit horizontal scroll container (`.table-scroll`)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/tabular-ergonomics.mjs
+for (const cell of numericCells) {
+  const cs = getComputedStyle(cell);
+  const isRightAligned = cs.textAlign === "right" || cs.textAlign === "end";
+  const hasTabularNums = cs.fontVariantNumeric.includes("tabular-nums");
+
+  if (!isRightAligned || !hasTabularNums) {
+    ctx.report("LAW_16_TABULAR_NUM_ALIGN", {
+      property: "text-align",
+      computed: `${cs.textAlign} (${cs.fontVariantNumeric})`,
+      threshold: "right tabular-nums",
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Edward Tufte on Tables](https://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0001OR): Data-ink maximization and elimination of visual grid clutter in tabular data.
+- [MDN font-variant-numeric](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric): Monospace lining digits for aligned numerical data tables.
+
+---
+
+# Tighten Large Headings & Cap Paragraph Line Width
+
+> Tightening letter spacing on large display headings (<= -0.025em) and bounding prose paragraph measure (<= 36em / ~65ch) for comfortable reading flow.
+
+- Section: Typography
+- URL: http://127.0.0.1:3000/display-tracking
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/display-tracking.mdx
+
+> **Interactive demo: Display Tracking Rule.** Open http://127.0.0.1:3000/display-tracking to try it.
+
+Display headings above 24px look gapped and detached when left at default body tracking. Apply optical tightening (`letter-spacing: -0.025em`) to large headings, and loosen small uppercase text to `+0.05em` for legibility.
+
+## Optical Tracking Scale & Uppercase Spacing
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/display-tracking to try it.
+  </DemoTab>
+  <DemoTab label="Uppercase Tracking">
+    <UppercaseTrackingDemo />
+  </DemoTab>
+</DemoTabGroup>
+When digital type scales up to display sizes (34px and beyond), the default proportional font metrics create excessive inter-glyph whitespace. Words appear dispersed and optically weak. Conversely, body copy that spans too wide forces readers to make disorienting eye movements.
+
+1. **Optical Tracking Inversion:** In metal typesetting, smaller text sizes required wider spacing to remain legible, while large display type was kerned tighter. Modern digital fonts use linear scaling by default; headings >= 34px must tighten letter-spacing by -0.025em to -0.04em to maintain cohesive word shapes.
+2. **Saccadic Return-Sweep Ergonomics:** When reading, human eyes move in rapid jumps (saccades) followed by a return-sweep to the start of the next line. If a paragraph exceeds 36em (~65–70 characters), readers consistently land on the wrong line, causing cognitive re-reading fatigue.
+3. **Uppercase Widening vs. Display Tightening:** While large mixed-case headings require negative tracking, small uppercase labels (e.g. badges or table headers) require positive tracking (`letter-spacing: 0.05em` to `0.1em`) to offset optical clumping:
+
+## Remediation & Micro-Orthography Auto-Fix
+
+Use `tracking-tight` for large headings, `max-w-prose` for paragraphs, Sentence case on UI controls, and run the 1-command auto-fixer:
+
+```tsx
+// Right: Optical tracking, sentence case, and constrained measure
+<h1 className="text-3xl font-bold tracking-tight text-foreground">
+  Display headline with cohesive word shapes
+</h1>
+<button
+  type="button"
+  className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground [text-box:trim-both_cap_alphabetic]"
+>
+  Launch workspace — fast…
+</button>
+<p className="mt-3 text-base text-muted-foreground max-w-[65ch] leading-relaxed">
+  Body copy constrained to 65 characters per line so the reader's eye return-sweeps accurately.
+</p>
+```
+
+```bash
+# Clean up visible UI copy, straight quotes, and emoji clutter in <40ms
+./check-ui-math.mjs fix ./src
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier checks display headings, prose paragraphs, and typographic orthography:
+
+> **Continuous Optical Tracking Curve:** `tau(s) = clamp(-0.045em, -0.022 * ln(s / 16)em, +0.025em)`  
+> **Continuous Hyperbolic Leading Curve:** `lambda(s, M) = clamp(1.02, 1.02 + 8.5 / s + 0.003 * max(0, M - 55), 1.75)`  
+> **Display Tracking (>= 34px):** `letter-spacing <= -0.025em` (tightened optical cohesion)  
+> **Prose Line Measure:** `Width / font_size <= 36em` (~65–68 characters per line)  
+> **Sentence-Case UI & Hygiene (LAW_33):** Sentence case on UI controls >= 14px, uppercase strictly on 10–13px eyebrows with `+0.06em` tracking, zero decorative AI emojis.
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/display-tracking.mjs
+for (const item of textElements) {
+  const { el, cs, fs } = item;
+
+  // 1. Display Optical Tracking (>= 34px)
+  if (fs >= 34) {
+    const trackingEm = (parseFloat(cs.letterSpacing) || 0) / fs;
+    if (trackingEm > -0.025) {
+      ctx.report("LAW_13_DISPLAY_TRACKING", {
+        property: "letter-spacing",
+        computed: `${trackingEm.toFixed(3)}em`,
+        threshold: "-0.025em",
+        css_patch: { "letter-spacing": "-0.03em" },
+      });
+    }
+  }
+
+  // 2. Prose Measure (<= 36em)
+  if (el.tagName === "P" && el.getBoundingClientRect().width / fs > 36) {
+    ctx.report("LAW_13_PROSE_MEASURE", {
+      property: "paragraph_measure_em",
+      threshold: 36,
+    });
+  }
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Typographic Tracking & Spacing](https://en.wikipedia.org/wiki/Letter-spacing): Optical adjustment of whitespace between characters across varying scale sizes.
+- [Robert Bringhurst's Typographic Measure](https://en.wikipedia.org/wiki/The_Elements_of_Typographic_Style): Ergonomic constraints on line length and saccadic return-sweeps.
+
+---
+
+# Stop Stacking Borders on Drop Shadows & Fix Nested Corners
+
+> Continuous boundary energy conservation (Eb <= 1.25), concentric inner corner curvature geometry, and Gestalt proximity padding ratios.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/card-boundaries
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/card-boundaries.mdx
+
+> **Interactive demo: Card Boundaries Rule.** Open http://127.0.0.1:3000/card-boundaries to try it.
+
+Stacking a dark border and a heavy drop shadow on the same card creates muddy double edges. Use a single 1px hairline border in dark mode, and shrink inner corner radii (`r_in = r_out - pad`) so nested curves stay concentric.
+
+## Nested Geometry & Dark Mode Elevation
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/card-boundaries to try it.
+    <NestedRadiusExamplesDemo />
+  </DemoTab>
+  <DemoTab label="Dark-Mode Elevation">
+    <ShadowDarkModeDemo />
+  </DemoTab>
+</DemoTabGroup>
+
+Cards with heavy borders, deep drop shadows, and harsh background elevation stack redundant boundary cues. This "cue stacking" produces visual vibration and clutter. Furthermore, nesting rounded elements with identical corner radii pinches the whitespace at the corners.
+
+1. **Continuous Boundary Energy Cap (`Eb <= 1.25`):** Every boundary cue exerts perceptual energy:
+   - Subtle surface elevation: `0.65`
+   - Hairline border (1px): `0.50`
+   - High-contrast border: `0.80`
+   - Outer drop shadow: `0.95`
+   Pairing subtle elevation (`0.65`) with a 1px border (`0.50`) sums to `1.15 <= 1.25` (clean, crisp, intentional). But combining outer shadows (`0.95`) with thick borders (`0.80`) spikes `Eb` to `1.75 > 1.25`, generating visual noise.
+2. **Concentric Curvature:** When an inner element sits inside a padded outer box, its corner radius must equal outer radius minus padding (`r_in = max(0, r_out - pad)`). Sharing the same radius makes the corner gap look pinched and amateurish.
+3. **Gestalt Proximity:** A container's internal flex or grid gap must be strictly smaller than the container's outer padding (`Padding >= 1.35 * Gap`) so child items visually belong together inside their boundary.
+
+## Remediation
+
+Apply concentric radii and choose a subtle border or soft shadow:
+
+```tsx
+// Right: Concentric radius (r_out = 16px, pad = 8px, r_in = 8px)
+<div className="rounded-2xl border border-border/80 bg-card p-2">
+  <div className="rounded-lg bg-muted/50 p-4">
+    Inner content with concentric optical curvature
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier inspects all card elements and sibling groups:
+
+> **Boundary Energy Cap:** `Eb = E_elevation + E_border + E_shadow <= 1.25`
+> **Concentric Corner Radius:** `r_in = max(0, r_out - padding)`
+> **Gestalt Proximity Ratio:** `Padding / Gap >= 1.35`
+
+<details className="my-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+
+```typescript
+// Evaluated by src/rules/card-boundaries.mjs
+const elevEnergy = dL >= 0.03 ? 0.65 : 0;
+const borderEnergy = hasBorder ? (isHighContrast ? 0.80 : 0.50) : 0;
+const shadowEnergy = hasOuterShadow ? 0.95 : 0;
+const Eb = elevEnergy + borderEnergy + shadowEnergy;
+
+if (Eb > 1.25) {
+  ctx.report("LAW_04_BOUNDARY_EXCLUSIVITY", {
+    property: "boundary_energy",
+    computed: Eb,
+    threshold: 1.25,
+  });
+}
+```
+
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Gestalt Principles of Perceptual Grouping](https://en.wikipedia.org/wiki/Principles_of_grouping): Spatial proximity and common region closure in visual design.
+- [Concentric Border Radius Geometry](https://fvsch.com/articles/border-radius-math/): Mathematical curvature offset formulas for nested rounded boxes.
+
+---
+
+# Size Touch Targets & Stop iOS Input Auto-Zoom
+
+> Ensuring touch target acquisition thresholds (>= 36x36px standalone / >= 28x28px toolbar) and preventing destructive mobile viewport auto-zoom with a 16px input font-size floor.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/target-ergonomics
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/target-ergonomics.mdx
+
+> **Interactive demo: Target Ergonomics Rule.** Open http://127.0.0.1:3000/target-ergonomics to try it.
+
+Buttons smaller than 36px trigger missed taps, accidental clicks, and motor frustration under Fitts's law. Expand interactive touch targets to at least `44x44px` on mobile and `36x36px` on desktop with invisible pseudo-element padding.
+
+## Target Expansion & Hit Area Ergonomics
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/target-ergonomics to try it.
+  </DemoTab>
+  <DemoTab label="Expand Hit Area">
+    <HitAreasExpandDemo />
+  </DemoTab>
+  <DemoTab label="Gap Padding">
+    <HitAreasGapDemo />
+  </DemoTab>
+</DemoTabGroup>
+Tiny interactive buttons cause mis-taps, frustration, and increased motor effort. On touchscreens, tapping a 20px icon button without sufficient padding often triggers adjacent controls. On mobile browsers, tapping an input styled with a 13px font forces the viewport to violently zoom in, disorienting the user.
+
+1. **Fitts's Law:** Acquisition time `MT = a + b log2(1 + D/W)` is inversely proportional to target width `W`. When `W` drops below fingertip contact pad dimensions (~7mm / 36px), error rates spike exponentially.
+2. **Compact Toolbar Exceptions:** Inside high-density toolbars or compact table action rows, targets may compress to 28x28px provided they have sufficient spacing to avoid accidental activation.
+3. **Mobile Auto-Zoom Floor:** iOS Safari and WebKit automatically zoom into any focused `<input>`, `<select>`, or `<textarea>` whose computed `font-size` is under 16px. This shifts the entire page layout and requires users to manually pinch-to-zoom back out.
+
+## Hit Area Expansion via Invisible Pseudo-Elements
+
+When visual design calls for a compact 20px icon, you do not need to bloat the visible button frame. An invisible `::after` pseudo-element can expand the touch hit area to 36x36px or 44x44px while keeping the icon visually delicate:
+
+## Remediation
+
+Ensure standalone targets hit at least 36x36px and form inputs are 16px on mobile:
+
+```tsx
+// Right: Fitts compliant target and 16px mobile input floor
+<button className="min-h-9 min-w-9 p-2 rounded-full hover:bg-muted inline-flex items-center justify-center">
+  <Icon className="size-4" />
+</button>
+
+<input className="text-base sm:text-sm rounded-lg border border-border p-2.5" />
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier measures bounding boxes of all interactive targets and checks computed font sizes on mobile:
+
+> **Standalone Target Size:** `min(Width, Height) >= 36px` (`>= 28px` in toolbars)
+> **Mobile Input Font Size Floor:** `font_size >= 16px` (prevents iOS Safari auto-zoom)
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/target-ergonomics.mjs
+const minTarget = inCompactZone ? 28 : 36;
+const r = btn.getBoundingClientRect();
+
+if (r.width < minTarget || r.height < minTarget) {
+  ctx.report("LAW_07_FITTS_TARGET_SIZE", {
+    property: "min_dimension_px",
+    computed: Math.round(Math.min(r.width, r.height)),
+    threshold: minTarget,
+    operator: ">=",
+  });
+}
+
+if (vpConfig.isMobile && inputFontSize < 16) {
+  ctx.report("LAW_18_IOS_INPUT_ZOOM", {
+    property: "mobile_input_font_size_px",
+    computed: inputFontSize,
+    threshold: 16,
+    operator: ">=",
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Fitts's Law of Motor Movement](https://en.wikipedia.org/wiki/Fitts%27s_law): Mathematical model of human pointing velocity based on target distance and surface area.
+- [WCAG 2.2 SC 2.5.8 Target Size](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html): Accessibility criteria for minimum pointer target dimensions.
+
+---
+
+# Snap Layouts to Clean Vertical Alignment Rails
+
+> Bound distinct horizontal layout axes using Kolmogorov Information Theory and prevent dynamic title-metadata collisions on responsive headers.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/alignment-axes
+- Published: 2026-11-09
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/alignment-axes.mdx
+
+> **Interactive demo: Alignment Axes Rule.** Open http://127.0.0.1:3000/alignment-axes to try it.
+
+Jagged horizontal offsets and stray margins inflate cognitive scan paths across the screen. Snap elements to at most `3` shared vertical alignment rails (`<= 2` on mobile) so the reader's eye sweeps straight down.
+
+## Optical Alignment & Icon Offsets
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/alignment-axes to try it.
+  </DemoTab>
+  <DemoTab label="Button Icon Offset">
+    <OpticalButtonDemo />
+  </DemoTab>
+</DemoTabGroup>
+When every card, sidebar, and section in a layout starts at a slightly different horizontal coordinate, the page looks disorganized and noisy. The eye must constantly adjust to new alignment origins. Furthermore, placing dynamic page titles next to action buttons in horizontal flex rows causes text collisions whenever user-generated titles expand.
+
+1. **shared alignment edges of Layout:** The visual complexity of a layout is proportional to the number of distinct alignment rails needed to reconstruct it. A page with 12 distinct left-edge offsets requires high cognitive energy to process. Clustered alignment reduces entropy:
+   - Desktop (1280px): `<= 5` distinct alignment rails
+   - Split-pane (680px): `<= 3` distinct alignment rails
+   - Mobile (390px): `<= 2` distinct alignment rails
+2. **Dynamic Header Collision Guard:** Placing an `<h1>` and sibling buttons inside `flex items-baseline` or `flex items-center` works only for short mockup strings. When real content expands, the heading collides with controls (`< 14px` gap) or wraps awkwardly. Flexible headers must decouple into stacked column structures on narrow containers.
+
+Aligning icons exactly by their geometric bounding boxes often looks off-center because different shapes distribute ink unevenly. A triangle pointing right (such as a play icon) has the majority of its area on the left.
+
+The same principle applies to buttons with icons: the extra whitespace inside the icon container increases the perceived padding next to it, making the button appear unbalanced unless offset.
+
+## Remediation
+
+Align cards and containers along a unified grid rail, and wrap dynamic headers with responsive flex decoupling:
+
+```tsx
+/* Good: Cohesive alignment rail, responsive header wrap */
+<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+  <div className="min-w-0 flex-1">
+    <h1 className="text-2xl font-bold truncate">Production Cluster Metrics</h1>
+    <p className="text-sm text-muted-foreground">Live telemetry stream</p>
+  </div>
+  <div className="flex items-center gap-2 shrink-0">
+    <button className="btn">Deploy</button>
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier groups left coordinates of all top-level blocks into 5px clusters and checks clearance between headings and sibling controls:
+
+> **Alignment Rails Cap:** `K_axes <= 5` (Desktop 1280px), `<= 3` (Split-Pane 680px), `<= 2` (Mobile 390px)  
+> **Header Sibling Clearance:** `Gap >= 14px` or `flex-direction: column`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/alignment-axes.mjs
+const rails = clusterCoordinates(topLevelBlocks.map((b) => b.rect.left), 5);
+const maxRails = vpConfig.isMobile ? 2 : vpConfig.isTablet ? 3 : 5;
+
+if (rails.length > maxRails) {
+  ctx.report("LAW_05_KOLMOGOROV_AXES", {
+    property: "alignment_rails",
+    computed: rails.length,
+    threshold: maxRails,
+  });
+}
+
+if (isRowFlex && horizGap < 14) {
+  ctx.report("LAW_05_HEADER_BASELINE_COLLISION", {
+    property: "horizontal_collision_gap_px",
+    computed: Math.round(horizGap),
+    threshold: 14,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [shared alignment edges](https://en.wikipedia.org/wiki/Kolmogorov_complexity): Algorithmic information theory measuring descriptive complexity in visual arrays.
+- [Grid Systems in Graphic Design](https://en.wikipedia.org/wiki/Grid_(graphic_design)): Structural alignment rails and visual discipline in multi-column layouts.
+
+---
+
+# Make Mobile Web Apps Feel Installed, Not Embedded
+
+> Eliminate sticky touch hover states, viewport URL-bar clipping, gray tap flashes, and accidental text selection on mobile web interfaces.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/mobile-native-physics
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/mobile-native-physics.mdx
+
+> **Interactive demo: Mobile Native Physics.** Open http://127.0.0.1:3000/mobile-native-physics to try it.
+
+Unconditional `:hover` styles stay stuck after tapping on mobile screens, while raw `100vh` clips beneath browser chrome. Gate hover effects behind `@media (hover: hover)` and use dynamic viewport units (`100dvh`) with `touch-action: manipulation`.
+
+Mobile web applications often feel clunky and amateurish not because of JavaScript execution speed, but because of neglected mobile physics: sticky `:hover` styles, viewport clipping behind dynamic browser address bars, and default tap flash artifacts.
+
+## Capability-Gated Hover States
+
+Touchscreens do not have a persistent hover cursor. When an author writes an unconditional `:hover` rule, mobile browsers simulate hover on tap—and leave the element permanently stuck in its hover style until the user taps somewhere else.
+
+`LAW_28_MOBILE_CAPABILITY_GATE` requires isolating hover treatments to devices that genuinely possess precision pointers and hover hardware:
+
+```css
+/* Right: Only devices with genuine hover hardware */
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    background-color: var(--color-muted);
+    border-color: var(--color-border-active);
+  }
+}
+```
+
+## Dynamic Viewport Units (`100dvh` vs. `100vh`)
+
+On mobile browsers like Safari and Chrome for iOS/Android, the browser address bar dynamically expands and retracts during scrolling. Classic `100vh` calculates viewport height assuming the address bar is retracted—causing bottom action buttons and floating drawers to be clipped underneath the visible browser chrome.
+
+Modern web standards introduce dynamic viewport units:
+- `100dvh`: Dynamically adjusts as the address bar retracts or appears.
+- `100svh`: The smallest possible viewport height (when address bar is fully expanded).
+- `100lvh`: The largest possible viewport height (when address bar is fully retracted).
+
+## Touch Action & Selection Discipline
+
+Interactive controls (buttons, chips, segmented tabs, icons) must never trigger browser text selection or double-tap zoom delays:
+
+```css
+.touch-control {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+```
+
+## Resources
+
+- [MDN: CSS @media (hover)](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/hover): Testing whether the user's primary input mechanism can hover over elements.
+
+---
+
+# Keep Animations on the GPU & Choose the Right Easing
+
+> Enforce physical spring easing curves, strict GPU compositor property isolation (transform and opacity), and a 400ms Doherty response latency ceiling.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/motion-choreography
+- Published: 2026-11-09
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/motion-choreography.mdx
+
+> **Interactive demo: Motion Choreography Rule.** Open http://127.0.0.1:3000/motion-choreography to try it.
+
+Animating `width` or `padding` forces synchronous CPU layout reflow, dropping frames to stuttery lag. Restrict animations to GPU-composited `transform` and `opacity` with critically damped springs (`zeta >= 0.85`) settling under 350ms.
+
+## Spring Easings & Press States
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/motion-choreography to try it.
+    <EasingCurveDemo />
+    <StrongEasingDemo />
+  </DemoTab>
+  <DemoTab label="Tactile Press">
+    <ButtonPressDemo />
+    <PressAmountDemo />
+  </DemoTab>
+</DemoTabGroup>
+
+Sluggish transitions and mechanical linear animations make digital interfaces feel cheap and unresponsive. Worse, using `transition: all` forces the browser engine to recalculate geometric layout on every animation frame, causing dropped frames and sluggish mobile scrolling.
+
+1. **Spring Deceleration Curves:** Mechanical `linear` transitions move at constant speed and stop abruptly, violating physical inertia. Physical objects decelerate smoothly into place. Easing curves like `cubic-bezier(0.22, 1, 0.36, 1)` mimic critically damped springs, providing instant feedback with a natural settle.
+2. **Compositor Property Isolation:** The browser rendering pipeline splits work into Layout, Paint, and Composite. Animating `width`, `height`, or `margin` forces continuous re-layout across the DOM tree. Modern interfaces must animate only GPU-accelerated compositor properties: `transform`, `opacity`, and color tokens.
+3. **Doherty Response Budget:** The Doherty threshold establishes that human interaction feels instantaneous when system feedback completes within 400ms. Choreographed animations where total duration plus delay exceeds 400ms introduce perceived drag.
+
+## Remediation
+
+Isolate transitions to specific compositor tokens and specify high-performance spring easing:
+
+```css
+/* Good: GPU-accelerated spring transition */
+.btn-action {
+  transition-property: transform, opacity, background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-action:hover {
+  transform: translateY(-1px);
+}
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine inspects computed transition properties across all visible interactive elements:
+
+> **Transition Easing:** `timing-function != linear` (spring / cubic-bezier curve)  
+> **Compositor Isolation:** `property != all` (isolated to transform, opacity, color tokens)  
+> **Choreography Budget:** `duration + delay <= 400ms` (Doherty threshold)
+
+<details className="my-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground">
+    View Deterministic Playwright Verifier Source (check-ui-math.mjs)
+  </summary>
+
+```typescript
+// Evaluated by src/rules/motion-choreography.mjs
+for (const el of allVisible) {
+  const cs = getComputedStyle(el);
+
+  // 1. Flag linear easing
+  if (cs.transitionTimingFunction === "linear" && cs.transitionDuration !== "0s") {
+    ctx.report("LAW_15_LINEAR_EASING", {
+      property: "transition-timing-function",
+      computed: "linear",
+      threshold: "cubic-bezier(0.22, 1, 0.36, 1)",
+    });
+  }
+
+  // 2. Layout thrash guard
+  if (cs.transitionDuration !== "0s" && cs.transitionProperty === "all") {
+    ctx.report("LAW_15_LAYOUT_THRASH_ANIMATION", {
+      property: "transition-property",
+      computed: "all",
+      threshold: "transform, opacity, color, background-color, border-color",
+    });
+  }
+}
+```
+
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Doherty Threshold](https://en.wikipedia.org/wiki/Doherty_threshold): Human-computer interaction latency ceiling for maintaining user engagement.
+- [Web Animations & Compositor Pipeline](https://web.dev/articles/animations-guide): Hardware-accelerated transitions via GPU transform and opacity layers.
+
+---
+
+# Morph States & Shared Layouts Without Distortion
+
+> Ensure continuous visual flow across container changes, shared element transitions, optical icon morphs, and asymmetric exit reflows without glyph stretching or GPU paint thrashing.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/fluid-continuity
+- Published: 2026-11-10
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/fluid-continuity.mdx
+
+> **Interactive demo: Fluid Continuity Rule.** Open http://127.0.0.1:3000/fluid-continuity to try it.
+
+Unconstrained layout morphs warp font glyph aspect ratios during container expansion, while sluggish dismissals trap user attention. Enforce uniform scale projection (`|scaleX - scaleY| <= 0.04`) and make exit animations 2x faster than entrances.
+
+## Continuous Fluid Interactions & State Morphing
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/fluid-continuity to try it.
+    <SharedLayoutDetailDemo />
+  </DemoTab>
+  <DemoTab label="2. Icon Morph" badge="sigma <= 4px">
+    <IconMorphDemo />
+    <IconMorphTuningDemo />
+    <RotationMorphDemo />
+    <HamburgerMorphDemo />
+  </DemoTab>
+  <DemoTab label="3. Asymmetric Exit" badge="0.5x Enter">
+    <ExitAnimationsDemo />
+    <ExitListDemo />
+  </DemoTab>
+  <DemoTab label="4. Clip-Path Reveal" badge="GPU">
+    <ClipPathRevealDemo />
+    <ClipPathTabsDemo />
+    <ClipPathHoldDemo />
+    <ClipPathCompareDemo />
+  </DemoTab>
+</DemoTabGroup>
+
+1. **Aspect-Ratio Scale Invariance:** When expanding a small card (`W1/H1`) into a large details view (`W2/H2`), container scale factors diverge (`scaleX != scaleY`). Applying this matrix transform directly to text causes visible distortion. Text children must decouple via `layout="position"` to maintain an isotropic 1:1 scale (`|scaleX - scaleY| <= 0.04`).
+2. **Optical Blur Bridging vs. Geometric Rotation:** When two icons share topological symmetry (such as `+` and `×`, or chevrons), state changes should execute via pure geometric rotation (`transform: rotate(45deg)`) with zero GPU rasterization cost. For topologically distinct icons (such as Copy and Check), an optical blur bridge (`blur(4px)` + critically damped spring `zeta = 1.0`) provides perceptual continuity without raster stalls.
+3. **Asymmetric Exit Velocity:** When users dismiss a surface (modal, sheet, toast, or list row), their cognitive task is complete. Lingering exits waste attention. Systems must enforce an asymmetric exit ratio:
+   `T_exit = round(0.5 * T_enter) <= 200ms`
+4. **Compositor Clip-Path Continuity:** Sliding segmented indicators and progress indicators must utilize compositor-accelerated `clip-path: inset()` rather than DOM restructuring to achieve seamless inverted-color reveals.
+
+## Remediation
+
+Protect child typography inside morphing containers and enforce asymmetric exit timings:
+
+```tsx
+/* Good: Text protected with layout="position", asymmetric exit duration */
+<motion.div layout layoutId="card-container" className="card">
+  <motion.h3 layout="position" className="text-lg font-bold">
+    Live Cluster Metrics
+  </motion.h3>
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.24 } }}
+        exit={{ opacity: 0, transition: { duration: 0.12 } }}
+      >
+        <p>Expanded telemetric details</p>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</motion.div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The engine inspects computed transforms, active filters, and exit transition properties:
+
+> **Text Glyph Aspect Invariance:** `|scaleX - scaleY| <= 0.04` on text children  
+> **Filter Paint Budget:** `blur(r) <= 12px` on containers `<= 6400px²` (max 3 sibling rows)  
+> **Asymmetric Exit Ceiling:** `T_exit <= 200ms` on closing / exiting states
+
+<details className="my-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground">
+    View Deterministic Playwright Verifier Source (check-ui-math.mjs)
+  </summary>
+
+```typescript
+// Evaluated by src/rules/flip-continuity.mjs
+const cs = getComputedStyle(el);
+
+// 1. Non-uniform text scale guard
+if (scaleDiff > 0.04) {
+  ctx.report("LAW_31_FLIP_CONTINUITY_HYGIENE", {
+    property: "transform",
+    computed: `scaleX=${scaleX.toFixed(2)}, scaleY=${scaleY.toFixed(2)}`,
+    threshold: "|scaleX - scaleY| <= 0.04",
+    ast_instruction: 'Apply layout="position" to child text elements.',
+  });
+}
+
+// 2. Filter paint budget
+if (blurRadius > 12 && boxArea > 6400) {
+  ctx.report("LAW_31_FLIP_CONTINUITY_HYGIENE", {
+    property: "filter",
+    computed: `blur(${blurRadius}px) on ${boxArea}px²`,
+    threshold: "blur(r <= 12px) on area <= 6400px²",
+  });
+}
+
+// 3. Asymmetric exit duration
+if (isExiting && durSeconds > 0.2) {
+  ctx.report("LAW_31_FLIP_CONTINUITY_HYGIENE", {
+    property: "transition-duration",
+    computed: `${Math.round(durSeconds * 1000)}ms`,
+    threshold: "<= 200ms",
+  });
+}
+```
+
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [View Transitions API & Seamless State Morphing](https://web.dev/articles/view-transitions): W3C standard for continuous visual state transitions across DOM modifications.
+- [Fluid Interactions & Spatial Morphing Architecture](https://blog.rndrealm.com/): Techniques for continuous shared elements, metaball gooey thresholding, and optical state bridging.
+
+---
+
+# Delete Motion on High-Frequency & Keyboard Actions
+
+> Eliminate animation fatigue by scaling duration inversely with interaction frequency: instant keyboard shortcuts, warm tooltip handoffs, capped list staggers, and optimistic updates.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/interaction-frequency
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/interaction-frequency.mdx
+
+> **Interactive demo: Novelty Budget.** Open http://127.0.0.1:3000/interaction-frequency to try it.
+
+Everyday utility actions should never demand attention with flashy decorative animations. Spend novelty budgets exclusively on celebratory milestone events, keeping high-frequency repetitive tasks instant (`< 100ms`).
+
+## Frequency Delays & Optimistic UI
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/interaction-frequency to try it.
+    <HoverTooltipDemo />
+  </DemoTab>
+  <DemoTab label="Stagger Delays">
+    <StaggerDemo />
+    <StaggerCapDemo />
+  </DemoTab>
+  <DemoTab label="Perceived Speed">
+    <LoadingFlashDemo />
+    <OptimisticDemo />
+  </DemoTab>
+</DemoTabGroup>
+Animation has a novelty half-life. A 400ms entrance that delights on day 1 becomes an infuriating tax by day 30 when repeated 200 times a day.
+
+## The Frequency-Duration Inverse Law
+
+`LAW_29_HIGH_FREQ_MOTION_TAX` states that animation duration must scale inversely with interaction frequency:
+
+1. **High-Frequency Actions (`f >= 100 / day`):** Duration must be `0ms` (instantaneous).
+2. **Keyboard-Triggered Actions:** When an action is invoked via a keyboard shortcut (e.g. `Cmd+K`, arrow keys, `Esc`), users operate in cognitive command mode. Motion duration must not exceed `100ms`.
+3. **Staggered Entrances:** Cumulative stagger delay across any list or grid must be capped at `sum(delta_t) <= 300ms`.
+
+## Warm Tooltip Handoffs
+
+When a user hovers over the first icon in a toolbar, a brief delay (e.g. 300ms) prevents unwanted flashes. But once a tooltip is open, subsequent hovers across adjacent icons must open instantly with zero delay:
+
+## Capping Stagger Delays
+
+Staggering 20 list items at 50ms each forces the user to wait a full second before the final item appears. Caps prevent this latency:
+
+## Perceived Performance & Optimistic UI
+
+Loading spinners that flash for less than 150ms increase perceived latency compared to rendering nothing or applying optimistic updates:
+
+## Resources
+
+- [Nielsen Norman Group](https://www.nngroup.com/articles/response-times-3-important-limits/): Response Times: The 3 Important Limits for Human-Computer Interaction.
+
+---
+
+# Make Gestures, Sheets & Popovers Interruptible
+
+> Build physically grounded gesture sheets and popovers with 1:1 pointer tracking, velocity-seeded spring releases, critical damping, and interruptible state machines.
+
+- Section: Physical Ergonomics
+- URL: http://127.0.0.1:3000/spring-gesture-physics
+- Published: 2026-04-12
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/spring-gesture-physics.mdx
+
+> **Interactive demo: Interrupt Sheet.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
+
+Animations that lock out touch input break direct physical manipulation and make apps feel unresponsive. Keep all gesture interactions interruptible with momentum-preserving velocity handoff (`v_exit = v_gesture`), letting users redirect in flight.
+
+## Gesture Momentum & Direct Tracking
+
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
+  </DemoTab>
+  <DemoTab label="Input Locking Guard">
+    <InterruptLockDemo />
+  </DemoTab>
+  <DemoTab label="Scale & Origin">
+    <ScaleEntrancesDemo />
+    <TransformOriginDemo />
+  </DemoTab>
+</DemoTabGroup>
+When users touch a digital surface, they expect Newtonian physics: objects track fingers with zero latency, retain velocity upon release, and can be caught mid-flight without locking input.
+
+## Two-Phase Direct Manipulation
+
+`LAW_30_SPRING_INTERRUPTIBILITY` models interactive sheets and cards as two distinct physical phases:
+
+1. **Phase 1: Direct Tracking (1:1 Drag):** The element tracks pointer translation directly with zero spring lag. Damping and stiffness do not apply during active drag.
+2. **Phase 2: Velocity-Seeded Spring Release:** When released, the solver projects pointer velocity ($v_0$) into a second-order harmonic oscillator:
+   `m * x'' + c * x' + k * x = 0`
+
+Solving this differential equation with critical damping (`zeta = c / (2 * sqrt(m * k)) = 1.0`) ensures the element settles at its target boundary in minimum time without underdamped bouncing or sluggish overdamping.
+
+## Never Lock User Input
+
+Many web libraries disable click and pointer events (`pointer-events: none`) while an entrance or exit animation runs. This violates Apple HIG and First-Principles UI ergonomics:
+
+## Scale Entrances & Transform Origins
+
+Scale entrances should start close to their resting size (`s0 >= 0.95`) and expand directly from their trigger button:
+
+## Resources
+
+- [Apple Human Interface Guidelines: Motion](https://developer.apple.com/design/human-interface-guidelines/motion): Designing realistic, fluid, and responsive spring animations.

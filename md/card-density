@@ -1,0 +1,78 @@
+# Stop Cramming Too Many Metrics Into One Card
+
+> Cognitive density limits for dashboard summary cards based on pre-attentive the 4-item glance limit (K_max in [3, 9]) and area-weighted atom budgeting.
+
+- Section: Information Density
+- URL: http://127.0.0.1:3000/card-density
+- Published: 2026-10-27
+- Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/card-density.mdx
+
+> **Interactive demo: Card Density Rule.** Open http://127.0.0.1:3000/card-density to try it.
+
+Dumping 9 competing metrics onto a compact card overloads short-term working memory. Cap visual items at `<= 4` discrete chunks to obey human subitizing limits, grouping secondary stats behind progressive disclosure.
+
+Dashboard summary cards are meant to communicate state instantly. When a single card is packed with 10 different lines of metrics, dates, and decorative icons, pre-attentive comprehension collapses and users must consciously scan each item.
+
+The substrate foundation is the psychophysics of **Pre-Attentive Subitizing**:
+
+1. **Subitizing Range:** Human vision can ascertain the number of items in a visual field instantaneously without sequential counting, but only up to 4 items (Cowan's working memory capacity $4 \pm 1$).
+2. **Beyond 4 Items:** When a summary card presents 5 or more distinct data atoms, processing switches to slow sequential counting (+250ms per item).
+3. **Anchor vs Summary Roles:** Large flagship cards can house up to 9 atoms, but compact 4-column cards must strictly observe the 3–4 atom limit.
+
+## Remediation
+
+Distill compact cards down to 3 high-impact signals: metric label, primary figure, and delta indicator:
+
+```tsx
+// Right: Clean 3-atom summary card
+<div className="rounded-2xl border border-border/80 bg-card p-5">
+  <span className="text-xs uppercase tracking-wider text-muted-foreground">
+    Monthly Recurring Revenue
+  </span>
+  <div className="mt-2 text-2xl font-semibold tracking-tight font-mono">
+    $124,500
+  </div>
+  <div className="mt-1 flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400">
+    <span>+12.4% vs last month</span>
+  </div>
+</div>
+```
+
+<details className="my-8 rounded-2xl border border-border/70 bg-muted/15 p-4 sm:p-5">
+  <summary className="cursor-pointer text-xs font-medium text-muted-foreground hover:text-foreground flex items-center justify-between">
+    <span>Under the Hood: Mathematical Formula &amp; Verifier Source</span>
+    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-mono">Optional Deep Dive</span>
+  </summary>
+  <div className="mt-4 space-y-4 text-xs text-muted-foreground">
+The verifier counts all leaf text nodes, decorative SVGs, and visualizations within each atomic card:
+
+> **Compact Summary Card Atom Cap:** `Total_Atoms <= 4`
+> **Large Anchor Card Atom Cap:** `Total_Atoms <= 9`
+
+<details className="group mt-6 rounded-xl border border-border/60 bg-muted/20 p-4">
+  <summary className="cursor-pointer text-xs font-mono font-medium text-muted-foreground group-open:text-foreground">
+    View Deterministic Verifier Source (check-ui-math.mjs)
+  </summary>
+  <div className="mt-4">
+```typescript
+// Evaluated by src/rules/card-density.mjs
+const atoms = inspectCardAtoms(card);
+const maxAtoms = isLargeAnchorCard ? 9 : 4;
+
+if (atoms.totalAtoms > maxAtoms) {
+  ctx.report("LAW_02_SUBITIZING_OVERLOAD", {
+    property: "leaf_atom_count",
+    computed: atoms.totalAtoms,
+    threshold: maxAtoms,
+  });
+}
+```
+  </div>
+</details>
+  </div>
+</details>
+
+## Resources
+
+- [Subitizing in Visual Cognition](https://en.wikipedia.org/wiki/Subitizing): Pre-attentive judgment of item count without conscious counting.
+- [the 4-item glance limit](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two): Working memory capacity limits in human information processing.
