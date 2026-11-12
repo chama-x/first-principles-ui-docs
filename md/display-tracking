@@ -3,17 +3,17 @@
 > Tightening letter spacing on large display headings (<= -0.025em) and bounding prose paragraph measure (<= 36em / ~65ch) for comfortable reading flow.
 
 - Section: Typography
-- URL: https://chama-x.github.io/first-principles-ui-docs/display-tracking
+- URL: http://127.0.0.1:3000/display-tracking
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/display-tracking.mdx
 
-> **Interactive demo: Display Tracking Rule.** Open https://chama-x.github.io/first-principles-ui-docs/display-tracking to try it.
+> **Interactive demo: Display Tracking Rule.** Open http://127.0.0.1:3000/display-tracking to try it.
 
 Display headings above 24px look gapped and detached when left at default body tracking. Apply optical tightening (`letter-spacing: -0.025em`) to large headings, and loosen small uppercase text to `+0.05em` for legibility.
 
 ## Optical Tracking Scale & Uppercase Spacing
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/display-tracking to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/display-tracking to try it.
   </DemoTab>
   <DemoTab label="Uppercase Tracking">
     <UppercaseTrackingDemo />

@@ -3,11 +3,11 @@
 > Eliminating decorative badge spam, tautological headings, and defensive helper-text slop using Shannon information entropy and Rachel's 4-rung subtractive copy ladder.
 
 - Section: Information Density
-- URL: https://chama-x.github.io/first-principles-ui-docs/heading-tautology
+- URL: http://127.0.0.1:3000/heading-tautology
 - Published: 2026-11-10
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/heading-tautology.mdx
 
-> **Interactive demo: Heading Tautology Rule.** Open https://chama-x.github.io/first-principles-ui-docs/heading-tautology to try it.
+> **Interactive demo: Heading Tautology Rule.** Open http://127.0.0.1:3000/heading-tautology to try it.
 
 Placing an 'Active' badge next to an 'Active Projects' heading wastes user visual bandwidth with zero new entropy. Purge duplicate words and replace repetitive pills with contextual data so every token delivers unique information.
 
@@ -19,7 +19,7 @@ Placing an 'Active' badge next to an 'Active Projects' heading wastes user visua
    - **Rung 3 (Cut Bug-Fix Scar Tissue & Permission Slips):** Delete captions that rule out past bugs or give polite permission (*"Don't worry if the count seems off for a moment"*, *"Feel free to click below"*).
    - **Rung 4 (Delete the DOM Element Entirely):** Rather than rewording useless hints, delete the helper container from the DOM. Keep only **irreversible consequences**, **invisible compatibility scopes**, **empty-state next actions**, and **bare units**.
 
-> **Interactive demo: Subtractive Copy Ladder.** Open https://chama-x.github.io/first-principles-ui-docs/heading-tautology to try it.
+> **Interactive demo: Subtractive Copy Ladder.** Open http://127.0.0.1:3000/heading-tautology to try it.
 
 ## Remediation
 

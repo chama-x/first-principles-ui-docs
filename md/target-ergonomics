@@ -3,17 +3,17 @@
 > Ensuring touch target acquisition thresholds (>= 36x36px standalone / >= 28x28px toolbar) and preventing destructive mobile viewport auto-zoom with a 16px input font-size floor.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/target-ergonomics
+- URL: http://127.0.0.1:3000/target-ergonomics
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/target-ergonomics.mdx
 
-> **Interactive demo: Target Ergonomics Rule.** Open https://chama-x.github.io/first-principles-ui-docs/target-ergonomics to try it.
+> **Interactive demo: Target Ergonomics Rule.** Open http://127.0.0.1:3000/target-ergonomics to try it.
 
 Buttons smaller than 36px trigger missed taps, accidental clicks, and motor frustration under Fitts's law. Expand interactive touch targets to at least `44x44px` on mobile and `36x36px` on desktop with invisible pseudo-element padding.
 
 ## Target Expansion & Hit Area Ergonomics
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/target-ergonomics to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/target-ergonomics to try it.
   </DemoTab>
   <DemoTab label="Expand Hit Area">
     <HitAreasExpandDemo />

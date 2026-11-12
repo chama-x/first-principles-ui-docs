@@ -3,11 +3,11 @@
 > Make every message easy to read, on light or dark backgrounds.
 
 - Section: Color & Contrast
-- URL: https://chama-x.github.io/first-principles-ui-docs/text-contrast
+- URL: http://127.0.0.1:3000/text-contrast
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/text-contrast.mdx
 
-> **Interactive demo: Text Contrast Rule.** Open https://chama-x.github.io/first-principles-ui-docs/text-contrast to try it.
+> **Interactive demo: Text Contrast Rule.** Open http://127.0.0.1:3000/text-contrast to try it.
 
 <details className="lesson-notes">
 <summary>More about text contrast</summary>
@@ -16,7 +16,7 @@ Washed-out grey body text vanishes into dark backgrounds, failing perceptual rea
 
 ## Optical Font Smoothing & Contrast
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/text-contrast to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/text-contrast to try it.
   </DemoTab>
 </DemoTabGroup>
 Human visual perception does not register lightness linearly. A simple

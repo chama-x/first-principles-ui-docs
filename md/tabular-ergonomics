@@ -3,17 +3,17 @@
 > Decimal numeric right-alignment with tabular-nums, zero interior vertical borders, Bouma column clearance, and mobile horizontal containment.
 
 - Section: Typography
-- URL: https://chama-x.github.io/first-principles-ui-docs/tabular-ergonomics
+- URL: http://127.0.0.1:3000/tabular-ergonomics
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/tabular-ergonomics.mdx
 
-> **Interactive demo: Tabular Ergonomics Rule.** Open https://chama-x.github.io/first-principles-ui-docs/tabular-ergonomics to try it.
+> **Interactive demo: Tabular Ergonomics Rule.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
 
 Proportional numbers shift horizontally whenever digits change, causing distracting layout jitter in financial dashboards. Enable `font-variant-numeric: tabular-nums` and right-align numeric columns so digit columns stay locked in vertical alignment.
 
 ## Tabular Lining Dynamics & Mobile Fades
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/tabular-ergonomics to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
   </DemoTab>
   <DemoTab label="Data Tables">
     <TabularTableDemo />

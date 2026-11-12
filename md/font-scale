@@ -3,11 +3,11 @@
 > Enforcing perceptual font size step ratios (>= 1.12x) and strict 3-family font stack discipline using the clear 12% visual step of Just-Noticeable Difference.
 
 - Section: Typography
-- URL: https://chama-x.github.io/first-principles-ui-docs/font-scale
+- URL: http://127.0.0.1:3000/font-scale
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/font-scale.mdx
 
-> **Interactive demo: Font Scale Rule.** Open https://chama-x.github.io/first-principles-ui-docs/font-scale to try it.
+> **Interactive demo: Font Scale Rule.** Open http://127.0.0.1:3000/font-scale to try it.
 
 Arbitrary font sizes like 13px next to 14px create accidental near-miss tension without visual hierarchy. Step typography along a modular scale (`ratio >= 1.12x`) so human Weber-Fechner perception instantly registers distinct heading tiers.
 

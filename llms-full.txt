@@ -2,7 +2,7 @@
 
 > Deterministic UI layout, perceptual contrast, typography, and mathematical verification. Each concept is a short explainer with an interactive demo by First Principles UI.
 
-This file contains every published concept in full. The index is at https://chama-x.github.io/first-principles-ui-docs/llms.txt, and each concept is also available on its own by appending `.md` to its URL.
+This file contains every published concept in full. The index is at http://127.0.0.1:3000/llms.txt, and each concept is also available on its own by appending `.md` to its URL.
 
 ---
 
@@ -11,17 +11,17 @@ This file contains every published concept in full. The index is at https://cham
 > Bi-directional neuro-symbolic engine combining <15ms forward mathematical oracles (calc) with 6-pass Playwright DOM/SVG verification across 53 deterministic laws.
 
 - Section: Engine
-- URL: https://chama-x.github.io/first-principles-ui-docs/ui-math
+- URL: http://127.0.0.1:3000/ui-math
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/layout/ui-math.mdx
 
-> **Interactive demo: Ui Math Inspector.** Open https://chama-x.github.io/first-principles-ui-docs/ui-math to try it.
+> **Interactive demo: Ui Math Inspector.** Open http://127.0.0.1:3000/ui-math to try it.
 
 Subjective design reviews waste hours arguing over subjective gut feelings. First-Principles UI verifies 55 mathematical laws in 80ms, scoring interfaces from `0.00` to `3.00` with automated CLI and agent loops.
 
 ## Live Verification Scoring & Inspection
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/ui-math to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/ui-math to try it.
   </DemoTab>
   <DemoTab label="Verifier Runner">
     <UiMathRunnerDemo />
@@ -85,11 +85,11 @@ node check-ui-math.mjs calc spring --stiffness 280 --damping 32 --mass 1 --veloc
 > Make every message easy to read, on light or dark backgrounds.
 
 - Section: Color & Contrast
-- URL: https://chama-x.github.io/first-principles-ui-docs/text-contrast
+- URL: http://127.0.0.1:3000/text-contrast
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/text-contrast.mdx
 
-> **Interactive demo: Text Contrast Rule.** Open https://chama-x.github.io/first-principles-ui-docs/text-contrast to try it.
+> **Interactive demo: Text Contrast Rule.** Open http://127.0.0.1:3000/text-contrast to try it.
 
 <details className="lesson-notes">
 <summary>More about text contrast</summary>
@@ -98,7 +98,7 @@ Washed-out grey body text vanishes into dark backgrounds, failing perceptual rea
 
 ## Optical Font Smoothing & Contrast
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/text-contrast to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/text-contrast to try it.
   </DemoTab>
 </DemoTabGroup>
 Human visual perception does not register lightness linearly. A simple
@@ -174,17 +174,17 @@ threshold: minLc,
 > Cap oversaturated card chroma and enforce high-chroma viewport territorial budgets using OKLCH perceptual color space and Helmholtz-Kohlrausch luminance surge limits.
 
 - Section: Color & Contrast
-- URL: https://chama-x.github.io/first-principles-ui-docs/surface-chroma
+- URL: http://127.0.0.1:3000/surface-chroma
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/surface-chroma.mdx
 
-> **Interactive demo: Surface Chroma Rule.** Open https://chama-x.github.io/first-principles-ui-docs/surface-chroma to try it.
+> **Interactive demo: Surface Chroma Rule.** Open http://127.0.0.1:3000/surface-chroma to try it.
 
 Oversaturated neon backgrounds cause intense retinal glare and harsh neon glare. Cap container fills at OKLCH chroma `C <= 0.22` using Radix Step 3 surfaces to keep accent color within a calibrated perceptual budget.
 
 ## OKLCH Uniformity Across Hues
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/surface-chroma to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/surface-chroma to try it.
   </DemoTab>
   <DemoTab label="Palette Steps">
     <OklchPaletteDemo />
@@ -258,17 +258,17 @@ if (area > 2400 && oklch.C > maxChroma) {
 > Enforce optical boundary distinctness and hairline border enclosures on dark status pills, tags, chips, and circular avatars so they remain distinctly visible.
 
 - Section: Color & Contrast
-- URL: https://chama-x.github.io/first-principles-ui-docs/pill-saliency
+- URL: http://127.0.0.1:3000/pill-saliency
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/pill-saliency.mdx
 
-> **Interactive demo: Pill Saliency Rule.** Open https://chama-x.github.io/first-principles-ui-docs/pill-saliency to try it.
+> **Interactive demo: Pill Saliency Rule.** Open http://127.0.0.1:3000/pill-saliency to try it.
 
 Dark badge pills blend invisibly into matching dark cards, destroying their visual boundary. Enforce a 1px `border-border` hairline whenever the surface lightness difference `Delta-L < 0.08` so interactive chips remain salient.
 
 ## Optical Enclosure on Media & Avatars
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/pill-saliency to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/pill-saliency to try it.
   </DemoTab>
 </DemoTabGroup>
 Status pills, tags, and badge chips convey critical state in application dashboards. On dark surfaces, low-contrast pills frequently dissolve into the surrounding card canvas, rendering tags illegible as distinct interactive units.
@@ -335,11 +335,11 @@ if (deltaL < 0.06 && !hasBorder) {
 > Visual hierarchy verification ensuring top-level regions command focal dominance using the Zipf-Lorenz area dominance ratio.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/zipf-hierarchy
+- URL: http://127.0.0.1:3000/zipf-hierarchy
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/zipf-hierarchy.mdx
 
-> **Interactive demo: Zipf Hierarchy Rule.** Open https://chama-x.github.io/first-principles-ui-docs/zipf-hierarchy to try it.
+> **Interactive demo: Zipf Hierarchy Rule.** Open http://127.0.0.1:3000/zipf-hierarchy to try it.
 
 Identical-sized cards in a flat grid trigger visual aimlessness because no element commands attention. Anchor layouts with a dominant focal hero obeying Zipf's power law (`D_Zipf >= 0.48`), giving the primary card at least 1.6x the area of siblings.
 
@@ -420,11 +420,11 @@ if (D_Zipf < 0.48) {
 > Enforcing primary anchor cell prominence (>= 35% area) and complete modulo-zero column span closure in responsive bento grid layouts.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/bento-grid
+- URL: http://127.0.0.1:3000/bento-grid
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/bento-grid.mdx
 
-> **Interactive demo: Bento Grid Rule.** Open https://chama-x.github.io/first-principles-ui-docs/bento-grid to try it.
+> **Interactive demo: Bento Grid Rule.** Open http://127.0.0.1:3000/bento-grid to try it.
 
 An odd number of cards leaves trailing orphan gaps that break grid rhythm. Span the primary anchor cell across 2 columns so total column spans satisfy modulo-0 closure (`sum(span) mod cols = 0`) across all breakpoints.
 
@@ -504,11 +504,11 @@ if (remainder !== 0) {
 > Preserve minimum component territorial card width (>= 145px) and eliminate horizontal viewport scrolling across desktop (1280px), split-pane (680px), and mobile (390px).
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/responsive-layout
+- URL: http://127.0.0.1:3000/responsive-layout
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/responsive-layout.mdx
 
-> **Interactive demo: Responsive Layout Rule.** Open https://chama-x.github.io/first-principles-ui-docs/responsive-layout to try it.
+> **Interactive demo: Responsive Layout Rule.** Open http://127.0.0.1:3000/responsive-layout to try it.
 
 Fixed grid columns crush cards below 145px on narrow screens, truncating content into illegible slivers. Use container queries (`@container`) with `auto-fit` and `minmax(180px, 1fr)` to preserve minimum territorial width without horizontal overflow.
 
@@ -578,17 +578,17 @@ for (const card of cards) {
 > Preventing direct text ink collisions, glyph overlap, uncontained text bleeding, and broken inline ellipsis truncation across responsive containers.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/ink-disjointness
+- URL: http://127.0.0.1:3000/ink-disjointness
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/ink-disjointness.mdx
 
-> **Interactive demo: Ink Disjointness Rule.** Open https://chama-x.github.io/first-principles-ui-docs/ink-disjointness to try it.
+> **Interactive demo: Ink Disjointness Rule.** Open http://127.0.0.1:3000/ink-disjointness to try it.
 
 Absolute positioning causes badges and filenames to collide, bleeding letterforms together. Wrap flex siblings with `min-w-0` and `gap-3` so element bounding boxes remain strictly disjoint (`Delta_overlap <= 0px`) with zero ink collision.
 
 ## Balanced Text Wrapping & Preventing Orphans
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/ink-disjointness to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/ink-disjointness to try it.
   </DemoTab>
   <DemoTab label="Text Pretty">
     <TextPrettyDemo />
@@ -666,11 +666,11 @@ if (isSameLine && overlap > 1.5) {
 > Inject adversarial 255-character strings, unbroken CJK text, and large numbers to expose flex squishing, avatar distortion, and ink clipping before shipping.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/stress-testing
+- URL: http://127.0.0.1:3000/stress-testing
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/stress-testing.mdx
 
-> **Interactive demo: Stress Testing Rule.** Open https://chama-x.github.io/first-principles-ui-docs/stress-testing to try it.
+> **Interactive demo: Stress Testing Rule.** Open http://127.0.0.1:3000/stress-testing to try it.
 
 Unbounded flex containers collapse avatars into slivers and blow out layouts when fed real adversarial data. Add `shrink-0` to circular media and `min-w-0 truncate` to text labels so geometry never deflates under 255-character inputs.
 
@@ -716,11 +716,11 @@ Always pair flex siblings with defensive CSS tokens:
 > Golden-ratio vertical positioning for modal dialogs and linear flow wizards within the 35%–56% optical window (target 45% of viewport height).
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/flow-center
+- URL: http://127.0.0.1:3000/flow-center
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/flow-center.mdx
 
-> **Interactive demo: Flow Center Rule.** Open https://chama-x.github.io/first-principles-ui-docs/flow-center to try it.
+> **Interactive demo: Flow Center Rule.** Open http://127.0.0.1:3000/flow-center to try it.
 
 Modals pinned to the top edge feel mechanically top-heavy and strain upward eye movement. Center vertical flows at the 45% golden-ratio optical baseline (`Y in [35%, 56%]`) where the human fovea rests naturally.
 
@@ -788,17 +788,17 @@ if (yCenter < 0.35 || yCenter > 0.56) {
 > Ensure charts and data visualizations convey truthful proportions with zero-anchored baselines, Stevens-law bubble radiuses, monotonic spline interpolation, and collision-free SVG labels.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/data-viz
+- URL: http://127.0.0.1:3000/data-viz
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/data-viz.mdx
 
-> **Interactive demo: Data Viz Rule.** Open https://chama-x.github.io/first-principles-ui-docs/data-viz to try it.
+> **Interactive demo: Data Viz Rule.** Open http://127.0.0.1:3000/data-viz to try it.
 
 Truncated baselines starting at non-zero values turn a minor 8% latency difference into an exaggerated 4x visual chasm. Anchor bar chart baselines at true zero with Cleveland Lie Factor `<= 1.05` so ink truthfully represents data.
 
 ## Perceptual Chart Geometry & Dynamics
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/data-viz to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/data-viz to try it.
   </DemoTab>
   <DemoTab label="Curve Overshoot">
     <CurveOvershootDemo />
@@ -846,11 +846,11 @@ When live streaming data arrives, updates should preserve cognitive continuity w
 > Cognitive density limits for dashboard summary cards based on pre-attentive the 4-item glance limit (K_max in [3, 9]) and area-weighted atom budgeting.
 
 - Section: Information Density
-- URL: https://chama-x.github.io/first-principles-ui-docs/card-density
+- URL: http://127.0.0.1:3000/card-density
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/card-density.mdx
 
-> **Interactive demo: Card Density Rule.** Open https://chama-x.github.io/first-principles-ui-docs/card-density to try it.
+> **Interactive demo: Card Density Rule.** Open http://127.0.0.1:3000/card-density to try it.
 
 Dumping 9 competing metrics onto a compact card overloads short-term working memory. Cap visual items at `<= 4` discrete chunks to obey human subitizing limits, grouping secondary stats behind progressive disclosure.
 
@@ -927,11 +927,11 @@ if (atoms.totalAtoms > maxAtoms) {
 > Eliminating decorative badge spam, tautological headings, and defensive helper-text slop using Shannon information entropy and Rachel's 4-rung subtractive copy ladder.
 
 - Section: Information Density
-- URL: https://chama-x.github.io/first-principles-ui-docs/heading-tautology
+- URL: http://127.0.0.1:3000/heading-tautology
 - Published: 2026-11-10
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/heading-tautology.mdx
 
-> **Interactive demo: Heading Tautology Rule.** Open https://chama-x.github.io/first-principles-ui-docs/heading-tautology to try it.
+> **Interactive demo: Heading Tautology Rule.** Open http://127.0.0.1:3000/heading-tautology to try it.
 
 Placing an 'Active' badge next to an 'Active Projects' heading wastes user visual bandwidth with zero new entropy. Purge duplicate words and replace repetitive pills with contextual data so every token delivers unique information.
 
@@ -943,7 +943,7 @@ Placing an 'Active' badge next to an 'Active Projects' heading wastes user visua
    - **Rung 3 (Cut Bug-Fix Scar Tissue & Permission Slips):** Delete captions that rule out past bugs or give polite permission (*"Don't worry if the count seems off for a moment"*, *"Feel free to click below"*).
    - **Rung 4 (Delete the DOM Element Entirely):** Rather than rewording useless hints, delete the helper container from the DOM. Keep only **irreversible consequences**, **invisible compatibility scopes**, **empty-state next actions**, and **bare units**.
 
-> **Interactive demo: Subtractive Copy Ladder.** Open https://chama-x.github.io/first-principles-ui-docs/heading-tautology to try it.
+> **Interactive demo: Subtractive Copy Ladder.** Open http://127.0.0.1:3000/heading-tautology to try it.
 
 ## Remediation
 
@@ -1014,11 +1014,11 @@ if (stemOverlap >= 0.55 || hasDefensiveHedging) {
 > Bounding primary navigation links to prevent cognitive choice paralysis using the Hick-Hyman logarithmic decision latency model (n <= 6 items).
 
 - Section: Information Density
-- URL: https://chama-x.github.io/first-principles-ui-docs/nav-choice
+- URL: http://127.0.0.1:3000/nav-choice
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/nav-choice.mdx
 
-> **Interactive demo: Nav Choice Rule.** Open https://chama-x.github.io/first-principles-ui-docs/nav-choice to try it.
+> **Interactive demo: Nav Choice Rule.** Open http://127.0.0.1:3000/nav-choice to try it.
 
 Cramming 11 links into a header bar spikes Hick-Hyman decision latency and triggers visual paralysis. Restrict primary navigation to `<= 6` high-frequency destinations, nesting secondary pages into grouped categories.
 
@@ -1086,11 +1086,11 @@ if (navItems.length > 6) {
 > Bounding contiguous form inputs per fieldset (<= 5 inputs) to prevent cognitive fatigue, visual overwhelm, and form abandonment.
 
 - Section: Information Density
-- URL: https://chama-x.github.io/first-principles-ui-docs/fieldset-overload
+- URL: http://127.0.0.1:3000/fieldset-overload
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/fieldset-overload.mdx
 
-> **Interactive demo: Fieldset Overload Rule.** Open https://chama-x.github.io/first-principles-ui-docs/fieldset-overload to try it.
+> **Interactive demo: Fieldset Overload Rule.** Open http://127.0.0.1:3000/fieldset-overload to try it.
 
 An endless single-page form with 8 raw inputs causes cognitive fatigue and form abandonment. Chunk complex inputs into logical steps of `<= 5` fields each, preserving momentum with progressive forward disclosure.
 
@@ -1173,11 +1173,11 @@ for (const fs of fieldsets) {
 > Enforcing perceptual font size step ratios (>= 1.12x) and strict 3-family font stack discipline using the clear 12% visual step of Just-Noticeable Difference.
 
 - Section: Typography
-- URL: https://chama-x.github.io/first-principles-ui-docs/font-scale
+- URL: http://127.0.0.1:3000/font-scale
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/font-scale.mdx
 
-> **Interactive demo: Font Scale Rule.** Open https://chama-x.github.io/first-principles-ui-docs/font-scale to try it.
+> **Interactive demo: Font Scale Rule.** Open http://127.0.0.1:3000/font-scale to try it.
 
 Arbitrary font sizes like 13px next to 14px create accidental near-miss tension without visual hierarchy. Step typography along a modular scale (`ratio >= 1.12x`) so human Weber-Fechner perception instantly registers distinct heading tiers.
 
@@ -1262,17 +1262,17 @@ for (let i = 0; i < uniqueSizes.length - 1; i++) {
 > Decimal numeric right-alignment with tabular-nums, zero interior vertical borders, Bouma column clearance, and mobile horizontal containment.
 
 - Section: Typography
-- URL: https://chama-x.github.io/first-principles-ui-docs/tabular-ergonomics
+- URL: http://127.0.0.1:3000/tabular-ergonomics
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/tabular-ergonomics.mdx
 
-> **Interactive demo: Tabular Ergonomics Rule.** Open https://chama-x.github.io/first-principles-ui-docs/tabular-ergonomics to try it.
+> **Interactive demo: Tabular Ergonomics Rule.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
 
 Proportional numbers shift horizontally whenever digits change, causing distracting layout jitter in financial dashboards. Enable `font-variant-numeric: tabular-nums` and right-align numeric columns so digit columns stay locked in vertical alignment.
 
 ## Tabular Lining Dynamics & Mobile Fades
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/tabular-ergonomics to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/tabular-ergonomics to try it.
   </DemoTab>
   <DemoTab label="Data Tables">
     <TabularTableDemo />
@@ -1367,17 +1367,17 @@ for (const cell of numericCells) {
 > Tightening letter spacing on large display headings (<= -0.025em) and bounding prose paragraph measure (<= 36em / ~65ch) for comfortable reading flow.
 
 - Section: Typography
-- URL: https://chama-x.github.io/first-principles-ui-docs/display-tracking
+- URL: http://127.0.0.1:3000/display-tracking
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/typography/display-tracking.mdx
 
-> **Interactive demo: Display Tracking Rule.** Open https://chama-x.github.io/first-principles-ui-docs/display-tracking to try it.
+> **Interactive demo: Display Tracking Rule.** Open http://127.0.0.1:3000/display-tracking to try it.
 
 Display headings above 24px look gapped and detached when left at default body tracking. Apply optical tightening (`letter-spacing: -0.025em`) to large headings, and loosen small uppercase text to `+0.05em` for legibility.
 
 ## Optical Tracking Scale & Uppercase Spacing
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/display-tracking to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/display-tracking to try it.
   </DemoTab>
   <DemoTab label="Uppercase Tracking">
     <UppercaseTrackingDemo />
@@ -1477,17 +1477,17 @@ for (const item of textElements) {
 > Continuous boundary energy conservation (Eb <= 1.25), concentric inner corner curvature geometry, and Gestalt proximity padding ratios.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/card-boundaries
+- URL: http://127.0.0.1:3000/card-boundaries
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/card-boundaries.mdx
 
-> **Interactive demo: Card Boundaries Rule.** Open https://chama-x.github.io/first-principles-ui-docs/card-boundaries to try it.
+> **Interactive demo: Card Boundaries Rule.** Open http://127.0.0.1:3000/card-boundaries to try it.
 
 Stacking a dark border and a heavy drop shadow on the same card creates muddy double edges. Use a single 1px hairline border in dark mode, and shrink inner corner radii (`r_in = r_out - pad`) so nested curves stay concentric.
 
 ## Nested Geometry & Dark Mode Elevation
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/card-boundaries to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/card-boundaries to try it.
     <NestedRadiusExamplesDemo />
   </DemoTab>
   <DemoTab label="Dark-Mode Elevation">
@@ -1568,17 +1568,17 @@ if (Eb > 1.25) {
 > Ensuring touch target acquisition thresholds (>= 36x36px standalone / >= 28x28px toolbar) and preventing destructive mobile viewport auto-zoom with a 16px input font-size floor.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/target-ergonomics
+- URL: http://127.0.0.1:3000/target-ergonomics
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/target-ergonomics.mdx
 
-> **Interactive demo: Target Ergonomics Rule.** Open https://chama-x.github.io/first-principles-ui-docs/target-ergonomics to try it.
+> **Interactive demo: Target Ergonomics Rule.** Open http://127.0.0.1:3000/target-ergonomics to try it.
 
 Buttons smaller than 36px trigger missed taps, accidental clicks, and motor frustration under Fitts's law. Expand interactive touch targets to at least `44x44px` on mobile and `36x36px` on desktop with invisible pseudo-element padding.
 
 ## Target Expansion & Hit Area Ergonomics
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/target-ergonomics to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/target-ergonomics to try it.
   </DemoTab>
   <DemoTab label="Expand Hit Area">
     <HitAreasExpandDemo />
@@ -1666,17 +1666,17 @@ if (vpConfig.isMobile && inputFontSize < 16) {
 > Bound distinct horizontal layout axes using Kolmogorov Information Theory and prevent dynamic title-metadata collisions on responsive headers.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/alignment-axes
+- URL: http://127.0.0.1:3000/alignment-axes
 - Published: 2026-11-09
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/alignment-axes.mdx
 
-> **Interactive demo: Alignment Axes Rule.** Open https://chama-x.github.io/first-principles-ui-docs/alignment-axes to try it.
+> **Interactive demo: Alignment Axes Rule.** Open http://127.0.0.1:3000/alignment-axes to try it.
 
 Jagged horizontal offsets and stray margins inflate cognitive scan paths across the screen. Snap elements to at most `3` shared vertical alignment rails (`<= 2` on mobile) so the reader's eye sweeps straight down.
 
 ## Optical Alignment & Icon Offsets
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/alignment-axes to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/alignment-axes to try it.
   </DemoTab>
   <DemoTab label="Button Icon Offset">
     <OpticalButtonDemo />
@@ -1765,11 +1765,11 @@ if (isRowFlex && horizGap < 14) {
 > Eliminate sticky touch hover states, viewport URL-bar clipping, gray tap flashes, and accidental text selection on mobile web interfaces.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/mobile-native-physics
+- URL: http://127.0.0.1:3000/mobile-native-physics
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/mobile-native-physics.mdx
 
-> **Interactive demo: Mobile Native Physics.** Open https://chama-x.github.io/first-principles-ui-docs/mobile-native-physics to try it.
+> **Interactive demo: Mobile Native Physics.** Open http://127.0.0.1:3000/mobile-native-physics to try it.
 
 Unconditional `:hover` styles stay stuck after tapping on mobile screens, while raw `100vh` clips beneath browser chrome. Gate hover effects behind `@media (hover: hover)` and use dynamic viewport units (`100dvh`) with `touch-action: manipulation`.
 
@@ -1824,17 +1824,17 @@ Interactive controls (buttons, chips, segmented tabs, icons) must never trigger 
 > Enforce physical spring easing curves, strict GPU compositor property isolation (transform and opacity), and a 400ms Doherty response latency ceiling.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/motion-choreography
+- URL: http://127.0.0.1:3000/motion-choreography
 - Published: 2026-11-09
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/motion-choreography.mdx
 
-> **Interactive demo: Motion Choreography Rule.** Open https://chama-x.github.io/first-principles-ui-docs/motion-choreography to try it.
+> **Interactive demo: Motion Choreography Rule.** Open http://127.0.0.1:3000/motion-choreography to try it.
 
 Animating `width` or `padding` forces synchronous CPU layout reflow, dropping frames to stuttery lag. Restrict animations to GPU-composited `transform` and `opacity` with critically damped springs (`zeta >= 0.85`) settling under 350ms.
 
 ## Spring Easings & Press States
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/motion-choreography to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/motion-choreography to try it.
     <EasingCurveDemo />
     <StrongEasingDemo />
   </DemoTab>
@@ -1925,17 +1925,17 @@ for (const el of allVisible) {
 > Ensure continuous visual flow across container changes, shared element transitions, optical icon morphs, and asymmetric exit reflows without glyph stretching or GPU paint thrashing.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/fluid-continuity
+- URL: http://127.0.0.1:3000/fluid-continuity
 - Published: 2026-11-10
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/fluid-continuity.mdx
 
-> **Interactive demo: Fluid Continuity Rule.** Open https://chama-x.github.io/first-principles-ui-docs/fluid-continuity to try it.
+> **Interactive demo: Fluid Continuity Rule.** Open http://127.0.0.1:3000/fluid-continuity to try it.
 
 Unconstrained layout morphs warp font glyph aspect ratios during container expansion, while sluggish dismissals trap user attention. Enforce uniform scale projection (`|scaleX - scaleY| <= 0.04`) and make exit animations 2x faster than entrances.
 
 ## Continuous Fluid Interactions & State Morphing
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/fluid-continuity to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/fluid-continuity to try it.
     <SharedLayoutDetailDemo />
   </DemoTab>
   <DemoTab label="2. Icon Morph" badge="sigma <= 4px">
@@ -2052,17 +2052,17 @@ if (isExiting && durSeconds > 0.2) {
 > Eliminate animation fatigue by scaling duration inversely with interaction frequency: instant keyboard shortcuts, warm tooltip handoffs, capped list staggers, and optimistic updates.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/interaction-frequency
+- URL: http://127.0.0.1:3000/interaction-frequency
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/interaction-frequency.mdx
 
-> **Interactive demo: Novelty Budget.** Open https://chama-x.github.io/first-principles-ui-docs/interaction-frequency to try it.
+> **Interactive demo: Novelty Budget.** Open http://127.0.0.1:3000/interaction-frequency to try it.
 
 Everyday utility actions should never demand attention with flashy decorative animations. Spend novelty budgets exclusively on celebratory milestone events, keeping high-frequency repetitive tasks instant (`< 100ms`).
 
 ## Frequency Delays & Optimistic UI
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/interaction-frequency to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/interaction-frequency to try it.
     <HoverTooltipDemo />
   </DemoTab>
   <DemoTab label="Stagger Delays">
@@ -2107,17 +2107,17 @@ Loading spinners that flash for less than 150ms increase perceived latency compa
 > Build physically grounded gesture sheets and popovers with 1:1 pointer tracking, velocity-seeded spring releases, critical damping, and interruptible state machines.
 
 - Section: Physical Ergonomics
-- URL: https://chama-x.github.io/first-principles-ui-docs/spring-gesture-physics
+- URL: http://127.0.0.1:3000/spring-gesture-physics
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/physical-ergonomics/spring-gesture-physics.mdx
 
-> **Interactive demo: Interrupt Sheet.** Open https://chama-x.github.io/first-principles-ui-docs/spring-gesture-physics to try it.
+> **Interactive demo: Interrupt Sheet.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
 
 Animations that lock out touch input break direct physical manipulation and make apps feel unresponsive. Keep all gesture interactions interruptible with momentum-preserving velocity handoff (`v_exit = v_gesture`), letting users redirect in flight.
 
 ## Gesture Momentum & Direct Tracking
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/spring-gesture-physics to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/spring-gesture-physics to try it.
   </DemoTab>
   <DemoTab label="Input Locking Guard">
     <InterruptLockDemo />

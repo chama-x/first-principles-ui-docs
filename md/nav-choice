@@ -3,11 +3,11 @@
 > Bounding primary navigation links to prevent cognitive choice paralysis using the Hick-Hyman logarithmic decision latency model (n <= 6 items).
 
 - Section: Information Density
-- URL: https://chama-x.github.io/first-principles-ui-docs/nav-choice
+- URL: http://127.0.0.1:3000/nav-choice
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/information-density/nav-choice.mdx
 
-> **Interactive demo: Nav Choice Rule.** Open https://chama-x.github.io/first-principles-ui-docs/nav-choice to try it.
+> **Interactive demo: Nav Choice Rule.** Open http://127.0.0.1:3000/nav-choice to try it.
 
 Cramming 11 links into a header bar spikes Hick-Hyman decision latency and triggers visual paralysis. Restrict primary navigation to `<= 6` high-frequency destinations, nesting secondary pages into grouped categories.
 

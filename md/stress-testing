@@ -3,11 +3,11 @@
 > Inject adversarial 255-character strings, unbroken CJK text, and large numbers to expose flex squishing, avatar distortion, and ink clipping before shipping.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/stress-testing
+- URL: http://127.0.0.1:3000/stress-testing
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/stress-testing.mdx
 
-> **Interactive demo: Stress Testing Rule.** Open https://chama-x.github.io/first-principles-ui-docs/stress-testing to try it.
+> **Interactive demo: Stress Testing Rule.** Open http://127.0.0.1:3000/stress-testing to try it.
 
 Unbounded flex containers collapse avatars into slivers and blow out layouts when fed real adversarial data. Add `shrink-0` to circular media and `min-w-0 truncate` to text labels so geometry never deflates under 255-character inputs.
 

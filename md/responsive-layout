@@ -3,11 +3,11 @@
 > Preserve minimum component territorial card width (>= 145px) and eliminate horizontal viewport scrolling across desktop (1280px), split-pane (680px), and mobile (390px).
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/responsive-layout
+- URL: http://127.0.0.1:3000/responsive-layout
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/responsive-layout.mdx
 
-> **Interactive demo: Responsive Layout Rule.** Open https://chama-x.github.io/first-principles-ui-docs/responsive-layout to try it.
+> **Interactive demo: Responsive Layout Rule.** Open http://127.0.0.1:3000/responsive-layout to try it.
 
 Fixed grid columns crush cards below 145px on narrow screens, truncating content into illegible slivers. Use container queries (`@container`) with `auto-fit` and `minmax(180px, 1fr)` to preserve minimum territorial width without horizontal overflow.
 

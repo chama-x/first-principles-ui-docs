@@ -3,17 +3,17 @@
 > Ensure charts and data visualizations convey truthful proportions with zero-anchored baselines, Stevens-law bubble radiuses, monotonic spline interpolation, and collision-free SVG labels.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/data-viz
+- URL: http://127.0.0.1:3000/data-viz
 - Published: 2026-04-12
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/data-viz.mdx
 
-> **Interactive demo: Data Viz Rule.** Open https://chama-x.github.io/first-principles-ui-docs/data-viz to try it.
+> **Interactive demo: Data Viz Rule.** Open http://127.0.0.1:3000/data-viz to try it.
 
 Truncated baselines starting at non-zero values turn a minor 8% latency difference into an exaggerated 4x visual chasm. Anchor bar chart baselines at true zero with Cleveland Lie Factor `<= 1.05` so ink truthfully represents data.
 
 ## Perceptual Chart Geometry & Dynamics
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/data-viz to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/data-viz to try it.
   </DemoTab>
   <DemoTab label="Curve Overshoot">
     <CurveOvershootDemo />

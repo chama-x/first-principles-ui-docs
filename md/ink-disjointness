@@ -3,17 +3,17 @@
 > Preventing direct text ink collisions, glyph overlap, uncontained text bleeding, and broken inline ellipsis truncation across responsive containers.
 
 - Section: Responsive Layout
-- URL: https://chama-x.github.io/first-principles-ui-docs/ink-disjointness
+- URL: http://127.0.0.1:3000/ink-disjointness
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/responsive-layout/ink-disjointness.mdx
 
-> **Interactive demo: Ink Disjointness Rule.** Open https://chama-x.github.io/first-principles-ui-docs/ink-disjointness to try it.
+> **Interactive demo: Ink Disjointness Rule.** Open http://127.0.0.1:3000/ink-disjointness to try it.
 
 Absolute positioning causes badges and filenames to collide, bleeding letterforms together. Wrap flex siblings with `min-w-0` and `gap-3` so element bounding boxes remain strictly disjoint (`Delta_overlap <= 0px`) with zero ink collision.
 
 ## Balanced Text Wrapping & Preventing Orphans
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/ink-disjointness to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/ink-disjointness to try it.
   </DemoTab>
   <DemoTab label="Text Pretty">
     <TextPrettyDemo />

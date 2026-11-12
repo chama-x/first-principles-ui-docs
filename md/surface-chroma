@@ -3,17 +3,17 @@
 > Cap oversaturated card chroma and enforce high-chroma viewport territorial budgets using OKLCH perceptual color space and Helmholtz-Kohlrausch luminance surge limits.
 
 - Section: Color & Contrast
-- URL: https://chama-x.github.io/first-principles-ui-docs/surface-chroma
+- URL: http://127.0.0.1:3000/surface-chroma
 - Published: 2026-10-27
 - Source: https://github.com/first-principles-ui/first-principles-ui/blob/main/content/color-contrast/surface-chroma.mdx
 
-> **Interactive demo: Surface Chroma Rule.** Open https://chama-x.github.io/first-principles-ui-docs/surface-chroma to try it.
+> **Interactive demo: Surface Chroma Rule.** Open http://127.0.0.1:3000/surface-chroma to try it.
 
 Oversaturated neon backgrounds cause intense retinal glare and harsh neon glare. Cap container fills at OKLCH chroma `C <= 0.22` using Radix Step 3 surfaces to keep accent color within a calibrated perceptual budget.
 
 ## OKLCH Uniformity Across Hues
 
-> **Interactive demo: Demo Tab Group.** Open https://chama-x.github.io/first-principles-ui-docs/surface-chroma to try it.
+> **Interactive demo: Demo Tab Group.** Open http://127.0.0.1:3000/surface-chroma to try it.
   </DemoTab>
   <DemoTab label="Palette Steps">
     <OklchPaletteDemo />
